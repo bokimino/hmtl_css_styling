@@ -1,0 +1,33 @@
+.bg-yellow {
+	background-color: #fcd232;
+}
+.bg-red {
+	background-color: #eb3b3b;
+}
+.bg-red2 {
+	background-color: #ff1300;
+}
+.bg-black {
+	background-color: #302f38;
+}
+.color-red2 {
+	color: #ff1300;
+}
+.rounded {
+	border-radius: 12px !important;
+}
+.overflow {
+	overflow: hidden;
+}
+.font-10 {
+	font-size: 10px;
+}
+.font-12 {
+	font-size: 12px;
+}
+.card:hover {
+	position: relative;
+	cursor: pointer;
+	top: -10px;
+	transition: 1;
+}
