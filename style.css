@@ -1,0 +1,21 @@
+.bg-yellow {
+	background-color: #fcd232;
+}
+.bg-red {
+	background-color: #eb3b3b;
+}
+.bg-red2 {
+	background-color: #ff1300;
+}
+.bg-black {
+	background-color: #302f38;
+}
+.color-red2 {
+	color: #ff1300;
+}
+input[type='checkbox'] {
+	accent-color: #eb3b3b;
+}
+.max-width-1410 {
+	max-width: 1410px;
+}
