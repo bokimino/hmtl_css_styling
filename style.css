@@ -1,0 +1,21 @@
+.white-text {
+	color: white !important;
+}
+.banner-bg {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)),
+		url(./images/banner.jpg);
+
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 80vh;
+	position: relative;
+}
+h1 {
+	top: 50%;
+	width: 100%;
+	font-size: 5em;
+	color: #fff;
+	position: absolute;
+	transform: translateY(-50%);
+}
