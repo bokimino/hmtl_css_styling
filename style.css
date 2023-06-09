@@ -22,8 +22,8 @@ input[type='checkbox'] {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
-	height: 50px;
-	width: 50px !important;
+	height: 30px;
+	width: 30px !important;
 	border-radius: 50%;
 }
 input[type='checkbox']:checked {
