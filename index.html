@@ -98,7 +98,7 @@
 				hideAllCards();
 
 				if (document.querySelector('#filter-coding').checked) {
-					var codingCards = document.querySelectorAll('.coding');
+					let codingCards = document.querySelectorAll('.coding');
 					codingCards.forEach((codingCard) => {
 						codingCard.style.display = 'inline-block';
 					});
@@ -122,7 +122,7 @@
 				hideAllCards();
 
 				if (document.querySelector('#filter-design').checked) {
-					var designCards = document.querySelectorAll('.design');
+					let designCards = document.querySelectorAll('.design');
 					designCards.forEach((designCard) => {
 						designCard.style.display = 'inline-block';
 					});
@@ -147,7 +147,7 @@
 				hideAllCards();
 
 				if (document.querySelector('#filter-marketing').checked) {
-					var marketingCards = document.querySelectorAll('.marketing');
+					let marketingCards = document.querySelectorAll('.marketing');
 					marketingCards.forEach((marketingCard) => {
 						marketingCard.style.display = 'inline-block';
 					});
@@ -168,7 +168,7 @@
 				}
 			}
 			function hideAllCards() {
-				var allCards = document.querySelectorAll('.hideShow');
+				let allCards = document.querySelectorAll('.hideShow');
 
 				allCards.forEach((card) => {
 					card.style.display = 'none';
@@ -176,7 +176,7 @@
 			}
 
 			function showAllCards() {
-				var allCards = document.querySelectorAll('.hideShow');
+				let allCards = document.querySelectorAll('.hideShow');
 
 				allCards.forEach((card) => {
 					card.style.display = 'inline-block';
