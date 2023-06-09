@@ -13,9 +13,22 @@
 .color-red2 {
 	color: #ff1300;
 }
-input[type='checkbox'] {
-	accent-color: #eb3b3b;
+.bg-black .container .row .col-12 label:hover {
+	cursor: pointer;
 }
-.max-width-1410 {
-	max-width: 1410px;
+input[type='checkbox'] {
+	border: none;
+	accent-color: #302f38;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	height: 50px;
+	width: 50px !important;
+	border-radius: 50%;
+}
+input[type='checkbox']:checked {
+	background-color: rgba(190, 215, 243, 0.2);
+	background: url(./images/correct.png) 50% 50% no-repeat;
+	background-color: rgba(190, 215, 243, 0.2);
+	background-size: contain;
 }
