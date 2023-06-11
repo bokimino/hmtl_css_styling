@@ -24,18 +24,14 @@
 		></script>
 	</head>
 	<body>
-		<div class="bg-yellow">
-			<nav id="navbar-scroll" class="navbar navbar-expand-lg py-4">
-				<div class="navbar-brand w-25">
+		<div class="bg-yellow newBgColor">
+			<nav id="navbar-scroll" class="navbar navbar-expand-lg p-lg-4">
+				<div class="navbar-brand mx-xl-4">
 					<a
-						class="d-flex flex-column text-dark text-uppercase font-weight-bold text-center h6 text-decoration-none"
+						class="d-flex flex-column text-dark text-uppercase font-weight-bold text-center h6 text-decoration-none mb-0"
 						href="#"
-						><img
-							class="w-25 mr-auto ml-auto"
-							src="./images/Logo.png "
-							alt="brainster-logo"
-						/>Brainster</a
-					>
+						><img src="./images/logo1.png" alt="" width="60" height="60" />
+					</a>
 				</div>
 				<button
 					class="navbar-toggler"
@@ -45,49 +41,65 @@
 					aria-controls="navbarSupportedContent"
 					aria-expanded="false"
 					aria-label="Toggle navigation"
+					id="switcher"
 				>
-					<span class="navbar-toggler-icon"></span>
+					<span class="navbar-toggler-icon">
+						<svg
+							class="color-dark"
+							xmlns="http://www.w3.org/2000/svg"
+							width="40"
+							height="40"
+							viewBox="0 0 40 40"
+							fill="red"
+						>
+							<path
+								d="M22 30V27.5H35V30H22ZM11.25 21.25V18.75H35V21.25H11.25ZM5 12.5V10H35V12.5H5Z"
+								fill="black"
+							></path>
+						</svg>
+					</span>
+					<span class="new-icon"><i class="fa-solid fa-x mr-n3"></i></span>
 				</button>
 
 				<div
 					class="collapse navbar-collapse w-100 justify-content-end"
 					id="navbarSupportedContent"
 				>
-					<ul id="" class="navbar-nav">
-						<li class="nav-item mr-4">
+					<ul id="" class="navbar-nav mr-xl-4">
+						<li class="nav-item">
 							<a
-								class="nav-link text-dark font-weight-bold"
+								class="nav-link text-dark font-weight-bold cWhite"
 								href="https://brainster.co/marketing/"
 								>Академија за маркетинг
 								<span class="sr-only">(current)</span></a
 							>
 						</li>
-						<li class="nav-item mr-4">
+						<li class="nav-item mr-xl-4">
 							<a
-								class="nav-link text-dark font-weight-bold"
+								class="nav-link text-dark font-weight-bold cWhite"
 								href="https://brainster.co/full-stack/"
 								>Академија за програмирање</a
 							>
 						</li>
 
-						<li class="nav-item mr-4">
+						<li class="nav-item mr-xl-4">
 							<a
-								class="nav-link text-dark font-weight-bold"
+								class="nav-link text-dark font-weight-bold cWhite"
 								href="https://brainster.co/data-science/"
 								>Академија за data science</a
 							>
 						</li>
-						<li class="nav-item mr-4">
+						<li class="nav-item mr-xl-4">
 							<a
-								class="nav-link text-dark font-weight-bold"
+								class="nav-link text-dark font-weight-bold cWhite"
 								href="https://brainster.co/graphic-design/"
 								>Академија за дизајн</a
 							>
 						</li>
-						<li class="nav-item mr-4">
+						<li class="nav-item align-self-lg-center">
 							<a
-								class="nav-link btn text-light bg-red2 font-weight-bold"
-								href="contact.html"
+								class="nav-link btn text-light bg-red2 font-weight-bold widthMenu"
+								href="./contact.html"
 								>Вработи наш студент</a
 							>
 						</li>
@@ -95,6 +107,7 @@
 				</div>
 			</nav>
 		</div>
+
 		<div class="banner-bg text-center">
 			<h1 class="text-capitalize mb-0 font-weight-bolder">Brainster labs</h1>
 		</div>
