@@ -1,5 +1,102 @@
+body {
+	position: relative;
+}
+.bg-yellow {
+	background-color: #fcd232;
+}
+.bg-red {
+	background-color: #eb3b3b;
+}
+.bg-red2 {
+	background-color: #ff1300;
+}
+.bg-black {
+	background-color: #302f38;
+}
+.color-red2 {
+	color: #ff1300;
+}
+
+.white-text {
+	color: white !important;
+}
+.widthMenu {
+	width: 200px;
+}
+.new-icon {
+	display: none;
+	color: white;
+}
+.stretch {
+	width: 100%;
+	min-height: calc(100vh + 11890px);
+	position: absolute;
+	z-index: 300;
+}
+.fa-x:before {
+	margin-right: -50px;
+}
+.banner-bg {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)),
+		url(./images/banner.jpg);
+
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	min-height: calc(100vh - 166px - 98.8px);
+	position: relative;
+}
+h1 {
+	top: 50%;
+	width: 100%;
+	font-size: 5em;
+	color: #fff;
+	position: absolute;
+	transform: translateY(-50%);
+}
+.bg-black .container .row .col-12 label:hover {
+	cursor: pointer;
+}
+input[type='checkbox'] {
+	border: none;
+	accent-color: #302f38;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	height: 30px;
+	width: 30px !important;
+	border-radius: 50%;
+}
+input[type='checkbox']:checked {
+	background-color: rgba(190, 215, 243, 0.2);
+	background: url(./images/correct.png) 50% 50% no-repeat;
+	background-color: rgba(190, 215, 243, 0.2);
+	background-size: contain;
+}
+
+.rounded {
+	border-radius: 12px !important;
+}
+.overflow {
+	overflow: hidden;
+}
+.font-10 {
+	font-size: 10px;
+}
+.font-12 {
+	font-size: 12px;
+}
+.card:hover {
+	position: relative;
+	cursor: pointer;
+	top: -10px;
+	transition: 1;
+}
 .p-12 {
     padding: 12px;
+}
+.h-50 {
+	height: 50px !important;
 }
 @media only screen and (max-width: 992px){
 	.modal-dialog {
@@ -11,6 +108,36 @@
 		max-width: 600px;
 	}
 }
-.h-50 {
-	height: 50px !important;
+@media only screen and (min-device-width: 768) and (max-device-width: 1024px) {
+	.stretch {
+		width: 100%;
+		min-height: calc(100vh + 6115px);
+		position: absolute;
+		z-index: 300;
+	}
+}
+@media only screen and (max-width: 1024px) {
+	h1 {
+		font-size: 3em;
+	}
+}
+@media only screen and (max-width: 2560px) {
+	.banner-bg {
+		min-height: calc(100vh - 118px - 98px);
+	}
+}
+@media only screen and (max-width: 992px) {
+	.banner-bg {
+		min-height: calc(100vh - 86px - (78.8px * 3));
+	}
+}
+@media only screen and (max-width: 556px) {
+	.banner-bg {
+		min-height: calc(100vh - 86px - (96.8px * 3));
+	}
+}
+@media only screen and (min-width: 992px) {
+	.bg-black .container .row .borderLeft {
+		border-left: 1px solid #6c757d;
+	}
 }
