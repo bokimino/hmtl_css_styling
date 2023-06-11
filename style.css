@@ -1,3 +1,16 @@
 .p-12 {
     padding: 12px;
 }
+@media only screen and (max-width: 992px){
+	.modal-dialog {
+		max-width: 700px;
+	}
+}
+@media only screen and (max-width: 767px){
+	.modal-dialog {
+		max-width: 600px;
+	}
+}
+.h-50 {
+	height: 50px !important;
+}

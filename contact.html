@@ -24,9 +24,95 @@
 		></script>
 	</head>
 	<body>
+		<div class="bg-yellow newBgColor">
+			<nav id="navbar-scroll" class="navbar navbar-expand-lg p-lg-4 ">
+				<div class="navbar-brand mx-xl-4">
+					<a
+						class="d-flex flex-column text-dark text-uppercase font-weight-bold text-center h6 text-decoration-none mb-0"
+						href="#"
+						><img src="./images/logo1.png" alt="" width="60" height="60" />	
+					</a>
+				</div>
+				<button
+					class="navbar-toggler"
+					type="button"
+					data-toggle="collapse"
+					data-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent"
+					aria-expanded="false"
+					aria-label="Toggle navigation"
+					id="switcher"
+				>
+					<span class="navbar-toggler-icon">
+						<!-- <i class="fi fi-rr-bars-sort font-weight-bolder fa-2x"></i> -->
+						<svg
+							class="color-dark"
+							xmlns="http://www.w3.org/2000/svg"
+							width="40"
+							height="40"
+							viewBox="0 0 40 40"
+							fill="red"
+						>
+							<path
+								d="M22 30V27.5H35V30H22ZM11.25 21.25V18.75H35V21.25H11.25ZM5 12.5V10H35V12.5H5Z"
+								fill="black"
+							></path>
+						</svg>
+					</span>
+					<span class="new-icon"><i class="fa-solid fa-x mr-n3 "></i></span>
+				</button>
+
+				<div
+					class="collapse navbar-collapse w-100 justify-content-end"
+					id="navbarSupportedContent"
+				>
+					<ul id="" class="navbar-nav mr-xl-4">
+						<li class="nav-item">
+							<a
+								class="nav-link text-dark font-weight-bold cWhite"
+								href="https://brainster.co/marketing/"
+								>Академија за маркетинг
+								<span class="sr-only">(current)</span></a
+							>
+						</li>
+						<li class="nav-item mr-xl-4">
+							<a
+								class="nav-link text-dark font-weight-bold cWhite"
+								href="https://brainster.co/full-stack/"
+								>Академија за програмирање</a
+							>
+						</li>
+
+						<li class="nav-item mr-xl-4">
+							<a
+								class="nav-link text-dark font-weight-bold cWhite"
+								href="https://brainster.co/data-science/"
+								>Академија за data science</a
+							>
+						</li>
+						<li class="nav-item mr-xl-4">
+							<a
+								class="nav-link text-dark font-weight-bold cWhite"
+								href="https://brainster.co/graphic-design/"
+								>Академија за дизајн</a
+							>
+						</li>
+						<li class="nav-item align-self-lg-center ">
+							<a
+								class="nav-link btn text-light bg-red2 font-weight-bold widthMenu"
+								href="./contact.html"
+								>Вработи наш студент</a
+							>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</div>
 		<div class="bg-yellow py-5">
 			<div class="container vh-100">
-				<h2 class="h1 pb-3 pb-lg-0 py-lg-5 text-center font-weight-bold">Вработи студенти</h2>
+				<h2 class="h1 pb-3 pb-lg-0 py-lg-5 text-center font-weight-bold">
+					Вработи студенти
+				</h2>
 				<form class="needs-validation" novalidate>
 					<div class="form-row">
 						<div class="col-12 col-lg-6 font-weight-bold mb-2">
@@ -93,20 +179,29 @@
 								name="languages"
 								id="typeStudent"
 								required
-								
 							>
-							
-								<option class="font-weight-bold" disabled selected hidden value="">
+								<option
+									class="font-weight-bold"
+									disabled
+									selected
+									hidden
+									value=""
+								>
 									Избери тип на студент
 								</option>
-								<option class="p-5 font-weight-bold" value="Маркетинг">Студенти од маркетинг</option>
-								<option class="font-weight-bold" value="Програмирање">Студенти од програмирање</option>
-								<option class="font-weight-bold" value="Data Science">Студенти од data science</option>
-								<option class="font-weight-bold" value="Дизајн">Студенти од дизајн</option>
-
+								<option class="p-5 font-weight-bold" value="Маркетинг">
+									Студенти од маркетинг
+								</option>
+								<option class="font-weight-bold" value="Програмирање">
+									Студенти од програмирање
+								</option>
+								<option class="font-weight-bold" value="Data Science">
+									Студенти од data science
+								</option>
+								<option class="font-weight-bold" value="Дизајн">
+									Студенти од дизајн
+								</option>
 							</select>
-							
-						
 						</div>
 						<div class="col-12 col-lg-6">
 							<button
@@ -118,7 +213,7 @@
 							>
 								испрати
 							</button>
-							
+
 							<div
 								class="modal fade"
 								id="oneModal"
@@ -219,32 +314,46 @@
 			crossorigin="anonymous"
 		></script>
 		<script>
-			(function () {
-				'use strict';
-				window.addEventListener(
-					'load',
-					function () {
-						var forms = document.getElementsByClassName('needs-validation');
-						var validation = Array.prototype.filter.call(
-							forms,
-							function (form) {
-								form.addEventListener(
-									'submit',
-									function (event) {
-										if (form.checkValidity() === false) {
-											event.preventDefault();
-											event.stopPropagation();
-										}
-										form.classList.add('was-validated');
-									},
-									false
-								);
-							}
-						);
-					},
-					false
-				);
-			})();
+			document.addEventListener('DOMContentLoaded', function () {
+				document
+					.getElementById('submitBtn')
+					.addEventListener('click', function (event) {
+						event.preventDefault();
+						validateForm();
+					});
+
+				function validateForm() {
+					var form = document.querySelector('.needs-validation');
+					if (form.checkValidity() === false) {
+						event.stopPropagation();
+						form.classList.add('was-validated');
+					} else {
+						form.classList.remove('was-validated');
+						getInputValue();
+					}
+				}
+
+				function getInputValue() {
+					var nameLastNameInput = document.getElementById('fullName');
+					var companyName = document.getElementById('companyName');
+					var email = document.getElementById('email');
+					var phone = document.getElementById('phone');
+					var selectElement = document.getElementById('typeStudent');
+
+					var nameLastNameValue = nameLastNameInput.value;
+					var companyNameValue = companyName.value;
+					var emailValue = email.value;
+					var phoneValue = phone.value;
+					var selectedValue = selectElement.value;
+
+					document.getElementById('forNameLastName').innerHTML =
+						nameLastNameValue;
+					document.getElementById('forCompany').innerHTML = companyNameValue;
+					document.getElementById('forEmail').innerHTML = emailValue;
+					document.getElementById('forPhone').innerHTML = phoneValue;
+					document.getElementById('forType').innerHTML = selectedValue;
+				}
+			});
 		</script>
 	</body>
 </html>
