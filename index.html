@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>BrainsterLabs</title>
+		<meta charset="utf-8" />
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<meta name="author" content="" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+		<!-- Latest compiled and minified Bootstrap 4.6 CSS -->
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+			integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+			crossorigin="anonymous"
+		/>
+		<!-- CSS script -->
+		<link rel="stylesheet" href="style.css" />
+		<!-- Latest Font-Awesome CDN -->
+		<script
+			src="https://kit.fontawesome.com/3257d9ad29.js"
+			crossorigin="anonymous"
+		></script>
+	</head>
+	<body>
+		<div class="bg-yellow newBgColor">
+			<nav id="navbar-scroll" class="navbar navbar-expand-lg p-lg-4">
+				<div class="navbar-brand mx-xl-4">
+					<a
+						class="d-flex flex-column text-dark text-uppercase font-weight-bold text-center h6 text-decoration-none mb-0"
+						href="#"
+						><img src="./images/logo1.png" alt="" width="60" height="60" />
+					</a>
+				</div>
+				<button
+					class="navbar-toggler"
+					type="button"
+					data-toggle="collapse"
+					data-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent"
+					aria-expanded="false"
+					aria-label="Toggle navigation"
+					id="switcher"
+				>
+					<span class="navbar-toggler-icon">
+						<svg
+							class="color-dark"
+							xmlns="http://www.w3.org/2000/svg"
+							width="40"
+							height="40"
+							viewBox="0 0 40 40"
+							fill="red"
+						>
+							<path
+								d="M22 30V27.5H35V30H22ZM11.25 21.25V18.75H35V21.25H11.25ZM5 12.5V10H35V12.5H5Z"
+								fill="black"
+							></path>
+						</svg>
+					</span>
+					<span class="new-icon"><i class="fa-solid fa-x mr-n3"></i></span>
+				</button>
+
+				<div
+					class="collapse navbar-collapse w-100 justify-content-end"
+					id="navbarSupportedContent"
+				>
+					<ul id="" class="navbar-nav">
+						<li class="nav-item mr-xl-4">
+							<a
+								class="nav-link text-dark font-weight-bold cWhite"
+								href="https://brainster.co/marketing/"
+								>Академија за маркетинг
+								<span class="sr-only">(current)</span></a
+							>
+						</li>
+						<li class="nav-item mr-xl-4">
+							<a
+								class="nav-link text-dark font-weight-bold cWhite"
+								href="https://brainster.co/full-stack/"
+								>Академија за програмирање</a
+							>
+						</li>
+
+						<li class="nav-item mr-xl-4">
+							<a
+								class="nav-link text-dark font-weight-bold cWhite"
+								href="https://brainster.co/data-science/"
+								>Академија за data science</a
+							>
+						</li>
+						<li class="nav-item mr-xl-4">
+							<a
+								class="nav-link text-dark font-weight-bold cWhite"
+								href="https://brainster.co/graphic-design/"
+								>Академија за дизајн</a
+							>
+						</li>
+						<li class="nav-item align-self-lg-center">
+							<a
+								class="nav-link btn text-light bg-red2 font-weight-bold widthMenu"
+								href="./contact.html"
+								>Вработи наш студент</a
+							>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+
+		<div class="banner-bg text-center">
+			<h1 class="text-capitalize mb-0 font-weight-bolder">Brainster labs</h1>
+		</div>
+		<div class="bg-black">
+			<div class="container mw-100">
+				<div class="row">
+					<div
+						id="filterMarketing"
+						class="col-12 col-lg-4 text-light font-weight-bold py-4 d-flex border-bottom border-secondary justify-content-around align-items-center"
+					>
+						<label class="mb-0 w-75" for="filter-marketing"
+							>Проекти на студенти по академијата за маркетинг</label
+						>
+						<input
+							class="w-25 circle-checkbox"
+							type="checkbox"
+							id="filter-marketing"
+						/>
+					</div>
+					<div
+						id="filterCoding"
+						class="col-12 col-lg-4 borderLeft text-light font-weight-bold py-4 d-flex border-bottom border-secondary justify-content-around align-items-center"
+					>
+						<label class="w-75 mb-0" for="filter-coding"
+							>Проекти на студенти по академијата за програмирање</label
+						>
+						<input class="w-25" type="checkbox" id="filter-coding" />
+					</div>
+					<div
+						id="filterDesign"
+						class="col-12 col-lg-4 borderLeft text-light font-weight-bold py-4 d-flex border-bottom border-secondary justify-content-around align-items-center"
+					>
+						<label class="w-75 mb-0" for="filter-design"
+							>Проекти на студенти по академијата за дизајн</label
+						>
+						<input class="w-25" type="checkbox" id="filter-design" />
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="bg-yellow">
+			<div class="container">
+				<h2 class="text-center font-weight-bold p-3">Проекти</h2>
+
+				<div class="row flex-wrap cards m-0">
+					<div
+						class="col-12 col-md-6 col-lg-4 hideShow p-2 marketing"
+						style="width: 18rem"
+					>
+						<div class="card rounded overflow shadow-lg">
+							<img src="./images/pic-3.png" class="card-img-top" alt="..." />
+							<div class="card-body m-0">
+								<div class="w-75">
+									<p class="bg-yellow pl-3 py-1 font-12">
+										Академија за Маркетинг
+									</p>
+								</div>
+								<h5 class="card-title">
+									Анализа на студија за маркетинг на Google
+								</h5>
+								<p class="card-text">
+									Краток опис во кој студентите ќе можат да опишат за што се
+									работи во проектот
+								</p>
+								<p class="font-10 font-weight-bold">Април - Октомври 2019</p>
+								<div class="text-right">
+									<a href="#" class="btn bg-red2 text-light px-4"
+										>Дознај повеќе</a
+									>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div
+						class="col-12 col-md-6 col-lg-4 hideShow p-2 marketing"
+						style="width: 18rem"
+					>
+						<div class="card rounded overflow shadow-lg">
+							<img src="./images/pic-2.png" class="card-img-top" alt="..." />
+							<div class="card-body m-0">
+								<div class="w-75">
+									<p class="bg-yellow pl-3 py-1 font-12">
+										Академија за Маркетинг
+									</p>
+								</div>
+								<h5 class="card-title">Споредба на видови на маркетинг</h5>
+								<p class="card-text">
+									Краток опис во кој студентите ќе можат да опишат за што се
+									работи во проектот
+								</p>
+								<p class="font-10 font-weight-bold">Април - Октомври 2019</p>
+								<div class="text-right">
+									<a href="#" class="btn bg-red2 text-light px-4"
+										>Дознај повеќе</a
+									>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div
+						class="col-12 col-md-6 col-lg-4 hideShow p-2 marketing"
+						style="width: 18rem"
+					>
+						<div class="card rounded overflow shadow-lg">
+							<img src="./images/pic-1.png" class="card-img-top" alt="..." />
+							<div class="card-body">
+								<div class="w-75">
+									<p class="bg-yellow pl-3 py-1 font-12">
+										Академија за Маркетинг
+									</p>
+								</div>
+								<h5 class="card-title">
+									ROI за различни стратегии за дигитален маркетинг
+								</h5>
+								<p class="card-text">
+									Краток опис во кој студентите ќе можат да опишат за што се
+									работи во проектот
+								</p>
+								<p class="font-10 font-weight-bold">Април - Октомври 2019</p>
+								<div class="text-right">
+									<a href="#" class="btn bg-red2 text-light px-4"
+										>Дознај повеќе</a
+									>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div
+						class="col-12 col-md-6 col-lg-4 hideShow p-2 design"
+						style="width: 18rem"
+					>
+						<div class="card rounded overflow shadow-lg">
+							<img src="./images/pic-4.png" class="card-img-top" alt="..." />
+							<div class="card-body">
+								<div class="w-75">
+									<p class="bg-yellow pl-3 py-1 font-12">Академија за Дизајн</p>
+								</div>
+								<h5 class="card-title">Дизајн на идентитет за пица ресторан</h5>
+								<p class="card-text">
+									Краток опис во кој студентите ќе можат да опишат за што се
+									работи во проектот
+								</p>
+								<p class="font-10 font-weight-bold">Април - Октомври 2019</p>
+								<div class="text-right">
+									<a href="#" class="btn bg-red2 text-light px-4"
+										>Дознај повеќе</a
+									>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div
+						class="col-12 col-md-6 col-lg-4 hideShow p-2 design"
+						style="width: 18rem"
+					>
+						<div class="card rounded overflow shadow-lg">
+							<img src="./images/pic-5.png" class="card-img-top" alt="..." />
+							<div class="card-body">
+								<div class="w-75">
+									<p class="bg-yellow pl-3 py-1 font-12">Академија за Дизајн</p>
+								</div>
+								<h5 class="card-title">Постер дизајн за Браинстер со Adobe</h5>
+								<p class="card-text">
+									Краток опис во кој студентите ќе можат да опишат за што се
+									работи во проектот
+								</p>
+								<p class="font-10 font-weight-bold">Април - Октомври 2019</p>
+								<div class="text-right">
+									<a href="#" class="btn bg-red2 text-light px-4"
+										>Дознај повеќе</a
+									>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div
+						class="col-12 col-md-6 col-lg-4 hideShow p-2 coding"
+						style="width: 18rem"
+					>
+						<div class="card rounded overflow shadow-lg">
+							<img src="./images/pic-6.png" class="card-img-top" alt="..." />
+							<div class="card-body">
+								<div class="w-75">
+									<p class="bg-yellow pl-3 py-1 font-12">
+										Академија за Програмирање
+									</p>
+								</div>
+								<h5 class="card-title">Изработка на мала JavaScript игра</h5>
+								<p class="card-text">
+									Краток опис во кој студентите ќе можат да опишат за што се
+									работи во проектот
+								</p>
+								<p class="font-10 font-weight-bold">Април - Октомври 2019</p>
+								<div class="text-right">
+									<a href="#" class="btn bg-red2 text-light px-4"
+										>Дознај повеќе</a
+									>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div
+						class="col-12 col-md-6 col-lg-4 hideShow p-2 coding"
+						style="width: 18rem"
+					>
+						<div class="card rounded overflow shadow-lg">
+							<img src="./images/pic-7.png" class="card-img-top" alt="..." />
+							<div class="card-body">
+								<div class="w-75">
+									<p class="bg-yellow pl-3 py-1 font-12">
+										Академија за Програмирање
+									</p>
+								</div>
+								<h5 class="card-title">Решавање на проблеми со GitHub</h5>
+								<p class="card-text">
+									Краток опис во кој студентите ќе можат да опишат за што се
+									работи во проектот
+								</p>
+								<p class="font-10 font-weight-bold">Април - Октомври 2019</p>
+								<div class="text-right">
+									<a href="#" class="btn bg-red2 text-light px-4"
+										>Дознај повеќе</a
+									>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div
+						class="col-12 col-md-6 col-lg-4 hideShow p-2 coding"
+						style="width: 18rem"
+					>
+						<div class="card rounded overflow shadow-lg">
+							<img src="./images/pic-8.png" class="card-img-top" alt="..." />
+							<div class="card-body">
+								<div class="w-75">
+									<p class="bg-yellow pl-3 py-1 font-12">
+										Академија за Програмирање
+									</p>
+								</div>
+								<h5 class="card-title">
+									Создавање апликација за временска прогноза
+								</h5>
+								<p class="card-text">
+									Краток опис во кој студентите ќе можат да опишат за што се
+									работи во проектот
+								</p>
+								<p class="font-10 font-weight-bold">Април - Октомври 2019</p>
+								<div class="text-right">
+									<a href="#" class="btn bg-red2 text-light px-4"
+										>Дознај повеќе</a
+									>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div
+						class="col-12 col-md-6 col-lg-4 hideShow p-2 coding"
+						style="width: 18rem"
+					>
+						<div class="card rounded overflow shadow-lg">
+							<img src="./images/pic-9.png" class="card-img-top" alt="..." />
+							<div class="card-body">
+								<div class="w-75">
+									<p class="bg-yellow pl-3 py-1 font-12">
+										Академија за Програмирање
+									</p>
+								</div>
+								<h5 class="card-title">
+									Изработка на веб страна со JavaScript
+								</h5>
+								<p class="card-text">
+									Краток опис во кој студентите ќе можат да опишат за што се
+									работи во проектот
+								</p>
+								<p class="font-10 font-weight-bold">Април - Октомври 2019</p>
+								<div class="text-right">
+									<a href="#" class="btn bg-red2 text-light px-4"
+										>Дознај повеќе</a
+									>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div
+						class="col-12 col-md-6 col-lg-4 hideShow p-2 coding"
+						style="width: 18rem"
+					>
+						<div class="card rounded overflow shadow-lg">
+							<img src="./images/pic-10.png" class="card-img-top" alt="..." />
+							<div class="card-body">
+								<div class="w-75">
+									<p class="bg-yellow pl-3 py-1 font-12">
+										Академија за Програмирање
+									</p>
+								</div>
+								<h5 class="card-title">Развивање на календарска апликација</h5>
+								<p class="card-text">
+									Краток опис во кој студентите ќе можат да опишат за што се
+									работи во проектот
+								</p>
+								<p class="font-10 font-weight-bold">Април - Октомври 2019</p>
+								<div class="text-right">
+									<a href="#" class="btn bg-red2 text-light px-4"
+										>Дознај повеќе</a
+									>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div
+						class="col-12 col-md-6 col-lg-4 hideShow p-2 coding"
+						style="width: 18rem"
+					>
+						<div class="card rounded overflow shadow-lg">
+							<img src="./images/pic-11.png" class="card-img-top" alt="..." />
+							<div class="card-body">
+								<div class="w-75">
+									<p class="bg-yellow pl-3 py-1 font-12">
+										Академија за Програмирање
+									</p>
+								</div>
+								<h5 class="card-title">Програмирање со помошта на AI</h5>
+								<p class="card-text">
+									Краток опис во кој студентите ќе можат да опишат за што се
+									работи во проектот
+								</p>
+								<p class="font-10 font-weight-bold">Април - Октомври 2019</p>
+								<div class="text-right">
+									<a href="#" class="btn bg-red2 text-light px-4"
+										>Дознај повеќе</a
+									>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div
+						class="col-12 col-md-6 col-lg-4 hideShow p-2 design"
+						style="width: 18rem"
+					>
+						<div class="card rounded overflow shadow-lg">
+							<img src="./images/pic-12.png" class="card-img-top" alt="..." />
+							<div class="card-body">
+								<div class="w-75">
+									<p class="bg-yellow pl-3 py-1 font-12">Академија за Дизајн</p>
+								</div>
+								<h5 class="card-title">
+									Креирање визуелен идентитет (лого + бренд)
+								</h5>
+								<p class="card-text">
+									Краток опис во кој студентите ќе можат да опишат за што се
+									работи во проектот
+								</p>
+								<p class="font-10 font-weight-bold">Април - Октомври 2019</p>
+								<div class="text-right">
+									<a href="#" class="btn bg-red2 text-light px-4"
+										>Дознај повеќе</a
+									>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div
+						class="col-12 col-md-6 col-lg-4 hideShow p-2 design"
+						style="width: 18rem"
+					>
+						<div class="card rounded overflow shadow-lg">
+							<img src="./images/pic-13.png" class="card-img-top" alt="..." />
+							<div class="card-body">
+								<div class="w-75">
+									<p class="bg-yellow pl-3 py-1 font-12">Академија за Дизајн</p>
+								</div>
+								<h5 class="card-title">
+									Победничко решение за Motion Design на Bellina
+								</h5>
+								<p class="card-text">
+									Краток опис во кој студентите ќе можат да опишат за што се
+									работи во проектот
+								</p>
+								<p class="font-10 font-weight-bold">Април - Октомври 2019</p>
+								<div class="text-right">
+									<a href="#" class="btn bg-red2 text-light px-4"
+										>Дознај повеќе</a
+									>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div
+						class="col-12 col-md-6 col-lg-4 hideShow p-2 marketing"
+						style="width: 18rem"
+					>
+						<div class="card rounded overflow shadow-lg">
+							<img src="./images/pic-14.png" class="card-img-top" alt="..." />
+							<div class="card-body">
+								<div class="w-75">
+									<p class="bg-yellow pl-3 py-1 font-12">
+										Академија за Маркетинг
+									</p>
+								</div>
+								<h5 class="card-title">
+									Стратегии за социјални медиуми за Е-купување
+								</h5>
+								<p class="card-text">
+									Краток опис во кој студентите ќе можат да опишат за што се
+									работи во проектот
+								</p>
+								<p class="font-10 font-weight-bold">Април - Октомври 2019</p>
+								<div class="text-right">
+									<a href="#" class="btn bg-red2 text-light px-4"
+										>Дознај повеќе</a
+									>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div
+						class="col-12 col-md-6 col-lg-4 hideShow p-2 marketing"
+						style="width: 18rem"
+					>
+						<div class="card rounded overflow shadow-lg">
+							<img src="./images/pic-15.png" class="card-img-top" alt="..." />
+							<div class="card-body">
+								<div class="w-75">
+									<p class="bg-yellow pl-3 py-1 font-12">
+										Академија за Маркетинг
+									</p>
+								</div>
+								<h5 class="card-title">
+									Анализа на конкурентите во дигиталниот маркетинг
+								</h5>
+								<p class="card-text">
+									Краток опис во кој студентите ќе можат да опишат за што се
+									работи во проектот
+								</p>
+								<p class="font-10 font-weight-bold">Април - Октомври 2019</p>
+								<div class="text-right">
+									<a href="#" class="btn bg-red2 text-light px-4"
+										>Дознај повеќе</a
+									>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div
+						class="col-12 col-md-6 col-lg-4 hideShow p-2 marketing"
+						style="width: 18rem"
+					>
+						<div class="card rounded overflow shadow-lg">
+							<img src="./images/pic-16.png" class="card-img-top" alt="..." />
+							<div class="card-body">
+								<div class="w-75">
+									<p class="bg-yellow pl-3 py-1 font-12">
+										Академија за Маркетинг
+									</p>
+								</div>
+								<h5 class="card-title">Анализа на алатки за клучни зборови</h5>
+								<p class="card-text">
+									Краток опис во кој студентите ќе можат да опишат за што се
+									работи во проектот
+								</p>
+								<p class="font-10 font-weight-bold">Април - Октомври 2019</p>
+								<div class="text-right">
+									<a href="#" class="btn bg-red2 text-light px-4"
+										>Дознај повеќе</a
+									>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div
+						class="col-12 col-md-6 col-lg-4 hideShow p-2 coding"
+						style="width: 18rem"
+					>
+						<div class="card rounded overflow shadow-lg">
+							<img src="./images/pic-17.png" class="card-img-top" alt="..." />
+							<div class="card-body">
+								<div class="w-75">
+									<p class="bg-yellow pl-3 py-1 font-12">
+										Академија за Програмирање
+									</p>
+								</div>
+								<h5 class="card-title">
+									Креирање онлајн продавница за е-трговија
+								</h5>
+								<p class="card-text">
+									Краток опис во кој студентите ќе можат да опишат за што се
+									работи во проектот
+								</p>
+								<p class="font-10 font-weight-bold">Април - Октомври 2019</p>
+								<div class="text-right">
+									<a href="#" class="btn bg-red2 text-light px-4"
+										>Дознај повеќе</a
+									>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div
+						class="col-12 col-md-6 col-lg-4 hideShow p-2 coding"
+						style="width: 18rem"
+					>
+						<div class="card rounded overflow shadow-lg">
+							<img src="./images/pic-18.png" class="card-img-top" alt="..." />
+							<div class="card-body">
+								<div class="w-75">
+									<p class="bg-yellow pl-3 py-1 font-12">
+										Академија за Програмирање
+									</p>
+								</div>
+								<h5 class="card-title">
+									Алатка за класификација на спам-пошта
+								</h5>
+								<p class="card-text">
+									Краток опис во кој студентите ќе можат да опишат за што се
+									работи во проектот
+								</p>
+								<p class="font-10 font-weight-bold">Април - Октомври 2019</p>
+								<div class="text-right">
+									<a href="#" class="btn bg-red2 text-light px-4"
+										>Дознај повеќе</a
+									>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div
+						class="col-12 col-md-6 col-lg-4 hideShow p-2 coding"
+						style="width: 18rem"
+					>
+						<div class="card rounded overflow shadow-lg">
+							<img src="./images/pic-19.png" class="card-img-top" alt="..." />
+							<div class="card-body">
+								<div class="w-75">
+									<p class="bg-yellow pl-3 py-1 font-12">
+										Академија за Програмирање
+									</p>
+								</div>
+								<h5 class="card-title">Креирање респонзивна веб-страница</h5>
+								<p class="card-text">
+									Краток опис во кој студентите ќе можат да опишат за што се
+									работи во проектот
+								</p>
+								<p class="font-10 font-weight-bold">Април - Октомври 2019</p>
+								<div class="text-right">
+									<a href="#" class="btn bg-red2 text-light px-4"
+										>Дознај повеќе</a
+									>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div
+						class="col-12 col-md-6 col-lg-4 hideShow p-2 coding"
+						style="width: 18rem"
+					>
+						<div class="card rounded overflow shadow-lg">
+							<img src="./images/pic-20.png" class="card-img-top" alt="..." />
+							<div class="card-body">
+								<div class="w-75">
+									<p class="bg-yellow pl-3 py-1 font-12">
+										Академија за Програмирање
+									</p>
+								</div>
+								<h5 class="card-title">
+									Развивање на мобилна апликација за McDonalds
+								</h5>
+								<p class="card-text">
+									Краток опис во кој студентите ќе можат да опишат за што се
+									работи во проектот
+								</p>
+								<p class="font-10 font-weight-bold">Април - Октомври 2019</p>
+								<div class="text-right">
+									<a href="#" class="btn bg-red2 text-light px-4"
+										>Дознај повеќе</a
+									>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="bg-black">
+			<div class="container-sm">
+				<h6 class="text-light text-center py-3 px-4 px-sm-0 mb-0">
+					Изработено со <i class="fa-solid fa-heart color-red2"></i> од
+					студентите на Brainster
+				</h6>
+			</div>
+		</div>
+		<!-- jQuery library -->
+		<script
+			src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+			integrity="ha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+			crossorigin="anonymous"
+		></script>
+
+		<!-- Latest Compiled Bootstrap 4.6 JavaScript -->
+		<script
+			src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+			integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+			integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+			crossorigin="anonymous"
+		></script>
+		<script>
+			var navButton = document.getElementById('switcher');
+			navButton.addEventListener('click', toggleAriaExpanded);
+
+			function toggleAriaExpanded() {
+				const button = document.getElementById('switcher');
+				var currentValue = button.getAttribute('aria-expanded');
+				var newValue = currentValue === 'true' ? 'false' : 'true';
+				button.setAttribute('aria-expanded', newValue);
+
+				var newBgColor = document.querySelector('.newBgColor');
+				let logoImg = document.querySelectorAll('.navbar-brand');
+				let navLi = document.querySelectorAll('.cWhite');
+				let svgIcon = button.querySelector('svg');
+				let newIcon = button.querySelector('.new-icon');
+
+				if (newValue === 'true') {
+					newBgColor.style.backgroundColor = '#302f38';
+					newBgColor.classList.add('stretch');
+					svgIcon.style.display = 'none';
+					newIcon.style.display = 'flex';
+
+					logoImg.forEach((img) => {
+						img.style.visibility = 'hidden';
+					});
+
+					navLi.forEach((liElement) => {
+						liElement.classList.add('white-text');
+					});
+				} else if (newValue === 'false') {
+					newBgColor.style.backgroundColor = '#fcd232';
+
+					svgIcon.style.display = 'block';
+					newIcon.style.display = 'none';
+					newBgColor.classList.remove('stretch');
+					logoImg.forEach((img) => {
+						img.style.visibility = 'visible';
+					});
+
+					navLi.forEach((liElement) => {
+						liElement.classList.remove('white-text');
+						liElement.classList.add('color-dark');
+					});
+				}
+			}
+			document
+				.querySelector('#filter-coding')
+				.addEventListener('change', filterCoding);
+			document
+				.querySelector('#filter-design')
+				.addEventListener('change', filterDesign);
+			document
+				.querySelector('#filter-marketing')
+				.addEventListener('change', filterMarketing);
+
+			let inputMarketing = document.getElementById('filterMarketing');
+			let inputCoding = document.getElementById('filterCoding');
+			let inputDesign = document.getElementById('filterDesign');
+
+			function filterCoding() {
+				hideAllCards();
+
+				if (document.querySelector('#filter-coding').checked) {
+					let codingCards = document.querySelectorAll('.coding');
+					codingCards.forEach((codingCard) => {
+						codingCard.style.display = 'inline-block';
+					});
+					inputCoding.style.backgroundColor = '#eb3b3b';
+					inputCoding.classList.remove('text-light');
+					inputMarketing.style.backgroundColor = '#302f38';
+					inputMarketing.classList.add('text-light');
+					inputDesign.style.backgroundColor = '#302f38';
+					inputDesign.classList.add('text-light');
+
+					document.querySelector('#filter-design').checked = false;
+					document.querySelector('#filter-marketing').checked = false;
+				} else {
+					showAllCards();
+					inputCoding.style.backgroundColor = '#302f38';
+					inputCoding.classList.add('text-light');
+				}
+			}
+
+			function filterDesign() {
+				hideAllCards();
+
+				if (document.querySelector('#filter-design').checked) {
+					let designCards = document.querySelectorAll('.design');
+					designCards.forEach((designCard) => {
+						designCard.style.display = 'inline-block';
+					});
+
+					inputDesign.style.backgroundColor = '#eb3b3b';
+					inputDesign.classList.remove('text-light');
+					inputCoding.style.backgroundColor = '#302f38';
+					inputCoding.classList.add('text-light');
+					inputMarketing.style.backgroundColor = '#302f38';
+					inputMarketing.classList.add('text-light');
+
+					document.querySelector('#filter-coding').checked = false;
+					document.querySelector('#filter-marketing').checked = false;
+				} else {
+					showAllCards();
+					inputDesign.style.backgroundColor = '#302f38';
+					inputDesign.classList.add('text-light');
+				}
+			}
+
+			function filterMarketing() {
+				hideAllCards();
+
+				if (document.querySelector('#filter-marketing').checked) {
+					let marketingCards = document.querySelectorAll('.marketing');
+					marketingCards.forEach((marketingCard) => {
+						marketingCard.style.display = 'inline-block';
+					});
+
+					inputMarketing.style.backgroundColor = '#eb3b3b';
+					inputMarketing.classList.remove('text-light');
+					inputDesign.style.backgroundColor = '#302f38';
+					inputDesign.classList.add('text-light');
+					inputCoding.style.backgroundColor = '#302f38';
+					inputCoding.classList.add('text-light');
+
+					document.querySelector('#filter-design').checked = false;
+					document.querySelector('#filter-coding').checked = false;
+				} else {
+					showAllCards();
+					inputMarketing.style.backgroundColor = '#302f38';
+					inputMarketing.classList.add('text-light');
+				}
+			}
+			function hideAllCards() {
+				let allCards = document.querySelectorAll('.hideShow');
+
+				allCards.forEach((card) => {
+					card.style.display = 'none';
+				});
+			}
+
+			function showAllCards() {
+				let allCards = document.querySelectorAll('.hideShow');
+
+				allCards.forEach((card) => {
+					card.style.display = 'inline-block';
+				});
+			}
+		</script>
+	</body>
+</html>
