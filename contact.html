@@ -25,16 +25,16 @@
 	</head>
 	<body>
 		<div class="bg-yellow py-5">
-			<div class="container">
-				<h2 class="py-5 text-center font-weight-bold">Вработи студенти</h2>
+			<div class="container vh-100">
+				<h2 class="h1 pb-3 pb-lg-0 py-lg-5 text-center font-weight-bold">Вработи студенти</h2>
 				<form class="needs-validation" novalidate>
 					<div class="form-row">
 						<div class="col-12 col-lg-6 font-weight-bold mb-2">
-							<label for="InputFirstName1">Име и презиме</label>
+							<label for="fullName">Име и презиме</label>
 							<input
 								type="text"
 								class="form-control font-italic font-12 font-weight-light p-4"
-								id="InputFirstName1"
+								id="fullName"
 								placeholder="Вашето име и презиме"
 								aria-describedby="emailHelp"
 								required
@@ -43,11 +43,11 @@
 							<div class="invalid-feedback">Внеси точно име и презиме !</div>
 						</div>
 						<div class="col-12 col-lg-6 font-weight-bold mb-2">
-							<label for="InputLastName1">Име на компанија</label>
+							<label for="companyName">Име на компанија</label>
 							<input
 								type="text"
 								class="form-control font-italic font-12 font-weight-light p-4"
-								id="InputLastName1"
+								id="companyName"
 								placeholder="Име на вашата компанија"
 								aria-describedby="emailHelp"
 								required
@@ -58,11 +58,11 @@
 					</div>
 					<div class="form-row">
 						<div class="col-12 col-lg-6 font-weight-bold mb-2">
-							<label for="InputEmail1">Контакт имејл</label>
+							<label for="email">Контакт имејл</label>
 							<input
 								type="email"
 								class="form-control font-italic font-12 font-weight-light p-4"
-								id="InputEmail1"
+								id="email"
 								placeholder="Контакт имејл на вашата компанија"
 								aria-describedby="emailHelp"
 								required
@@ -71,11 +71,11 @@
 							<div class="invalid-feedback">Внеси точен имејл !</div>
 						</div>
 						<div class="col-12 col-lg-6 font-weight-bold">
-							<label for="InputPhone1">Контакт телефон</label>
+							<label for="phone">Контакт телефон</label>
 							<input
 								type="number"
 								class="form-control font-italic font-12 font-weight-light p-4"
-								id="InputPhone1"
+								id="phone"
 								placeholder="Контакт телефон на вашата компанија"
 								aria-describedby="emailHelp"
 								required
@@ -86,23 +86,39 @@
 					</div>
 					<div class="form-row align-items-end">
 						<div class="col-12 col-lg-6 font-weight-bold">
-							<label for="InputPhone1">Тип на студенти</label>
+							<label for="type">Тип на студенти</label>
 
-							<select class="form-control" name="languages" id="lang">
-								<option value="javascript">JavaScript</option>
-								<option value="php">PHP</option>
-								<option value="java">Java</option>
+							<select
+								class="form-control h-50 font-weight-bold text-dark mb-3 mb-lg-0"
+								name="languages"
+								id="typeStudent"
+								required
+								
+							>
+							
+								<option class="font-weight-bold" disabled selected hidden value="">
+									Избери тип на студент
+								</option>
+								<option class="p-5 font-weight-bold" value="Маркетинг">Студенти од маркетинг</option>
+								<option class="font-weight-bold" value="Програмирање">Студенти од програмирање</option>
+								<option class="font-weight-bold" value="Data Science">Студенти од data science</option>
+								<option class="font-weight-bold" value="Дизајн">Студенти од дизајн</option>
+
 							</select>
+							
+						
 						</div>
 						<div class="col-12 col-lg-6">
 							<button
 								type="submit"
+								id="submitBtn"
 								class="btn bg-red2 text-light btn-block text-uppercase p-12"
 								data-toggle="modal"
 								data-target="#oneModal"
 							>
 								испрати
 							</button>
+							
 							<div
 								class="modal fade"
 								id="oneModal"
@@ -110,7 +126,7 @@
 								aria-labelledby="exampleModalLabel"
 								aria-hidden="true"
 							>
-								<div class="modal-dialog modal-lg">
+								<div class="modal-dialog modal-xl">
 									<div class="modal-content">
 										<div class="modal-header bg-yellow">
 											<h5 class="modal-title" id="exampleModalLabel">
@@ -125,7 +141,48 @@
 												<span aria-hidden="true">&times;</span>
 											</button>
 										</div>
-										<div class="modal-body">...</div>
+										<div class="modal-body">
+											<div class="table-responsive-sm">
+												<table class="table">
+													<thead>
+														<tr>
+															<th scope="col">#</th>
+															<th scope="col">Име и презиме</th>
+															<th scope="col">Име на компанија</th>
+															<th scope="col">Емаил</th>
+															<th scope="col">Контакт телефон</th>
+															<th scope="col">Тип на студенти</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<th scope="row">1</th>
+															<td id="forNameLastName"></td>
+															<td id="forCompany"></td>
+															<td id="forEmail"></td>
+															<td id="forPhone"></td>
+															<td id="forType"></td>
+														</tr>
+														<tr>
+															<th scope="row">2</th>
+															<td id="forNameLastName"></td>
+															<td id="forCompany"></td>
+															<td id="forEmail"></td>
+															<td id="forPhone"></td>
+															<td id="forType"></td>
+														</tr>
+														<tr>
+															<th scope="row">3</th>
+															<td id="forNameLastName"></td>
+															<td id="forCompany"></td>
+															<td id="forEmail"></td>
+															<td id="forPhone"></td>
+															<td id="forType"></td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
 										<div class="modal-footer">
 											<button
 												type="button"
