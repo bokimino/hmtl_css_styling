@@ -74,6 +74,25 @@ input[type='checkbox']:checked {
 	background-color: rgba(190, 215, 243, 0.2);
 	background-size: contain;
 }
+
+.rounded {
+	border-radius: 12px !important;
+}
+.overflow {
+	overflow: hidden;
+}
+.font-10 {
+	font-size: 10px;
+}
+.font-12 {
+	font-size: 12px;
+}
+.card:hover {
+	position: relative;
+	cursor: pointer;
+	top: -10px;
+	transition: 1;
+}
 @media only screen and (min-device-width: 768) and (max-device-width: 1024px) {
 	.stretch {
 		width: 100%;
