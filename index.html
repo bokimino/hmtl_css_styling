@@ -24,10 +24,92 @@
 		></script>
 	</head>
 	<body>
+		<div class="bg-yellow newBgColor">
+			<nav id="navbar-scroll" class="navbar navbar-expand-lg p-lg-4">
+				<div class="navbar-brand mx-xl-4">
+					<a
+						class="d-flex flex-column text-dark text-uppercase font-weight-bold text-center h6 text-decoration-none mb-0"
+						href="#"
+						><img src="./images/logo1.png" alt="" width="60" height="60" />
+					</a>
+				</div>
+				<button
+					class="navbar-toggler"
+					type="button"
+					data-toggle="collapse"
+					data-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent"
+					aria-expanded="false"
+					aria-label="Toggle navigation"
+					id="switcher"
+				>
+					<span class="navbar-toggler-icon">
+						<svg
+							class="color-dark"
+							xmlns="http://www.w3.org/2000/svg"
+							width="40"
+							height="40"
+							viewBox="0 0 40 40"
+							fill="red"
+						>
+							<path
+								d="M22 30V27.5H35V30H22ZM11.25 21.25V18.75H35V21.25H11.25ZM5 12.5V10H35V12.5H5Z"
+								fill="black"
+							></path>
+						</svg>
+					</span>
+					<span class="new-icon"><i class="fa-solid fa-x mr-n3"></i></span>
+				</button>
+
+				<div
+					class="collapse navbar-collapse w-100 justify-content-end"
+					id="navbarSupportedContent"
+				>
+					<ul id="" class="navbar-nav mr-xl-4">
+						<li class="nav-item">
+							<a
+								class="nav-link text-dark font-weight-bold cWhite"
+								href="https://brainster.co/marketing/"
+								>Академија за маркетинг
+								<span class="sr-only">(current)</span></a
+							>
+						</li>
+						<li class="nav-item mr-xl-4">
+							<a
+								class="nav-link text-dark font-weight-bold cWhite"
+								href="https://brainster.co/full-stack/"
+								>Академија за програмирање</a
+							>
+						</li>
+
+						<li class="nav-item mr-xl-4">
+							<a
+								class="nav-link text-dark font-weight-bold cWhite"
+								href="https://brainster.co/data-science/"
+								>Академија за data science</a
+							>
+						</li>
+						<li class="nav-item mr-xl-4">
+							<a
+								class="nav-link text-dark font-weight-bold cWhite"
+								href="https://brainster.co/graphic-design/"
+								>Академија за дизајн</a
+							>
+						</li>
+						<li class="nav-item align-self-lg-center">
+							<a
+								class="nav-link btn text-light bg-red2 font-weight-bold widthMenu"
+								href="./contact.html"
+								>Вработи наш студент</a
+							>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</div>
 		<div class="banner-bg text-center">
 			<h1 class="text-capitalize mb-0 font-weight-bolder">Brainster labs</h1>
 		</div>
-
 		<!-- jQuery library -->
 		<script
 			src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
@@ -46,5 +128,52 @@
 			integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
 			crossorigin="anonymous"
 		></script>
+		<script>
+			var navButton = document.getElementById('switcher');
+			navButton.addEventListener('click', toggleAriaExpanded);
+
+			function toggleAriaExpanded() {
+				const button = document.getElementById('switcher');
+				var currentValue = button.getAttribute('aria-expanded');
+				var newValue = currentValue === 'true' ? 'false' : 'true';
+				button.setAttribute('aria-expanded', newValue);
+
+				var newBgColor = document.querySelector('.newBgColor');
+				let logoImg = document.querySelectorAll('.navbar-brand');
+				let navLi = document.querySelectorAll('.cWhite');
+				let svgIcon = button.querySelector('svg');
+				let newIcon = button.querySelector('.new-icon');
+
+				if (newValue === 'true') {
+					newBgColor.style.backgroundColor = '#302f38';
+					newBgColor.classList.add('stretch');
+					svgIcon.style.display = 'none';
+					newIcon.style.display = 'flex';
+
+					logoImg.forEach((img) => {
+						img.style.visibility = 'hidden';
+					});
+
+					navLi.forEach((liElement) => {
+						liElement.classList.add('white-text');
+					});
+				} else if (newValue === 'false') {
+					newBgColor.style.backgroundColor = '#fcd232';
+
+					svgIcon.style.display = 'block';
+					newIcon.style.display = 'none';
+					newBgColor.classList.remove('stretch');
+					logoImg.forEach((img) => {
+						img.style.visibility = 'visible';
+					});
+
+					navLi.forEach((liElement) => {
+						liElement.classList.remove('white-text');
+						liElement.classList.add('color-dark');
+					});
+				}
+			}
+		</script>
 	</body>
 </html>
+
