@@ -25,12 +25,12 @@
 	</head>
 	<body>
 		<div class="bg-yellow newBgColor">
-			<nav id="navbar-scroll" class="navbar navbar-expand-lg p-lg-4 ">
+			<nav id="navbar-scroll" class="navbar navbar-expand-lg p-lg-4">
 				<div class="navbar-brand mx-xl-4">
 					<a
 						class="d-flex flex-column text-dark text-uppercase font-weight-bold text-center h6 text-decoration-none mb-0"
 						href="#"
-						><img src="./images/logo1.png" alt="" width="60" height="60" />	
+						><img src="./images/logo1.png" alt="" width="60" height="60" />
 					</a>
 				</div>
 				<button
@@ -59,7 +59,7 @@
 							></path>
 						</svg>
 					</span>
-					<span class="new-icon"><i class="fa-solid fa-x mr-n3 "></i></span>
+					<span class="new-icon"><i class="fa-solid fa-x mr-n3"></i></span>
 				</button>
 
 				<div
@@ -97,7 +97,7 @@
 								>Академија за дизајн</a
 							>
 						</li>
-						<li class="nav-item align-self-lg-center ">
+						<li class="nav-item align-self-lg-center">
 							<a
 								class="nav-link btn text-light bg-red2 font-weight-bold widthMenu"
 								href="./contact.html"
@@ -314,6 +314,50 @@
 			crossorigin="anonymous"
 		></script>
 		<script>
+			var navButton = document.getElementById('switcher');
+			navButton.addEventListener('click', toggleAriaExpanded);
+
+			function toggleAriaExpanded() {
+				const button = document.getElementById('switcher');
+				var currentValue = button.getAttribute('aria-expanded');
+				var newValue = currentValue === 'true' ? 'false' : 'true';
+				button.setAttribute('aria-expanded', newValue);
+
+				var newBgColor = document.querySelector('.newBgColor');
+				let logoImg = document.querySelectorAll('.navbar-brand');
+				let navLi = document.querySelectorAll('.cWhite');
+				let svgIcon = button.querySelector('svg');
+				let newIcon = button.querySelector('.new-icon');
+
+				if (newValue === 'true') {
+					newBgColor.style.backgroundColor = '#302f38';
+					newBgColor.classList.add('stretch');
+					svgIcon.style.display = 'none';
+					newIcon.style.display = 'flex';
+
+					logoImg.forEach((img) => {
+						img.style.visibility = 'hidden';
+					});
+
+					navLi.forEach((liElement) => {
+						liElement.classList.add('white-text');
+					});
+				} else if (newValue === 'false') {
+					newBgColor.style.backgroundColor = '#fcd232';
+
+					svgIcon.style.display = 'block';
+					newIcon.style.display = 'none';
+					newBgColor.classList.remove('stretch');
+					logoImg.forEach((img) => {
+						img.style.visibility = 'visible';
+					});
+
+					navLi.forEach((liElement) => {
+						liElement.classList.remove('white-text');
+						liElement.classList.add('color-dark');
+					});
+				}
+			}
 			document.addEventListener('DOMContentLoaded', function () {
 				document
 					.getElementById('submitBtn')
