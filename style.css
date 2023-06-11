@@ -92,6 +92,22 @@ input[type='checkbox']:checked {
 	top: -10px;
 	transition: 1;
 }
+.p-12 {
+    padding: 12px;
+}
+.h-50 {
+	height: 50px !important;
+}
+@media only screen and (max-width: 992px){
+	.modal-dialog {
+		max-width: 700px;
+	}
+}
+@media only screen and (max-width: 767px){
+	.modal-dialog {
+		max-width: 600px;
+	}
+}
 @media only screen and (min-device-width: 768) and (max-device-width: 1024px) {
 	.stretch {
 		width: 100%;
