@@ -110,6 +110,43 @@
 		<div class="banner-bg text-center">
 			<h1 class="text-capitalize mb-0 font-weight-bolder">Brainster labs</h1>
 		</div>
+		<div class="bg-black">
+			<div class="container mw-100">
+				<div class="row">
+					<div
+						id="filterMarketing"
+						class="col-12 col-lg-4 text-light font-weight-bold py-4 d-flex border-bottom border-secondary justify-content-around align-items-center"
+					>
+						<label class="mb-0 w-75" for="filter-marketing"
+							>Проекти на студенти по академијата за маркетинг</label
+						>
+						<input
+							class="w-25 circle-checkbox"
+							type="checkbox"
+							id="filter-marketing"
+						/>
+					</div>
+					<div
+						id="filterCoding"
+						class="col-12 col-lg-4 borderLeft text-light font-weight-bold py-4 d-flex border-bottom border-secondary justify-content-around align-items-center"
+					>
+						<label class="w-75 mb-0" for="filter-coding"
+							>Проекти на студенти по академијата за програмирање</label
+						>
+						<input class="w-25" type="checkbox" id="filter-coding" />
+					</div>
+					<div
+						id="filterDesign"
+						class="col-12 col-lg-4 borderLeft text-light font-weight-bold py-4 d-flex border-bottom border-secondary justify-content-around align-items-center"
+					>
+						<label class="w-75 mb-0" for="filter-design"
+							>Проекти на студенти по академијата за дизајн</label
+						>
+						<input class="w-25" type="checkbox" id="filter-design" />
+					</div>
+				</div>
+			</div>
+		</div>
 		<!-- jQuery library -->
 		<script
 			src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
@@ -173,7 +210,108 @@
 					});
 				}
 			}
+			document
+				.querySelector('#filter-coding')
+				.addEventListener('change', filterCoding);
+			document
+				.querySelector('#filter-design')
+				.addEventListener('change', filterDesign);
+			document
+				.querySelector('#filter-marketing')
+				.addEventListener('change', filterMarketing);
+
+			let inputMarketing = document.getElementById('filterMarketing');
+			let inputCoding = document.getElementById('filterCoding');
+			let inputDesign = document.getElementById('filterDesign');
+
+			function filterCoding() {
+				hideAllCards();
+
+				if (document.querySelector('#filter-coding').checked) {
+					let codingCards = document.querySelectorAll('.coding');
+					codingCards.forEach((codingCard) => {
+						codingCard.style.display = 'inline-block';
+					});
+					inputCoding.style.backgroundColor = '#eb3b3b';
+					inputCoding.classList.remove('text-light');
+					inputMarketing.style.backgroundColor = '#302f38';
+					inputMarketing.classList.add('text-light');
+					inputDesign.style.backgroundColor = '#302f38';
+					inputDesign.classList.add('text-light');
+
+					document.querySelector('#filter-design').checked = false;
+					document.querySelector('#filter-marketing').checked = false;
+				} else {
+					showAllCards();
+					inputCoding.style.backgroundColor = '#302f38';
+					inputCoding.classList.add('text-light');
+				}
+			}
+
+			function filterDesign() {
+				hideAllCards();
+
+				if (document.querySelector('#filter-design').checked) {
+					let designCards = document.querySelectorAll('.design');
+					designCards.forEach((designCard) => {
+						designCard.style.display = 'inline-block';
+					});
+
+					inputDesign.style.backgroundColor = '#eb3b3b';
+					inputDesign.classList.remove('text-light');
+					inputCoding.style.backgroundColor = '#302f38';
+					inputCoding.classList.add('text-light');
+					inputMarketing.style.backgroundColor = '#302f38';
+					inputMarketing.classList.add('text-light');
+
+					document.querySelector('#filter-coding').checked = false;
+					document.querySelector('#filter-marketing').checked = false;
+				} else {
+					showAllCards();
+					inputDesign.style.backgroundColor = '#302f38';
+					inputDesign.classList.add('text-light');
+				}
+			}
+
+			function filterMarketing() {
+				hideAllCards();
+
+				if (document.querySelector('#filter-marketing').checked) {
+					let marketingCards = document.querySelectorAll('.marketing');
+					marketingCards.forEach((marketingCard) => {
+						marketingCard.style.display = 'inline-block';
+					});
+
+					inputMarketing.style.backgroundColor = '#eb3b3b';
+					inputMarketing.classList.remove('text-light');
+					inputDesign.style.backgroundColor = '#302f38';
+					inputDesign.classList.add('text-light');
+					inputCoding.style.backgroundColor = '#302f38';
+					inputCoding.classList.add('text-light');
+
+					document.querySelector('#filter-design').checked = false;
+					document.querySelector('#filter-coding').checked = false;
+				} else {
+					showAllCards();
+					inputMarketing.style.backgroundColor = '#302f38';
+					inputMarketing.classList.add('text-light');
+				}
+			}
+			function hideAllCards() {
+				let allCards = document.querySelectorAll('.hideShow');
+
+				allCards.forEach((card) => {
+					card.style.display = 'none';
+				});
+			}
+
+			function showAllCards() {
+				let allCards = document.querySelectorAll('.hideShow');
+
+				allCards.forEach((card) => {
+					card.style.display = 'inline-block';
+				});
+			}
 		</script>
 	</body>
 </html>
-

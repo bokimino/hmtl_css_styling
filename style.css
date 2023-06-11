@@ -16,6 +16,7 @@ body {
 .color-red2 {
 	color: #ff1300;
 }
+
 .white-text {
 	color: white !important;
 }
@@ -54,6 +55,25 @@ h1 {
 	position: absolute;
 	transform: translateY(-50%);
 }
+.bg-black .container .row .col-12 label:hover {
+	cursor: pointer;
+}
+input[type='checkbox'] {
+	border: none;
+	accent-color: #302f38;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	height: 30px;
+	width: 30px !important;
+	border-radius: 50%;
+}
+input[type='checkbox']:checked {
+	background-color: rgba(190, 215, 243, 0.2);
+	background: url(./images/correct.png) 50% 50% no-repeat;
+	background-color: rgba(190, 215, 243, 0.2);
+	background-size: contain;
+}
 @media only screen and (min-device-width: 768) and (max-device-width: 1024px) {
 	.stretch {
 		width: 100%;
@@ -74,6 +94,16 @@ h1 {
 }
 @media only screen and (max-width: 992px) {
 	.banner-bg {
-		min-height: calc(100vh - 86px - (98.8px * 3));
+		min-height: calc(100vh - 86px - (78.8px * 3));
+	}
+}
+@media only screen and (max-width: 556px) {
+	.banner-bg {
+		min-height: calc(100vh - 86px - (96.8px * 3));
+	}
+}
+@media only screen and (min-width: 992px) {
+	.bg-black .container .row .borderLeft {
+		border-left: 1px solid #6c757d;
 	}
 }
