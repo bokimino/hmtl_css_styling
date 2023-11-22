@@ -41,6 +41,20 @@
 				
 			</tbody>
 		</table>
+
+		<form
+			id="addCategoryForm"
+			style="display: none"
+			method="post"
+			action="admin_dashboard.php"
+		>
+			<td><input type="text" name="new_category" required /></td>
+			<td>
+				<button type="submit" class="btn btn-success" name="add_category">
+					Save
+				</button>
+			</td>
+		</form>
 		<!-- Latest Compiled Bootstrap 4.6 JavaScript -->
 		<script
 			src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
