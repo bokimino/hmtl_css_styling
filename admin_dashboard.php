@@ -30,7 +30,17 @@
 			integrity="ha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 			crossorigin="anonymous"
 		></script>
-
+		<table>
+			<thead>
+				<tr>
+					<th>Categories</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>
 		<!-- Latest Compiled Bootstrap 4.6 JavaScript -->
 		<script
 			src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
