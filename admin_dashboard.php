@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Document</title>
+		<title>Administrator</title>
 		<meta charset="utf-8" />
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
@@ -23,7 +23,31 @@
             
 			<p>Welcome </p>
 		</nav>
+        <table>
+			<thead>
+				<tr>
+					<th>Categories</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>
 
+		<form
+			id="addCategoryForm"
+			style="display: none"
+			method="post"
+			action="admin_dashboard.php"
+		>
+			<td><input type="text" name="new_category" required /></td>
+			<td>
+				<button type="submit" class="btn btn-success" name="add_category">
+					Save
+				</button>
+			</td>
+		</form>
 		<!-- jQuery library -->
 		<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="ha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 		
