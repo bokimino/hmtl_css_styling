@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+	<head>
 		<title>Book Library</title>
 		<meta charset="utf-8" />
 		<meta name="keywords" content="" />
@@ -31,6 +31,23 @@
 		></script>
 	</head>
 	<body>
+		<nav class="navbar navbar-light bg-light">
+			<a class="navbar-brand" href="#">
+				<img src="./images/booklogo.png" width="50" height="50" alt="" />
+			</a>
+			<form class="form-inline text-white">
+				<a
+					class="btn btn-outline-success m-1"
+					data-toggle="modal"
+					data-target="#modalLoginForm"
+					href=""
+					>Log in</a
+				>
+				<a class="btn btn-outline-secondary m-1" href="./register.html"
+					>Register</a
+				>
+			</form>
+		</nav>
 		<div class="container">
 			<h1 class="text-info text-center m-5">Welcome to our Book Library</h1>
 		</div>
