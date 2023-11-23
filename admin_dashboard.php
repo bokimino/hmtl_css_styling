@@ -67,7 +67,7 @@
                <tr>
                   <th>Author</th>
                   <th>Biography</th>
-                  <th>Actions</th>
+                  <th><button type="button" class="btn btn-primary" onclick="showAddAuthorForm()">Add New Author</button></th>
                </tr>
             </thead>
              <tbody>
