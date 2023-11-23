@@ -37,6 +37,7 @@
 			</thead>
 			<tbody>
 			   <?php categoryDisplay($categories); ?>
+			   <?php handleAddCategory($pdo)?>
 			</tbody>
 		</table>
 
