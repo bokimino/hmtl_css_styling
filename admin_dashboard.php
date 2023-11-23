@@ -36,7 +36,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				
+			   <?php categoryDisplay($categories); ?>
 			</tbody>
 		</table>
 
