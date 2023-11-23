@@ -62,6 +62,55 @@
 				</button>
 			</td>
 		</form>
+		<table>
+            <thead>
+               <tr>
+                  <th>Author</th>
+                  <th>Biography</th>
+                  <th><button type="button" class="btn btn-primary" onclick="showAddAuthorForm()">Add New Author</button></th>
+               </tr>
+            </thead>
+             <tbody>
+                   <?php authorDisplay($authors); ?>
+
+                 <?php handleAddAuthor($pdo); ?> 
+             </tbody>
+         </table>
+		 <form
+			id="addAuthorForm"
+			style="display: none"
+			method="post"
+			action="admin_dashboard.php"
+		>
+			<td>
+				<input
+					type="text"
+					name="new_first_name"
+					placeholder="First Name"
+					required
+				/>
+			</td>
+			<td>
+				<input
+					type="text"
+					name="new_last_name"
+					placeholder="Last Name"
+					required
+				/>
+			</td>
+			<td>
+				<textarea
+					name="new_biography"
+					placeholder="Biography"
+					required
+				></textarea>
+			</td>
+			<td>
+				<button type="submit" class="btn btn-success" name="add_author">
+					Save
+				</button>
+			</td>
+		</form>
 		<!-- jQuery library -->
 		<script
 			src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
