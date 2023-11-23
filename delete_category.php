@@ -8,10 +8,10 @@ if (isset($_GET['id'])) {
     $query = $pdo->prepare($sql);
     $query->execute([$categoryId]);
 
-    header('Location: category.php');
+    header('Location: admin_dashboard.php');
     exit();
 } else {
-    header('Location: category.php');
+    header('Location: admin_dashboard.php');
     exit();
 }
 
