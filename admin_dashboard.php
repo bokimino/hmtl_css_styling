@@ -130,7 +130,8 @@
 				</tr>
 			</thead>
 			<tbody>
-				
+			<?php bookDisplay($books, $authors, $categories); ?>
+            <?php handleAddBook($pdo); ?>
 			</tbody>
 		</table>
 		<!-- jQuery library -->
