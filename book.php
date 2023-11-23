@@ -68,4 +68,15 @@ function bookDisplay($books) {
         echo '</tr>';
     }
 }
+function getBookById($pdo, $bookId) {
+    $sql = "SELECT * FROM book WHERE id = ? AND deleted_at IS NULL";
+    $query = $pdo->prepare($sql);
+    $query->execute([$bookId]);
+    return $query->fetch(PDO::FETCH_OBJ);
+}
+function updateBook($pdo, $bookId, $editedTitle, $editedAuthorId, $editedYear, $editedPages, $editedImage, $editedCategoryId) {
+    $sql = "UPDATE book SET title = ?, author_id = ?, year_of_publication = ?, number_of_pages = ?, image_url = ?, category_id = ? WHERE id = ?";
+    $query = $pdo->prepare($sql);
+    return $query->execute([$editedTitle, $editedAuthorId, $editedYear, $editedPages, $editedImage, $editedCategoryId, $bookId]);
+}
 
