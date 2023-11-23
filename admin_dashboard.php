@@ -130,7 +130,8 @@
 				</tr>
 			</thead>
 			<tbody>
-				
+			<?php bookDisplay($books, $authors, $categories); ?>
+            <?php handleAddBook($pdo); ?>
 			</tbody>
 		</table>
 		<form id="addBookForm" style="display:none;"action="process_book.php" method="POST">
