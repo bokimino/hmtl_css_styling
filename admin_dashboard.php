@@ -24,12 +24,11 @@
 		></script>
 	</head>
 	<body>
-		<!-- jQuery library -->
-		<script
-			src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-			integrity="ha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-			crossorigin="anonymous"
-		></script>
+	    <?php
+         require_once 'category.php';
+         require_once 'author.php';
+         ?>
+		
 		<table>
 			<thead>
 				<tr>
@@ -55,6 +54,12 @@
 				</button>
 			</td>
 		</form>
+		<!-- jQuery library -->
+		<script
+			src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+			integrity="ha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+			crossorigin="anonymous"
+		></script>
 		<!-- Latest Compiled Bootstrap 4.6 JavaScript -->
 		<script
 			src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
