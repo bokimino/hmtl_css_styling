@@ -32,6 +32,32 @@ function authorDisplay($authors) {
 
 
 }
+function addAuthor($pdo, $firstName, $lastName, $biography) {
+    $sql = "INSERT INTO author (first_name, last_name, biography) VALUES (:first_name, :last_name, :biography)";
+    $query = $pdo->prepare($sql);
+    
+    $query->bindParam(':first_name', $firstName, PDO::PARAM_STR);
+    $query->bindParam(':last_name', $lastName, PDO::PARAM_STR);
+    $query->bindParam(':biography', $biography, PDO::PARAM_STR);
 
+    return $query->execute();
+}
+
+function handleAddAuthor($pdo) {
+    if (isset($_POST['add_author'])) {
+        $newFirstName = $_POST['new_first_name'];
+        $newLastName = $_POST['new_last_name'];
+        $newBiography = $_POST['new_biography'];
+
+        if (addAuthor($pdo, $newFirstName, $newLastName, $newBiography)) {
+           
+            header('Location: admin_dashboard.php');
+            exit();
+        } else {
+           
+            echo 'Error adding author.';
+        }
+    }
+}
 
 
