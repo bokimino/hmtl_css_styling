@@ -133,6 +133,64 @@
 				
 			</tbody>
 		</table>
+		<form id="addBookForm" style="display:none;"action="process_book.php" method="POST">
+
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="tittleInput">Tittle</label>
+						<input type="text" class="form-control" name="title" id="tittleInput" />
+					</div>
+					<div class="form-group col-md-6">
+						<label for="inputAuthor"
+							>Author</label
+						>
+
+						<select class="form-control" name="author"id="inputAuthor" >
+							<option selected>Choose...</option>
+
+							<?php authorOption($authors);?>
+                            
+						</select>
+					</div>
+					
+				</div>
+				<div class="form-row">
+					
+							
+	                <div class="form-group col-md-6">
+						<label for="inputYear">Year published</label>
+						<input type="number" class="form-control" name="year" id="inputYear" />
+					</div>
+					<div class="form-group col-md-6">
+						<label for="inputPageNumber">Page Number</label>
+						<input type="number" class="form-control" name="pages" id="inputPageNumber" />
+					</div>
+					
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="inputCategory"
+							>Category</label
+						>
+
+						<select class="form-control" name="category" id="inputCategory">
+							<option selected>Choose...</option>
+
+							<?php
+                            foreach ($categories as $category) {
+                                echo '<option value="' . htmlentities($category->id) . '">' . htmlentities($category->title) . '</option>';
+                            } ?>
+						</select>
+					</div>
+							
+	                <div class="form-group col-md-6">
+						<label for="inputURL">URL</label>
+						<input type="text" class="form-control" name="image" id="inputURL" />
+					</div>
+					
+				</div>
+				<button type="submit" class="btn btn-success">Submit</button>
+			</form>
 		<!-- jQuery library -->
 		<script
 			src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
