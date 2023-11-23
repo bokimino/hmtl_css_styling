@@ -19,6 +19,8 @@
 	    <?php
          require_once 'category.php';
          require_once 'author.php';
+         require_once 'book.php';
+
          ?>
 		
 		<nav class="navbar navbar-light bg-light">
@@ -111,6 +113,26 @@
 				</button>
 			</td>
 		</form>
+
+		<table>
+			<thead>
+				<tr>
+					<th>Book Title</th>
+					<th>
+						<button
+							type="button"
+							class="btn btn-primary"
+							onclick="showAddBookForm()"
+						>
+							Add New Book
+						</button>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>
 		<!-- jQuery library -->
 		<script
 			src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
