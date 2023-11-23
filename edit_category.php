@@ -27,4 +27,25 @@ if (isset($_GET['id'])) {
 }
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Category</title>
+</head>
+<body>
 
+    <h2>Edit Category</h2>
+
+    <form method="post" action="">
+        <input type="hidden" name="category_id" value="<?php echo $category->id; ?>">
+
+        <label for="updated_title">Updated Title:</label>
+        <input type="text" name="updated_title" value="<?php echo $category->title; ?>" required>
+
+        <button type="submit">Update Category</button>
+    </form>
+
+</body>
+</html>
