@@ -62,6 +62,20 @@
 				</button>
 			</td>
 		</form>
+		<table>
+            <thead>
+               <tr>
+                  <th>Author</th>
+                  <th>Biography</th>
+                  <th>Actions</th>
+               </tr>
+            </thead>
+             <tbody>
+                   <?php authorDisplay($authors); ?>
+
+                 <?php handleAddAuthor($pdo); ?> 
+             </tbody>
+         </table>
 		<!-- jQuery library -->
 		<script
 			src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
