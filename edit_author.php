@@ -36,6 +36,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_author'])) {
     }
 }
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Author</title>
+</head>
+<body>
 
+    <h2>Edit Author</h2>
+
+    <form method="post" action="">
+        <input type="hidden" name="author_id" value="<?php echo $author->id; ?>">
+
+        <label for="updated_first_name">Updated First Name:</label>
+        <input type="text" name="updated_first_name" value="<?php echo $author->first_name; ?>" required>
+
+        <label for="updated_last_name">Updated Last Name:</label>
+        <input type="text" name="updated_last_name" value="<?php echo $author->last_name; ?>" required>
+
+        <label for="updated_biography">Updated Biography:</label>
+        <textarea name="updated_biography" required><?php echo $author->biography; ?></textarea>
+
+        <button type="submit" name="edit_author">Update Author</button>
+    </form>
+
+</body>
+</html>
 
 
