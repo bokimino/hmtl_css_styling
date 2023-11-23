@@ -15,4 +15,23 @@ function authorOption($authors){
     }
     
 }
+function authorDisplay($authors) {
+    foreach ($authors as $author) {
+        echo '<tr>';
+        echo '<td>' . htmlentities($author->first_name . ' ' . $author->last_name) . '</td>';
+        echo '<td>' . htmlentities($author->biography) . '</td>';
+        echo '<td>';
+        
+        echo '<button><a href="edit_author.php?id=' . $author->id . '">Edit</a></button>';
+        
+        echo '<button><a href="delete_author.php?id=' . $author->id . '">Delete</a></button>';
+        
+        echo '</td>';
+        echo '</tr>';
+    }
+
+
+}
+
+
 
