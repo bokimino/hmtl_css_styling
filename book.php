@@ -39,4 +39,33 @@ function handleAddBook($pdo) {
         }
     }
 }
+$books = getBooks($pdo);
+
+
+function bookDisplay($books) {
+    foreach ($books as $book) {
+        echo '<tr>';
+        echo '<td>' . htmlentities($book->title) . '</td>';
+        
+        echo '<td>';
+        echo (!empty($book->author_first_name) ? htmlentities($book->author_first_name . ' ' . $book->author_last_name) : 'No Author');
+        echo '</td>';
+        
+
+        echo '<td>';
+        echo (!empty($book->category_title) ? htmlentities($book->category_title) : 'No Category');
+        echo '</td>';
+
+        echo '<td>' . htmlentities($book->year_of_publication) . '</td>';
+        echo '<td>' . htmlentities($book->number_of_pages) . '</td>';
+        echo '<td>' . htmlentities($book->image_url) . '</td>';
+        
+        echo '<td>';
+        echo '<button><a class="btn btn-primary" href="edit_book.php?id=' . $book->id . '">Edit</a></button>';
+        echo '<button class="delete-btn" data-id="' . $book->id . '">Delete</button>';
+        echo '</td>';
+        
+        echo '</tr>';
+    }
+}
 
