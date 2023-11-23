@@ -29,12 +29,20 @@
 			<p>Welcome </p>
 		</nav>
         <table>
-			<thead>
-				<tr>
-					<th>Categories</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
+		      <thead>
+		      	<tr>
+		      		<th>Categories</th>
+		      		<th>
+		      			<button
+		      				type="button"
+		      				class="btn btn-primary"
+		      				onclick="showAddCategoryForm()"
+		      			>
+		      				Add New
+		      			</button>
+		      		</th>
+		      	</tr>
+		      </thead>  
 			<tbody>
 			   <?php categoryDisplay($categories); ?>
 			   <?php handleAddCategory($pdo)?>
