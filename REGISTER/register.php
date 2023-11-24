@@ -33,6 +33,48 @@
 		<div class="container">
 			<h1 class="text-info text-center m-5">Register</h1>
 		</div>
+		<div class="container">
+			
+			<form
+				id="registrationForm"
+				action="process_registration.php"
+				method="POST"
+			>
+				<div class="form-group row">
+					<label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+					<div class="col-sm-10">
+						<input
+							type="email"
+							class="form-control"
+							id="inputEmail"
+							name="email"
+							required
+							
+						/>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="inputPassword" class="col-sm-2 col-form-label"
+						>Password</label
+					>
+					<div class="col-sm-10">
+						<input
+							type="password"
+							class="form-control"
+							id="inputPassword"
+							name="password"
+						/>
+
+						
+					</div>
+				</div>
+				<div class="form-group row">
+					<div class="col-sm-10">
+						<button type="submit" class="btn btn-primary">Register</button>
+					</div>
+				</div>
+			</form>
+		</div>
 
 
 		<!-- jQuery library -->
