@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Book Library</title>
+		<title>Register</title>
 		<meta charset="utf-8" />
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
@@ -18,39 +18,69 @@
 		<!-- CSS script -->
 		<link rel="stylesheet" href="style.css" />
 		<!-- Latest Font-Awesome CDN -->
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
-			integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
-			crossorigin="anonymous"
-			referrerpolicy="no-referrer"
-		/>
 		<script
 			src="https://kit.fontawesome.com/3257d9ad29.js"
 			crossorigin="anonymous"
 		></script>
 	</head>
 	<body>
-		<nav class="navbar navbar-light bg-light">
-			<a class="navbar-brand" href="#">
-				<img src="./images/booklogo.png" width="50" height="50" alt="" />
+	    <nav class="navbar navbar-light bg-light">
+			<a class="navbar-brand" href="./index.html">
+				<img src="./../images/booklogo.png" width="50" height="50" alt="" />
 			</a>
-			<form class="form-inline text-white">
-				<a
-					class="btn btn-outline-success m-1"
-					data-toggle="modal"
-					data-target="#modalLoginForm"
-					href=""
-					>Log in</a
-				>
-				<a class="btn btn-outline-secondary m-1" href="./REGISTER/register.php"
-					>Register</a
-				>
-			</form>
 		</nav>
+
 		<div class="container">
-			<h1 class="text-info text-center m-5">Welcome to our Book Library</h1>
+			<h1 class="text-info text-center m-5">Register</h1>
 		</div>
+		<div class="container">
+			<?php
+             session_start()?>
+			<form
+				id="registrationForm"
+				action="process_registration.php"
+				method="POST"
+			>
+				<div class="form-group row">
+					<label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+					<div class="col-sm-10">
+						<input
+							type="email"
+							class="form-control"
+							id="inputEmail"
+							name="email"
+							required
+							value="<?php echo isset($_SESSION['validEmail']) ? $_SESSION['validEmail'] : ''; ?>"
+						/>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="inputPassword" class="col-sm-2 col-form-label"
+						>Password</label
+					>
+					<div class="col-sm-10">
+						<input
+							type="password"
+							class="form-control"
+							id="inputPassword"
+							name="password"
+						/>
+
+						<?php if (isset($_SESSION['passwordError'])): ?>
+						<p class="text-danger"><?php echo $_SESSION['passwordError']; ?></p>
+						<?php unset($_SESSION['passwordError']); ?>
+						<?php endif; ?>
+					</div>
+				</div>
+				<div class="form-group row">
+					<div class="col-sm-10">
+						<button type="submit" class="btn btn-primary">Register</button>
+					</div>
+				</div>
+			</form>
+		</div>
+
+
 
 		<!-- jQuery library -->
 		<script
@@ -70,6 +100,5 @@
 			integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
 			crossorigin="anonymous"
 		></script>
-		<script src="./main.js"></script>
 	</body>
 </html>
