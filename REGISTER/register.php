@@ -34,7 +34,8 @@
 			<h1 class="text-info text-center m-5">Register</h1>
 		</div>
 		<div class="container">
-			
+			<?php
+             session_start()?>
 			<form
 				id="registrationForm"
 				action="process_registration.php"
@@ -49,7 +50,7 @@
 							id="inputEmail"
 							name="email"
 							required
-							
+							value="<?php echo isset($_SESSION['validEmail']) ? $_SESSION['validEmail'] : ''; ?>"
 						/>
 					</div>
 				</div>
@@ -65,7 +66,10 @@
 							name="password"
 						/>
 
-						
+						<?php if (isset($_SESSION['passwordError'])): ?>
+						<p class="text-danger"><?php echo $_SESSION['passwordError']; ?></p>
+						<?php unset($_SESSION['passwordError']); ?>
+						<?php endif; ?>
 					</div>
 				</div>
 				<div class="form-group row">
@@ -75,6 +79,7 @@
 				</div>
 			</form>
 		</div>
+
 
 
 		<!-- jQuery library -->
