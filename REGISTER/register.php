@@ -24,7 +24,16 @@
 		></script>
 	</head>
 	<body>
-		
+	    <nav class="navbar navbar-light bg-light">
+			<a class="navbar-brand" href="./index.html">
+				<img src="./../images/booklogo.png" width="50" height="50" alt="" />
+			</a>
+		</nav>
+
+		<div class="container">
+			<h1 class="text-info text-center m-5">Register</h1>
+		</div>
+
 
 		<!-- jQuery library -->
 		<script
