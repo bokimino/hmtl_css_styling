@@ -14,6 +14,7 @@
 		<link rel="stylesheet" href="style.css">
 		<!-- Latest Font-Awesome CDN -->
 		<script src="https://kit.fontawesome.com/3257d9ad29.js" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	</head>
 	<body>
 	    <?php
