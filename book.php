@@ -62,7 +62,10 @@ function bookDisplay($books) {
         
         echo '<td>';
         echo '<button><a class="btn btn-primary" href="edit_book.php?id=' . $book->id . '">Edit</a></button>';
-        echo '<button class="delete-btn" data-id="' . $book->id . '">Delete</button>';
+        echo '<form action="process_delete_book.php" method="POST" class="delete-form">';
+        echo '<input type="hidden" name="book_id" value="' . $book->id . '">';
+        echo '<button type="button" class="delete-btn" onclick="confirmDelete(' . $book->id . ')">Delete</button>';
+        echo '</form>';
         echo '</td>';
         
         echo '</tr>';
