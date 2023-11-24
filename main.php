@@ -43,7 +43,7 @@
 					href=""
 					>Log in</a
 				>
-				<a class="btn btn-outline-secondary m-1" href="./register.html"
+				<a class="btn btn-outline-secondary m-1" href="./REGISTER/register.php"
 					>Register</a
 				>
 			</form>
