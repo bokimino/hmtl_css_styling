@@ -1,5 +1,6 @@
 <?php
-require_once 'connection.php';
+include __DIR__ . '/../connection.php';
+
 
 if (isset($_GET['id'])) {
     $categoryId = $_GET['id'];
@@ -8,7 +9,7 @@ if (isset($_GET['id'])) {
     $query = $pdo->prepare($sql);
     $query->execute([$categoryId]);
 
-    header('Location: admin_dashboard.php');
+    header('Location: ../admin_dashboard.php');
     exit();
 } else {
     header('Location: admin_dashboard.php');

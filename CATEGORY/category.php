@@ -1,5 +1,5 @@
 <?php 
-require_once 'connection.php';
+include __DIR__ . '/../connection.php';
 
 function getCategories($pdo) {
     $sql = "SELECT * FROM category WHERE deleted_at IS NULL";
@@ -14,8 +14,8 @@ function categoryDisplay($categories)
         echo '<tr>';
         echo '<td>' . htmlentities($category->title) . '</td>';
         echo '<td>';
-        echo '<button><a href="edit_category.php?id=' . $category->id . '">Edit</a></button>';
-        echo '<button><a href="delete_category.php?id=' . $category->id . '">Delete</a></button>';
+        echo '<button><a href="CATEGORY/edit_category.php?id=' . $category->id . '">Edit</a></button>';
+        echo '<button><a href="CATEGORY/delete_category.php?id=' . $category->id . '">Delete</a></button>';
         echo '</td>';
         echo '</tr>';
     }

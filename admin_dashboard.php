@@ -18,7 +18,7 @@
 	</head>
 	<body>
 	    <?php
-         require_once 'category.php';
+         require_once __DIR__ . '/CATEGORY/category.php';
          require_once 'author.php';
          require_once 'book.php';
 
