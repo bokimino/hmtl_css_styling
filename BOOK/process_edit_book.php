@@ -1,5 +1,5 @@
 <?php
-require_once 'connection.php';
+require_once __DIR__ . '/../connection.php';
 require_once 'book.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_book'])) {
@@ -12,13 +12,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_book'])) {
     $editedCategoryId = $_POST['edit_category_id'];
 
     if (updateBook($pdo, $bookId, $editedBookTitle, $editedAuthorId, $editedYear, $editedPages, $editedImage, $editedCategoryId)) {     
-        header('Location: admin_dashboard.php');
-        exit();
+        header('Location: ../admin_dashboard.php');
+       exit();
     } else {
         echo 'Error updating book.';
     }
 } else {
-    header('Location: admin_dashboard.php');
+    header('Location: ../admin_dashboard.php');
     exit();
 }
 ?>
