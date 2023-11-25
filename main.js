@@ -22,3 +22,7 @@ function confirmDelete(bookId) {
         }
     });
 }
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get('login') === 'success') {
+$('#modalLoginForm').modal('hide');
+}
