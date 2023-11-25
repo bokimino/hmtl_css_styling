@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -49,6 +52,12 @@
 			</form>
 		</nav>
 		<div class="container">
+			<?php if (isset($_SESSION['loginError'])) : ?>
+			<p class="text-danger text-center h2">
+				<?php echo $_SESSION['loginError']; ?>
+			</p>
+			<?php unset($_SESSION['loginError']); ?>
+			<?php endif; ?>
 			<h1 class="text-info text-center m-5">Welcome to our Book Library</h1>
 		</div>
         
