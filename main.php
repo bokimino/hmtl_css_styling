@@ -36,6 +36,7 @@ session_start();
 	<body>
 	    <?php 
         require_once __DIR__ . '/BOOKS_DISPLAY/cardsDisplay.php';
+        require_once __DIR__ . '/CATEGORY/category.php';
         ?>
 		<nav class="navbar navbar-light bg-light">
 			<a class="navbar-brand" href="#">
@@ -63,8 +64,27 @@ session_start();
 			<h1 class="text-info text-center m-5">Welcome to our Book Library</h1>
 		</div>
 
+        
+	    <div class="container text-center">
+	    	<div class="custom-control custom-checkbox">
+	           <form method="post" action="" id="filterForm">
+                  <?php
+                       $categories = getCategories($pdo);
+	                     foreach ($categories as $category) {
+                          echo '<label class="font-weight-bold text-success mx-2">';
+                          echo '<input type="checkbox"  name="categories[]" value="' . $category->id . '"';
+                          
+                          if (isset($_POST['categories']) && in_array($category->id, $_POST['categories'])) {
+                              echo ' checked';
+                          }
+                          echo '> ' . htmlentities($category->title) . '</label>';
+                    } ?>
+                 <button type="submit" class="btn btn-primary">Filter</button>
+                </form> 
+	        </div>
+        </div>
 
-		
+   	
 		<div class="container">
 		    <div class="card-group">
 			
