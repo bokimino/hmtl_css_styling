@@ -1,5 +1,5 @@
 <?php
-require_once 'connection.php';
+include __DIR__ . '/../connection.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $categoryId = $_POST['category_id'];
@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $query->execute();
 
-    header('Location: admin_dashboard.php');
+    header('Location: ../admin_dashboard.php');
     exit();
 }
 

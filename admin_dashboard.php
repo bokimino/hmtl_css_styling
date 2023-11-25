@@ -18,9 +18,9 @@
 	</head>
 	<body>
 	    <?php
-         require_once 'category.php';
-         require_once 'author.php';
-         require_once 'book.php';
+         require_once __DIR__ . '/CATEGORY/category.php';
+         require_once __DIR__ . '/AUTHOR/author.php';
+		 require_once __DIR__ . '/BOOK/book.php';
 
          ?>
 		
@@ -74,9 +74,9 @@
                </tr>
             </thead>
              <tbody>
-                   <?php authorDisplay($authors); ?>
-
-                 <?php handleAddAuthor($pdo); ?> 
+				 <?php handleAddAuthor($pdo); ?> 
+				 
+				 <?php authorDisplay($authors); ?>
              </tbody>
          </table>
 		 <form
@@ -135,7 +135,7 @@
             <?php handleAddBook($pdo); ?>
 			</tbody>
 		</table>
-		<form id="addBookForm" style="display:none;"action="process_book.php" method="POST">
+		<form id="addBookForm" style="display:none;"action="./BOOK/process_book.php" method="POST">
 
 				<div class="form-row">
 					<div class="form-group col-md-6">

@@ -1,5 +1,5 @@
 <?php 
-include 'connection.php';
+require_once __DIR__ . '/../connection.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
@@ -14,12 +14,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $query = $pdo->prepare($sql);
         $query->execute([$title, $authorId, $categoryId, $year, $pages, $image]);
 
-        header('Location: admin_dashboard.php');
+        header('Location: ../admin_dashboard.php');
         exit();
     } catch (PDOException $e) {
         die("Error processing the book: " . $e->getMessage());
     }
 } else {
-    header('Location: admin.php');
+    header('Location: ../admin_dashboard.php');
     exit();
 }
