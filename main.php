@@ -51,7 +51,76 @@
 		<div class="container">
 			<h1 class="text-info text-center m-5">Welcome to our Book Library</h1>
 		</div>
+        
+		<div
+			class="modal fade"
+			id="modalLoginForm"
+			tabindex="-1"
+			role="dialog"
+			aria-labelledby="myModalLabel"
+			aria-hidden="true"
+		>
+			<div class="modal-dialog" role="document">
+				<div class="modal-content bg-info">
+					<div class="modal-header text-center">
+						<h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
+						<button
+							type="button"
+							class="close"
+							data-dismiss="modal"
+							aria-label="Close"
+						>
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body mx-3">
+						<form
+							id="loginForm"
+							method="POST"
+							action="./LOGIN/login_process.php"
+						>
+							<div class="md-form mb-5">
+								<i class="fas fa-envelope prefix grey-text"></i>
+								<input
+									type="email"
+									id="defaultForm-email"
+									name="email"
+									class="form-control validate"
+									required
+								/>
+								<label
+									data-error="wrong"
+									data-success="right"
+									for="defaultForm-email"
+									>Your email</label
+								>
+							</div>
 
+							<div class="md-form mb-4">
+								<i class="fas fa-lock prefix grey-text"></i>
+								<input
+									type="password"
+									id="defaultForm-pass"
+									name="password"
+									class="form-control validate"
+									required
+								/>
+								<label
+									data-error="wrong"
+									data-success="right"
+									for="defaultForm-pass"
+									>Your password</label
+								>
+							</div>
+
+							<div class="modal-footer d-flex justify-content-center">
+								<button type="submit" class="btn btn-default">Login</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 		<!-- jQuery library -->
 		<script
 			src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
