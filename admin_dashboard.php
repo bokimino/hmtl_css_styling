@@ -74,9 +74,9 @@
                </tr>
             </thead>
              <tbody>
-                   <?php authorDisplay($authors); ?>
-
-                 <?php handleAddAuthor($pdo); ?> 
+				 <?php handleAddAuthor($pdo); ?> 
+				 
+				 <?php authorDisplay($authors); ?>
              </tbody>
          </table>
 		 <form
