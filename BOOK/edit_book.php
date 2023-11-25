@@ -1,7 +1,6 @@
 <?php
-require_once 'connection.php';
-require_once 'category.php';
-require_once 'author.php';
+require_once __DIR__ . '/../CATEGORY/category.php';
+require_once __DIR__ . '/../AUTHOR/author.php';
 require_once 'book.php';
 
 $bookId = $_GET['id']; 

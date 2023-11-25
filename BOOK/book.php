@@ -1,5 +1,5 @@
 <?php 
-require_once 'connection.php';
+require_once __DIR__ . '/../connection.php';
 
 
 function getBooks($pdo) {
@@ -32,7 +32,7 @@ function handleAddBook($pdo) {
         $newCategoryId = $_POST['new_category_id'];
 
         if (addBook($pdo, $newBookTitle, $newAuthorId, $newYear, $newPages, $newImage, $newCategoryId)) {
-            header('Location: admin_dashboard.php');
+            header('Location: ../admin_dashboard.php');
             exit();
         } else {
             echo 'Error adding book.';
@@ -61,8 +61,8 @@ function bookDisplay($books) {
         echo '<td>' . htmlentities($book->image_url) . '</td>';
         
         echo '<td>';
-        echo '<button><a class="btn btn-primary" href="edit_book.php?id=' . $book->id . '">Edit</a></button>';
-        echo '<form action="process_delete_book.php" method="POST" class="delete-form">';
+        echo '<button><a class="btn btn-primary" href="BOOK/edit_book.php?id=' . $book->id . '">Edit</a></button>';
+        echo '<form action="./BOOK/process_delete_book.php" method="POST" class="delete-form">';
         echo '<input type="hidden" name="book_id" value="' . $book->id . '">';
         echo '<button type="button" class="delete-btn" onclick="confirmDelete(' . $book->id . ')">Delete</button>';
         echo '</form>';

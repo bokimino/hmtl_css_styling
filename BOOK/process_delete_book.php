@@ -1,5 +1,5 @@
 <?php
-require_once 'connection.php';
+require_once __DIR__ . '/../connection.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['book_id'])) {
     $bookId = $_POST['book_id'];
 
@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['book_id'])) {
 
         $pdo->commit();
 
-        header('Location: admin_dashboard.php');
+        header('Location: ../admin_dashboard.php');
         exit();
     } catch (PDOException $e) {
         $pdo->rollBack();

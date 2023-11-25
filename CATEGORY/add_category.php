@@ -1,5 +1,6 @@
 <?php
-include 'connection.php';
+include __DIR__ . '/../connection.php';
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_author'])) {
     $newCategoryTitle = $_POST['new_category'];
@@ -9,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_author'])) {
     $query->bindParam(':title', $newCategoryTitle, PDO::PARAM_STR);
     $query->execute();
 
-    header('Location: admin_dashboard.php');
+    header('Location: ../admin_dashboard.php');
     exit();
 }
 ?>
