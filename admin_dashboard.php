@@ -19,7 +19,7 @@
 	<body>
 	    <?php
          require_once __DIR__ . '/CATEGORY/category.php';
-         require_once 'author.php';
+         require_once __DIR__ . '/AUTHOR/author.php';
          require_once 'book.php';
 
          ?>

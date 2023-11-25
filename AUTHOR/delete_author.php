@@ -1,5 +1,5 @@
 <?php
-require_once 'connection.php';
+require_once __DIR__ . '/../connection.php';
 
 function deleteAuthor($pdo, $authorId) {
     $sql = "UPDATE author SET deleted_at = NOW() WHERE id = ?";
@@ -11,7 +11,7 @@ if (isset($_GET['id'])) {
     $authorId = $_GET['id'];
 
     if (deleteAuthor($pdo, $authorId)) {
-        header('Location: admin_dashboard.php');
+        header('Location: ../admin_dashboard.php');
         exit();
     } else {
         echo 'Error deleting author.';
