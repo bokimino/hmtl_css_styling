@@ -34,6 +34,10 @@ session_start();
 		></script>
 	</head>
 	<body>
+	    <?php 
+        require_once __DIR__ . '/BOOKS_DISPLAY/cardsDisplay.php';
+        require_once __DIR__ . '/CATEGORY/category.php';
+        ?>
 		<nav class="navbar navbar-light bg-light">
 			<a class="navbar-brand" href="#">
 				<img src="./images/booklogo.png" width="50" height="50" alt="" />
@@ -58,6 +62,52 @@ session_start();
 			<?php unset($_SESSION['loginError']); ?>
 			<?php endif; ?>
 			<h1 class="text-info text-center m-5">Welcome to our Book Library</h1>
+		</div>
+
+        
+	    <div class="container text-center">
+	    	<div class="custom-control custom-checkbox">
+	           <form method="post" action="" id="filterForm">
+                  <?php
+                       $categories = getCategories($pdo);
+	                     foreach ($categories as $category) {
+                          echo '<label class="font-weight-bold text-success mx-2">';
+                          echo '<input type="checkbox"  name="categories[]" value="' . $category->id . '"';
+                          
+                          if (isset($_POST['categories']) && in_array($category->id, $_POST['categories'])) {
+                              echo ' checked';
+                          }
+                          echo '> ' . htmlentities($category->title) . '</label>';
+                    } ?>
+                 <button type="submit" class="btn btn-primary">Filter</button>
+                </form> 
+	        </div>
+        </div>
+
+   	
+		<div class="container">
+		    <div class="card-group">
+			
+				<?php 
+				 $filteredBooks = getFilteredBooks($pdo, $_POST['categories'] ?? null);
+			    foreach ($filteredBooks as $book) {
+				     echo '<div class="col-4">';
+				     echo '<div class="card my-3">';
+				     echo '<img src="' . $book['image_url'] . '" class="card-img-top" alt="Book Image">';
+				     echo '<div class="card-body">';
+				     echo '<h5 class="card-title">' . $book['book_title'] . '</h5>';
+				     echo '<p class="card-text">';
+				     echo 'Author: ' . $book['author_first_name'] . ' ' . $book['author_last_name'] . '<br>';
+				     echo '</p>';
+				     echo '<div class="card-footer text-success">';
+				     echo 'Category: ' . $book['category_title'] . '<br>' ;
+				     echo '</div>';
+				     echo '</div>';
+				     echo '</div>';
+				     echo '</div>';
+			         }
+			    ?>
+			</div>
 		</div>
         
 		<div
