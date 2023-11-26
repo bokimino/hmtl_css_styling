@@ -1,3 +1,5 @@
+<?php require_once 'printBookDetails.php';
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,7 +21,10 @@
         
     <div class="container">
 			<div class="row">
-				<div class="col-10 offset-1"></div>
+				<div class="col-10 offset-1">
+                <?php 
+                   printBookDetails($bookDetails)?> 
+                </div>
 			</div>
 	</div> 
         <!-- jQuery library -->
