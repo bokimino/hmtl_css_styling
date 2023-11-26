@@ -88,25 +88,28 @@ session_start();
 		<div class="container">
 		    <div class="card-group">
 			
-				<?php 
-				 $filteredBooks = getFilteredBooks($pdo, $_POST['categories'] ?? null);
-			    foreach ($filteredBooks as $book) {
-				     echo '<div class="col-4">';
-				     echo '<div class="card my-3">';
-				     echo '<img src="' . $book['image_url'] . '" class="card-img-top" alt="Book Image">';
-				     echo '<div class="card-body">';
-				     echo '<h5 class="card-title">' . $book['book_title'] . '</h5>';
-				     echo '<p class="card-text">';
-				     echo 'Author: ' . $book['author_first_name'] . ' ' . $book['author_last_name'] . '<br>';
-				     echo '</p>';
-				     echo '<div class="card-footer text-success">';
-				     echo 'Category: ' . $book['category_title'] . '<br>' ;
-				     echo '</div>';
-				     echo '</div>';
-				     echo '</div>';
-				     echo '</div>';
-			         }
-			    ?>
+				<?php  
+				$filteredBooks = getFilteredBooks($pdo, $_POST['categories'] ?? null);
+				foreach ($filteredBooks as $book) {
+				  echo '<div class="col-4">';
+				  echo '<div class="card my-3">';
+				  echo '<a href="BOOKS_DISPLAY/book_details.php?id=' . $book['book_id'] . '">';
+				  echo '<img src="' . $book['image_url'] . '" class="card-img-top" alt="Book Image">';
+				  
+				  echo '<div class="card-body">';
+				  echo '<h5 class="card-title">' . $book['book_title'] . '</h5>';
+				  echo '</a>';
+				  echo '<p class="card-text">';
+				  echo 'Author: ' . $book['author_first_name'] . ' ' . $book['author_last_name'] . '<br>';
+				  echo '</p>';
+				  echo '<div class="card-footer text-success">';
+				  echo 'Category: ' . $book['category_title'] . '<br>';
+				  echo '</div>';
+				  echo '</div>';
+				  echo '</div>';
+				  echo '</div>';
+			  }
+		  ?>
 			</div>
 		</div>
         
