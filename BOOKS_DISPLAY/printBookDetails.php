@@ -130,3 +130,35 @@ function printBookDetails($bookDetails, $loggedInUserId)
         echo 'No book selected.';
     }
 }
+function leaveComment($bookDetails, $loggedInUserId) {
+    if (isset($_SESSION['user_id'])) {
+        $userId = $_SESSION['user_id'];
+        $userComment = null;
+
+        foreach ($bookDetails['comments'] as $comment) {
+            if ($comment['deleted_at'] === null) {
+                
+
+                echo '</li>';
+                
+                if ($loggedInUserId && $loggedInUserId == $comment['user_id']) {
+                    $userComment = $comment;
+                    
+                }
+            }
+        }
+     
+        if ($userComment === null || $userComment['deleted_at'] !== null) {
+            echo '<form action="../COMMENT/process_comment.php" method="post">';
+            echo '<label for="comment_text">Leave a comment:</label>';
+            echo '<textarea name="comment_text" id="comment_text" rows="4" cols="50"></textarea>';
+            echo '<input type="hidden" name="book_id" value="' . $bookDetails['book_id'] . '">';
+            echo '<button type="submit">Submit Comment</button>';
+            echo '</form>';
+        } elseif ($userComment['deleted_at'] === null) {
+            echo '<p>Your comment:</p>';
+            echo '<p>' . $userComment['comment_text'] . ' - ' . $userComment['created_at'] . '</p>';
+            echo '<p><a href="../COMMENT/delete_comment.php?comment_id=' . $userComment['id'] . '&book_id=' . $bookDetails['book_id'] . '">Delete Comment</a></p>';
+        }
+    }
+}
