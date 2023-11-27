@@ -23,7 +23,7 @@
 			<div class="row">
 				<div class="col-10 offset-1">
                 <?php 
-                   printBookDetails($bookDetails)?> 
+                     printingBook($pdo, $loggedInUserId);?> 
                 </div>
 			</div>
 	</div> 
