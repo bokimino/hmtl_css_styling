@@ -16,6 +16,9 @@
         <script src="https://kit.fontawesome.com/3257d9ad29.js" crossorigin="anonymous"></script>
     </head>
     <body>
+        <?php 
+        require_once __DIR__ . '/admin_comment.php';
+        ?>
      
     <div class="container">
 			<h1>Administrator Comments</h1>
