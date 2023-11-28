@@ -1,4 +1,5 @@
 <?php require_once 'printBookDetails.php';
+$loggedInUserId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 ?>
 <!DOCTYPE html>
 <html>
