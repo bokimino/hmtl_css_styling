@@ -18,6 +18,7 @@
     <body>
         <?php 
         require_once __DIR__ . '/admin_comment.php';
+        require_once __DIR__ . '/rejected_comments.php';
         ?>
      
     <div class="container">
@@ -48,6 +49,45 @@
 	            <?php endforeach; ?>
 			</table>
 		</div>
+        <div class="container">
+            <h2>Rejected Comments</h2>
+
+           <?php if (count($rejectedComments) > 0) : ?>
+             <table border="1">
+                    <tr>
+                        <th>ID</th>
+                        <th>User ID</th>
+                        <th>User Email</th>
+                        <th>Book ID</th>
+                        <th>Book Title</th>
+                        <th>Comment Text</th>
+                        <th>Is Approved</th>
+                        <th>Created At</th>
+                    </tr>
+
+        <?php foreach ($rejectedComments as $comment) : ?>
+                <tr>
+                    <td><?= $comment['comment_id']; ?></td>
+                    <td><?= $comment['user_id']; ?></td>
+                    <td><?= $comment['user_email']; ?></td>
+                    <td><?= $comment['book_id']; ?></td>
+                    <td><?= $comment['book_title']; ?></td>
+                    <td><?= $comment['comment_text']; ?></td>
+                    <td><?= $comment['is_approved']; ?></td>
+                    <td><?= $comment['created_at']; ?></td>
+                    <td>
+                        <form action="approve_comment.php" method="post">
+                            <input type="hidden" name="comment_id" value="<?= $comment['comment_id']; ?>">
+                            <button type="submit">Approve</button>
+                        </form>
+                    </td>
+                </tr>
+                  <?php endforeach; ?>
+             </table>
+                  <?php else : ?>
+                      <p>No rejected comments found.</p>
+                  <?php endif; ?>
+           </div>
 
         <!-- jQuery library -->
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="ha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
