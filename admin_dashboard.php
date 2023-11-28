@@ -193,6 +193,9 @@
 				</div>
 				<button type="submit" class="btn btn-success">Submit</button>
 			</form>
+
+			<a href="COMMENT/comments.php" class="btn btn-secondary">Comments by users</a>
+
 		<!-- jQuery library -->
 		<script
 			src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
