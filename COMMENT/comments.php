@@ -21,7 +21,7 @@
         ?>
      
     <div class="container">
-			<h1>Administrator Comments</h1>
+			<h1>Comments by users</h1>
 
 			<table border="1">
 				<tr>
@@ -34,6 +34,18 @@
 					<th>Is Approved</th>
 					<th>Created At</th>
 				</tr>
+                <?php foreach ($comments as $comment) : ?>
+		        <tr>
+		        	<td><?= $comment['comment_id']; ?></td>
+		        	<td><?= $comment['user_id']; ?></td>
+		        	<td><?= $comment['user_email']; ?></td>
+		        	<td><?= $comment['book_id']; ?></td>
+		        	<td><?= $comment['book_title']; ?></td>
+		        	<td><?= $comment['comment_text']; ?></td>
+		        	<td><?= $comment['is_approved']; ?></td>
+		        	<td><?= $comment['created_at']; ?></td>
+		        </tr>
+	            <?php endforeach; ?>
 			</table>
 		</div>
 
