@@ -27,7 +27,7 @@ $loggedInUserId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
            <?php
            
            if (isset($_SESSION['user_id'])) {
-               echo '<a href="LOGIN/logout.php">Log Out</a>';
+               echo '<a href="./../LOGIN/logout.php">Log Out</a>';
                echo '<p>User Email: ' . $_SESSION['user_email'] . '</p>';
            } else {
                echo '
