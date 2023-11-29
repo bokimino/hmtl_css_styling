@@ -4,9 +4,7 @@ session_start();
 if (isset($_SESSION['user_id'])) {
 
     $loggedInUserId=$_SESSION['user_id'];  
-} else { 
-    echo 'Not logged in';
-}
+} 
 $bookId = $_GET['id'];
 $refresh = isset($_GET['refresh']) ? $_GET['refresh'] : null;
 $bookDetails = getBookDetailsWithComments($pdo, $bookId, $refresh);
