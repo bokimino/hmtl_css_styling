@@ -19,7 +19,25 @@ $loggedInUserId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
         <script src="https://kit.fontawesome.com/3257d9ad29.js" crossorigin="anonymous"></script>
     </head>
     <body> 
-        
+    <nav class="navbar navbar-light bg-light">
+			<a class="navbar-brand" href="#">
+				<img src="./../images/booklogo.png" width="50" height="50" alt="" />
+			</a>
+				
+           <?php
+           
+           if (isset($_SESSION['user_id'])) {
+               echo '<a href="./../LOGIN/logout.php">Log Out</a>';
+               echo '<p>User Email: ' . $_SESSION['user_email'] . '</p>';
+           } else {
+               echo '
+               <form class="form-inline text-white">
+                   <a class="btn btn-outline-success m-1" data-toggle="modal" data-target="#modalLoginForm" href="#">Log in</a>
+                   <a class="btn btn-outline-secondary m-1" href="./REGISTER/register.php">Register</a>
+               </form>';
+           }
+           ?>
+		</nav>   
     <div class="container">
 			<div class="row">
 				<div class="col-10 offset-1">

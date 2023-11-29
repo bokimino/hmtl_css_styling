@@ -42,17 +42,18 @@ session_start();
 			<a class="navbar-brand" href="#">
 				<img src="./images/booklogo.png" width="50" height="50" alt="" />
 			</a>
-			<?php if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
-             echo '<p>User Email: ' . $_SESSION['user_email'] . '</p>';
-             unset($_SESSION['login_success']);
-            } else {
-              echo '
-                 <form class="form-inline text-white">
-                     <a class="btn btn-outline-success m-1" data-toggle="modal" data-target="#modalLoginForm" href="#">Log in</a>
-                     <a class="btn btn-outline-secondary m-1" href="./REGISTER/register.php">Register</a>
-                 </form>';
-             }
-         ?>
+			<?php
+			if (isset($_SESSION['user_id'])) {
+				echo '<a href="LOGIN/logout.php">Log Out</a>';
+				echo '<p>User Email: ' . $_SESSION['user_email'] . '</p>';
+			} else {
+				echo '
+				<form class="form-inline text-white">
+					<a class="btn btn-outline-success m-1" data-toggle="modal" data-target="#modalLoginForm" href="#">Log in</a>
+					<a class="btn btn-outline-secondary m-1" href="./REGISTER/register.php">Register</a>
+				</form>';
+			}
+			?>
 		</nav>
 		<div class="container">
 			<?php if (isset($_SESSION['loginError'])) : ?>
