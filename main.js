@@ -1,5 +1,10 @@
 function showAddCategoryForm() {
     document.getElementById('addCategoryForm').style.display = 'table-row';
+    document.getElementById('addCategoryButton').style.display = 'none';
+}
+function hideAddCategoryForm() {
+    document.getElementById('addCategoryForm').style.display = 'none';
+    document.getElementById('addCategoryButton').style.display = 'block';
 }
 function showAddAuthorForm() {
     document.getElementById('addAuthorForm').style.display = 'table-row';

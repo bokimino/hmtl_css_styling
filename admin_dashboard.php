@@ -36,9 +36,10 @@
 		      	<tr>
 		      		<th>Categories</th>
 		      		<th>
-		      			<button
+					    <button
 		      				type="button"
 		      				class="btn btn-primary"
+						    id="addCategoryButton"
 		      				onclick="showAddCategoryForm()"
 		      			>
 		      				Add New
@@ -63,6 +64,9 @@
 				<button type="submit" class="btn btn-success" name="add_category">
 					Save
 				</button>
+				<button type="button" class="btn btn-secondary" onclick="hideAddCategoryForm()">
+            Cancel
+        </button>
 			</td>
 		</form>
 		<table>
