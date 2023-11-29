@@ -70,13 +70,22 @@
 			</td>
 		</form>
 		<table>
-            <thead>
-               <tr>
-                  <th>Author</th>
-                  <th>Biography</th>
-                  <th><button type="button" class="btn btn-primary" onclick="showAddAuthorForm()">Add New Author</button></th>
-               </tr>
-            </thead>
+		    <thead>
+		    	<tr>
+		    		<th>Author</th>
+		    		<th>Biography</th>
+		    		<th>
+		    			<button
+		    				type="button"
+		    				class="btn btn-primary"
+		    				id="addAuthorButton"
+		    				onclick="showAddAuthorForm()"
+		    			>
+		    				Add New Author
+		    			</button>
+		    		</th>
+		    	</tr>
+		    </thead>
              <tbody>
 				 <?php handleAddAuthor($pdo); ?> 
 				 

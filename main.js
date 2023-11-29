@@ -8,6 +8,7 @@ function hideAddCategoryForm() {
 }
 function showAddAuthorForm() {
     document.getElementById('addAuthorForm').style.display = 'table-row';
+		document.getElementById('addAuthorButton').style.display = 'none';
 }
 function showAddBookForm() {
     document.getElementById('addBookForm').style.display = 'block';
