@@ -36,9 +36,10 @@
 		      	<tr>
 		      		<th>Categories</th>
 		      		<th>
-		      			<button
+					    <button
 		      				type="button"
 		      				class="btn btn-primary"
+						    id="addCategoryButton"
 		      				onclick="showAddCategoryForm()"
 		      			>
 		      				Add New
@@ -63,16 +64,28 @@
 				<button type="submit" class="btn btn-success" name="add_category">
 					Save
 				</button>
+				<button type="button" class="btn btn-secondary" onclick="hideAddCategoryForm()">
+            Cancel
+        </button>
 			</td>
 		</form>
 		<table>
-            <thead>
-               <tr>
-                  <th>Author</th>
-                  <th>Biography</th>
-                  <th><button type="button" class="btn btn-primary" onclick="showAddAuthorForm()">Add New Author</button></th>
-               </tr>
-            </thead>
+		    <thead>
+		    	<tr>
+		    		<th>Author</th>
+		    		<th>Biography</th>
+		    		<th>
+		    			<button
+		    				type="button"
+		    				class="btn btn-primary"
+		    				id="addAuthorButton"
+		    				onclick="showAddAuthorForm()"
+		    			>
+		    				Add New Author
+		    			</button>
+		    		</th>
+		    	</tr>
+		    </thead>
              <tbody>
 				 <?php handleAddAuthor($pdo); ?> 
 				 
@@ -113,6 +126,15 @@
 					Save
 				</button>
 			</td>
+			<td>
+				<button
+					type="button"
+					class="btn btn-secondary"
+					onclick="hideAddAuthorForm()"
+				>
+					Cancel
+				</button>
+			</td>
 		</form>
 
 		<table>
@@ -123,6 +145,7 @@
 						<button
 							type="button"
 							class="btn btn-primary"
+							id="addBookButton"
 							onclick="showAddBookForm()"
 						>
 							Add New Book
@@ -192,6 +215,13 @@
 					
 				</div>
 				<button type="submit" class="btn btn-success">Submit</button>
+				<button
+				type="button"
+				class="btn btn-secondary"
+				onclick="hideAddBookForm()"
+			>
+				Cancel
+			</button>
 			</form>
 
 			<a href="COMMENT/comments.php" class="btn btn-secondary">Comments by users</a>
