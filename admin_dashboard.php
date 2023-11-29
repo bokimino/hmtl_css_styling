@@ -148,16 +148,12 @@ session_start();
 			<thead>
 				<tr>
 					<th>Book Title</th>
-					<th>
-						<button
-							type="button"
-							class="btn btn-primary"
-							id="addBookButton"
-							onclick="showAddBookForm()"
-						>
-							Add New Book
-						</button>
-					</th>
+					<th>Author</th>
+					<th>Category</th>
+					<th>Year Published</th>
+					<th>Page Number</th>
+					<th>Image URL</th>
+
 				</tr>
 			</thead>
 			<tbody>
@@ -165,7 +161,7 @@ session_start();
             <?php handleAddBook($pdo); ?>
 			</tbody>
 		</table>
-		<form id="addBookForm" style="display:none;"action="./BOOK/process_book.php" method="POST">
+		<form id="addBookForm" action="./BOOK/process_book.php" method="POST">
 
 				<div class="form-row">
 					<div class="form-group col-md-6">
@@ -222,13 +218,7 @@ session_start();
 					
 				</div>
 				<button type="submit" class="btn btn-success">Submit</button>
-				<button
-				type="button"
-				class="btn btn-secondary"
-				onclick="hideAddBookForm()"
-			>
-				Cancel
-			</button>
+				
 			</form>
 
 			<a href="COMMENT/comments.php" class="btn btn-secondary">Comments by users</a>
