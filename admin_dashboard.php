@@ -215,6 +215,13 @@
 					
 				</div>
 				<button type="submit" class="btn btn-success">Submit</button>
+				<button
+				type="button"
+				class="btn btn-secondary"
+				onclick="hideAddBookForm()"
+			>
+				Cancel
+			</button>
 			</form>
 
 			<a href="COMMENT/comments.php" class="btn btn-secondary">Comments by users</a>
