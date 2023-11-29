@@ -9,11 +9,10 @@ function getAuthors($pdo) {
 }
 $authors = getAuthors($pdo);
 
-function authorOption($authors){
+function authorOption($authors, $selectedAuthorId = '') {
     foreach ($authors as $author) {
-        echo '<option value="' . htmlentities($author->id) . '">' . htmlentities($author->first_name . ' ' . $author->last_name) . '</option>';
+        echo '<option value="' . htmlentities($author->id) . '" ' . ($author->id == $selectedAuthorId ? 'selected' : '') . '>' . htmlentities($author->first_name . ' ' . $author->last_name) . '</option>';
     }
-    
 }
 function authorDisplay($authors) {
     foreach ($authors as $author) {

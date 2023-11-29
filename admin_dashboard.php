@@ -164,10 +164,14 @@ session_start();
 		<form id="addBookForm" action="./BOOK/process_book.php" method="POST">
 
 				<div class="form-row">
-					<div class="form-group col-md-6">
-						<label for="tittleInput">Tittle</label>
-						<input type="text" class="form-control" name="title" id="tittleInput" />
-					</div>
+				    <div class="form-group col-md-6">
+		                 <label for="tittleInput">Title</label>
+	                  	 <input type="text" class="form-control" name="title" id="tittleInput" 
+						 value="<?php echo isset($_SESSION['validInputs']['title']) ? $_SESSION['validInputs']['title'] : ''; ?>" />
+		                 <?php if (isset($_SESSION['bookErrors']) && isset($_SESSION['bookErrors']['title'])): ?>
+			            <p class="text-danger"><?php echo $_SESSION['bookErrors']['title']; ?></p>
+		                <?php endif; ?>
+	               </div>
 					<div class="form-group col-md-6">
 						<label for="inputAuthor"
 							>Author</label
@@ -175,10 +179,11 @@ session_start();
 
 						<select class="form-control" name="author"id="inputAuthor" >
 							<option selected>Choose...</option>
-
-							<?php authorOption($authors);?>
-                            
-						</select>
+							<?php authorOption($authors, isset($_SESSION['validInputs']['author']) ? $_SESSION['validInputs']['author'] : ''); ?>
+                        </select>
+						  <?php if (isset($_SESSION['bookErrors']) && isset($_SESSION['bookErrors']['author'])): ?>
+                         <p class="text-danger"><?php echo $_SESSION['bookErrors']['author']; ?></p>
+                        <?php endif; ?>
 					</div>
 					
 				</div>
@@ -187,11 +192,19 @@ session_start();
 							
 	                <div class="form-group col-md-6">
 						<label for="inputYear">Year published</label>
-						<input type="number" class="form-control" name="year" id="inputYear" />
+						<input type="number" class="form-control" name="year" id="inputYear" 
+						value="<?php echo isset($_SESSION['validInputs']['year']) ? $_SESSION['validInputs']['year'] : ''; ?>" />
+		                 <?php if (isset($_SESSION['bookErrors']) && isset($_SESSION['bookErrors']['year'])): ?>
+		                 	<p class="text-danger"><?php echo $_SESSION['bookErrors']['year']; ?></p>
+		                 <?php endif; ?>
 					</div>
 					<div class="form-group col-md-6">
 						<label for="inputPageNumber">Page Number</label>
-						<input type="number" class="form-control" name="pages" id="inputPageNumber" />
+						<input type="number" class="form-control" name="pages" id="inputPageNumber"
+						 value="<?php echo isset($_SESSION['validInputs']['pages']) ? $_SESSION['validInputs']['pages'] : ''; ?>" />
+		                 <?php if (isset($_SESSION['bookErrors']) && isset($_SESSION['bookErrors']['pages'])): ?>
+		                 	<p class="text-danger"><?php echo $_SESSION['bookErrors']['pages']; ?></p>
+		                 <?php endif; ?>
 					</div>
 					
 				</div>
@@ -202,22 +215,29 @@ session_start();
 						>
 
 						<select class="form-control" name="category" id="inputCategory">
-							<option selected>Choose...</option>
-
-							<?php
-                            foreach ($categories as $category) {
-                                echo '<option value="' . htmlentities($category->id) . '">' . htmlentities($category->title) . '</option>';
-                            } ?>
-						</select>
+			               <option selected>Choose...</option>
+			               <?php
+			               foreach ($categories as $category) {
+				               $selected = (isset($_SESSION['validInputs']['category']) && $_SESSION['validInputs']['category'] == $category->id) ? 'selected' : '';
+				               echo '<option value="' . htmlentities($category->id) . '" ' . $selected . '>' . htmlentities($category->title) . '</option>';
+			                  } ?>
+		                </select>
+		                    <?php if (isset($_SESSION['bookErrors']) && isset($_SESSION['bookErrors']['category'])): ?>
+			                    <p class="text-danger"><?php echo $_SESSION['bookErrors']['category']; ?></p>
+		                    <?php endif; ?>
 					</div>
 							
 	                <div class="form-group col-md-6">
 						<label for="inputURL">URL</label>
-						<input type="text" class="form-control" name="image" id="inputURL" />
+						<input type="text" class="form-control" name="image" id="inputURL" 
+						value="<?php echo isset($_SESSION['validInputs']['image']) ? $_SESSION['validInputs']['image'] : ''; ?>" />
+		                 <?php if (isset($_SESSION['bookErrors']) && isset($_SESSION['bookErrors']['image'])): ?>
+		                 	<p class="text-danger"><?php echo $_SESSION['bookErrors']['image']; ?></p>
+		                 <?php endif; ?>
 					</div>
 					
 				</div>
-				<button type="submit" class="btn btn-success">Submit</button>
+				<button type="submit" class="btn btn-success">Add New Book</button>
 				
 			</form>
 
