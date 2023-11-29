@@ -1,11 +1,28 @@
 function showAddCategoryForm() {
     document.getElementById('addCategoryForm').style.display = 'table-row';
+    document.getElementById('addCategoryButton').style.display = 'none';
+}
+function hideAddCategoryForm() {
+    document.getElementById('addCategoryForm').style.display = 'none';
+    document.getElementById('addCategoryButton').style.display = 'block';
 }
 function showAddAuthorForm() {
     document.getElementById('addAuthorForm').style.display = 'table-row';
+		document.getElementById('addAuthorButton').style.display = 'none';
+}
+function hideAddAuthorForm(){
+    document.getElementById('addAuthorForm').style.display = 'none';
+    document.getElementById('addAuthorButton').style.display = 'block';
+
 }
 function showAddBookForm() {
     document.getElementById('addBookForm').style.display = 'block';
+    document.getElementById('addBookButton').style.display = 'none';
+}
+function hideAddBookForm() {
+    document.getElementById('addBookForm').style.display = 'none';
+    document.getElementById('addBookButton').style.display = 'block';
+
 }
 function confirmDelete(bookId) {
     Swal.fire({
