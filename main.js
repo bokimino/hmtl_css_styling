@@ -15,15 +15,6 @@ function hideAddAuthorForm(){
     document.getElementById('addAuthorButton').style.display = 'block';
 
 }
-function showAddBookForm() {
-    document.getElementById('addBookForm').style.display = 'block';
-    document.getElementById('addBookButton').style.display = 'none';
-}
-function hideAddBookForm() {
-    document.getElementById('addBookForm').style.display = 'none';
-    document.getElementById('addBookButton').style.display = 'block';
-
-}
 function confirmDelete(bookId) {
     Swal.fire({
         title: 'Are you sure?',
