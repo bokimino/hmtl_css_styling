@@ -145,6 +145,7 @@
 						<button
 							type="button"
 							class="btn btn-primary"
+							id="addBookButton"
 							onclick="showAddBookForm()"
 						>
 							Add New Book

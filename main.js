@@ -17,6 +17,7 @@ function hideAddAuthorForm(){
 }
 function showAddBookForm() {
     document.getElementById('addBookForm').style.display = 'block';
+    document.getElementById('addBookButton').style.display = 'none';
 }
 function confirmDelete(bookId) {
     Swal.fire({
