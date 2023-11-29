@@ -45,16 +45,31 @@ function addAuthor($pdo, $firstName, $lastName, $biography) {
 
 function handleAddAuthor($pdo) {
     if (isset($_POST['add_author'])) {
-        $newFirstName = $_POST['new_first_name'];
-        $newLastName = $_POST['new_last_name'];
-        $newBiography = $_POST['new_biography'];
+        $newFirstName = trim($_POST['new_first_name']);
+        $newLastName = trim($_POST['new_last_name']);
+        $newBiography = trim($_POST['new_biography']);
+
+        if (empty($newFirstName) || empty($newLastName) || empty($newBiography)) {
+            $_SESSION['authorError'] = 'All fields are required.';
+            header('Location: admin_dashboard.php');
+            
+
+            exit();
+        }
+
+        if (strlen($newBiography) < 20) {
+            $_SESSION['authorError'] = 'Biography must have at least 20 characters.';
+            header('Location: admin_dashboard.php');
+          
+
+            exit();
+        }
 
         if (addAuthor($pdo, $newFirstName, $newLastName, $newBiography)) {
-           
             header('Location: admin_dashboard.php');
+           
             exit();
         } else {
-           
             echo 'Error adding author.';
         }
     }

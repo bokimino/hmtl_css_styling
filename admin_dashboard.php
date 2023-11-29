@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -92,6 +95,10 @@
 				 <?php authorDisplay($authors); ?>
              </tbody>
          </table>
+		 <?php if (isset($_SESSION['authorError'])) : ?>
+                   <p class="text-danger textareaMSG"><?php echo $_SESSION['authorError']; ?></p>
+              <?php unset($_SESSION['authorError']); ?>
+        <?php endif; ?>
 		 <form
 			id="addAuthorForm"
 			style="display: none"
