@@ -126,6 +126,15 @@
 					Save
 				</button>
 			</td>
+			<td>
+				<button
+					type="button"
+					class="btn btn-secondary"
+					onclick="hideAddAuthorForm()"
+				>
+					Cancel
+				</button>
+			</td>
 		</form>
 
 		<table>

@@ -10,6 +10,11 @@ function showAddAuthorForm() {
     document.getElementById('addAuthorForm').style.display = 'table-row';
 		document.getElementById('addAuthorButton').style.display = 'none';
 }
+function hideAddAuthorForm(){
+    document.getElementById('addAuthorForm').style.display = 'none';
+    document.getElementById('addAuthorButton').style.display = 'block';
+
+}
 function showAddBookForm() {
     document.getElementById('addBookForm').style.display = 'block';
 }
