@@ -14,8 +14,8 @@ function categoryDisplay($categories)
         echo '<tr>';
         echo '<td>' . htmlentities($category->title) . '</td>';
         echo '<td>';
-        echo '<button><a href="CATEGORY/edit_category.php?id=' . $category->id . '">Edit</a></button>';
-        echo '<button><a href="CATEGORY/delete_category.php?id=' . $category->id . '">Delete</a></button>';
+        echo '<button class="btn btn-secondary mx-2"><a class="text-light" href="CATEGORY/edit_category.php?id=' . $category->id . '">Edit</a></button>';
+        echo '<button class="btn btn-danger mx-2"><a class="text-light" href="CATEGORY/delete_category.php?id=' . $category->id . '">Delete</a></button>';
         echo '</td>';
         echo '</tr>';
     }

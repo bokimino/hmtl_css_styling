@@ -21,4 +21,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_book'])) {
     header('Location: ../admin_dashboard.php');
     exit();
 }
+
 ?>

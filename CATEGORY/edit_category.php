@@ -28,24 +28,55 @@ if (isset($_GET['id'])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Category</title>
-</head>
-<body>
+<html>
+    <head>
+        <title>Edit Category</title>
+        <meta charset="utf-8" />
+        <meta name="keywords" content="" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 
-    <h2>Edit Category</h2>
+        <!-- Latest compiled and minified Bootstrap 4.6 CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+        <!-- CSS script -->
+        <link rel="stylesheet" href="style.css">
+        <!-- Latest Font-Awesome CDN -->
+        <script src="https://kit.fontawesome.com/3257d9ad29.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+    <nav class="navbar navbar-light bg-light">
+             <a class="navbar-brand" href="./../main.php">
+				<img src="./../images/booklogo.png" width="50" height="50" alt="" />
+			</a>
+	</nav>
 
-    <form method="post" action="">
-        <input type="hidden" name="category_id" value="<?php echo $category->id; ?>">
+    <div class="container">
+        <div class="row justify-content-center align-items-center vh-100">
+            <div class="col-md-6 text-center">
+                <div class="bg-light p-5 rounded-circle">
+                    <h2 class="h1">Edit Category</h2>
 
-        <label for="updated_title">Updated Title:</label>
-        <input type="text" name="updated_title" value="<?php echo $category->title; ?>" required>
+                   <form method="post" action="" class="">
+                       <div class="form-group mb-2">
+                          <input type="hidden" name="category_id" value="<?php echo $category->id; ?>">
+                          <label for="updated_title">Updated Category:</label>
+                      </div>
+                      <div class="form-group mb-2">
+                          <input type="text" class="form-control" name="updated_title" value="<?php echo $category->title; ?>" required>
+                     </div>
+                   <button type="submit" class="btn btn-primary mb-2">Update Category</button>
+                   </form>
+                 </div>
+             </div>
+         </div>
+    </div>
 
-        <button type="submit">Update Category</button>
-    </form>
-
-</body>
+        <!-- jQuery library -->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="ha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        
+        <!-- Latest Compiled Bootstrap 4.6 JavaScript -->
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+    </body>
 </html>

@@ -21,9 +21,9 @@ function authorDisplay($authors) {
         echo '<td>' . htmlentities($author->biography) . '</td>';
         echo '<td>';
         
-        echo '<button><a href="AUTHOR/edit_author.php?id=' . $author->id . '">Edit</a></button>';
+        echo '<button class="btn btn-secondary mx-2"><a class="text-light" href="AUTHOR/edit_author.php?id=' . $author->id . '">Edit</a></button>';
         
-        echo '<button><a href="AUTHOR/delete_author.php?id=' . $author->id . '">Delete</a></button>';
+        echo '<button class="btn btn-danger mx-2"><a class="text-light" href="AUTHOR/delete_author.php?id=' . $author->id . '">Delete</a></button>';
         
         echo '</td>';
         echo '</tr>';

@@ -60,11 +60,11 @@ function bookDisplay($books) {
         echo '<td>' . htmlentities($book->number_of_pages) . '</td>';
         echo '<td>' . htmlentities($book->image_url) . '</td>';
         
-        echo '<td>';
-        echo '<button><a class="btn btn-primary" href="BOOK/edit_book.php?id=' . $book->id . '">Edit</a></button>';
+        echo '<td class="d-flex">';
+        echo '<button class="btn btn-secondary mx-2"><a class="text-light" href="BOOK/edit_book.php?id=' . $book->id . '">Edit</a></button>';
         echo '<form action="./BOOK/process_delete_book.php" method="POST" class="delete-form">';
         echo '<input type="hidden" name="book_id" value="' . $book->id . '">';
-        echo '<button type="button" class="delete-btn" onclick="confirmDelete(' . $book->id . ')">Delete</button>';
+        echo '<button type="button" class="btn btn-danger delete-btn text-light mx-2" onclick="confirmDelete(' . $book->id . ')">Delete</button>';
         echo '</form>';
         echo '</td>';
         
