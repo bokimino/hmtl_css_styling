@@ -27,7 +27,7 @@
 	</head>
 	<body>
 	    <nav class="navbar navbar-light bg-light">
-			<a class="navbar-brand" href="./index.html">
+			<a class="navbar-brand" href="./../main.php">
 				<img src="./../images/booklogo.png" width="50" height="50" alt="" />
 			</a>
 		</nav>
