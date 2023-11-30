@@ -85,16 +85,7 @@ $categories = getCategories($pdo);
                       
                    
                    <button type="submit" class="btn btn-primary mb-2" name="edit_book">Save Changes</button>
-                   <?php if (!empty($errors)) : ?>
-            <div class="alert alert-danger">
-               
-                    <?php foreach ($errors as $error) : ?>
-                        <p><?= $error ?></p>
-                    <?php endforeach; ?>
-                
-            </div>
-        <?php endif; ?>
-
+                   
                    </form>
                  </div>
              </div>
