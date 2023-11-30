@@ -1,18 +1,18 @@
 function showAddCategoryForm() {
-    document.getElementById('addCategoryForm').style.display = 'table-row';
+    document.getElementById('addCategoryForm').style.display = 'inline-block';
     document.getElementById('addCategoryButton').style.display = 'none';
 }
 function hideAddCategoryForm() {
     document.getElementById('addCategoryForm').style.display = 'none';
-    document.getElementById('addCategoryButton').style.display = 'block';
+    document.getElementById('addCategoryButton').style.display = 'inline-block';
 }
 function showAddAuthorForm() {
-    document.getElementById('addAuthorForm').style.display = 'table-row';
-		document.getElementById('addAuthorButton').style.display = 'none';
+    document.getElementById('addAuthorForm').style.display = 'block';
+    document.getElementById('addAuthorButton').style.display = 'none';
 }
-function hideAddAuthorForm(){
+function hideAddAuthorForm() {
     document.getElementById('addAuthorForm').style.display = 'none';
-    document.getElementById('addAuthorButton').style.display = 'block';
+    document.getElementById('addAuthorButton').style.display = 'inline-block';
 
 }
 function confirmDelete(bookId) {
@@ -32,5 +32,8 @@ function confirmDelete(bookId) {
 }
 const urlParams = new URLSearchParams(window.location.search);
 if (urlParams.get('login') === 'success') {
-$('#modalLoginForm').modal('hide');
+    $('#modalLoginForm').modal('hide');
 }
+document.getElementById("go-back").addEventListener("click", () => {
+    history.back();
+});

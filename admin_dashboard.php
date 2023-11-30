@@ -32,55 +32,72 @@ session_start();
 				<img src="./images/booklogo.png" width="50" height="50" alt="" />
 			</a>
             
-			<p>Welcome </p>
+			<?php if (isset($_SESSION['user_id'])) {
+             echo '<a href="LOGIN/logout.php">Log Out</a>';
+             }?>
 		</nav>
-        <table>
-		      <thead>
-		      	<tr>
-		      		<th>Categories</th>
-		      		<th>
-					    <button
-		      				type="button"
-		      				class="btn btn-primary"
-						    id="addCategoryButton"
-		      				onclick="showAddCategoryForm()"
-		      			>
-		      				Add New
-		      			</button>
-		      		</th>
-		      	</tr>
-		      </thead>  
-			<tbody>
-			   <?php categoryDisplay($categories); ?>
-			   <?php handleAddCategory($pdo)?>
-			</tbody>
-		</table>
+		<div class="container py-5">
+		<h1 class="text-center text-capitalize">Administrator Pannel</h1>
+		</div>
+     <div class="container bg-light">
+        <div class="container text-center">
+		<h2 class="text-capitalize py-5">Categories management</h2>
+		    <table class="table table-bordered table-warning py-3">
+		          <thead>
+		          	<tr>
+		          		<th>Categories</th>
+		          		<th>
+		    			    <button
+		          				type="button"
+		          				class="btn btn-success"
+		    				    id="addCategoryButton"
+		          				onclick="showAddCategoryForm()"
+		          			>
+		          				Add New
+		          			</button>
+		          		</th>
+		          	</tr>
+		          </thead>  
+		    	<tbody>
+		    	   <?php categoryDisplay($categories); ?>
+		    	   <?php handleAddCategory($pdo)?>
+		    	</tbody>
+		    </table>
 
 		<form
 			id="addCategoryForm"
 			style="display: none"
 			method="post"
 			action="admin_dashboard.php"
+			class="form-inline p-3"
 		>
-			<td><input type="text" name="new_category" required /></td>
-			<td>
-				<button type="submit" class="btn btn-success" name="add_category">
+		<div class="form-group mx-sm-3 mb-2">
+			<input type="text" class="form-control" name="new_category" required />
+		</div>
+			
+				<button type="submit" class="btn btn-success m-2" name="add_category">
 					Save
 				</button>
-				<button type="button" class="btn btn-secondary" onclick="hideAddCategoryForm()">
+				<button type="button" class="btn btn-danger m-2" onclick="hideAddCategoryForm()">
             Cancel
         </button>
-			</td>
+			
 		</form>
-		<table>
-		    <thead>
+	</div>
+	
+	<div class="container text-center">
+	    <h2 class="text-capitalize py-5">Author management</h2>
+
+		<table class="table m-auto table-bordered table-warning">
+		  
+		   <thead>
 		    	<tr>
 		    		<th>Author</th>
 		    		<th>Biography</th>
 		    		<th>
 		    			<button
 		    				type="button"
-		    				class="btn btn-primary"
+		    				class="btn btn-success"
 		    				id="addAuthorButton"
 		    				onclick="showAddAuthorForm()"
 		    			>
@@ -104,47 +121,52 @@ session_start();
 			style="display: none"
 			method="post"
 			action="admin_dashboard.php"
+			class="m-3"
 		>
-			<td>
+	   <div class="form-row">
+			<div class="form-group col-6 mb-2">
 				<input
 					type="text"
 					name="new_first_name"
 					placeholder="First Name"
 					required
+					class="form-control"
 				/>
-			</td>
-			<td>
+			</div>
+			<div class="form-group col-6 mb-2">
 				<input
 					type="text"
 					name="new_last_name"
 					placeholder="Last Name"
 					required
+					class="form-control"
 				/>
-			</td>
-			<td>
+			</div>
+	   </div>	
+			<div class="form-group mb-2">
 				<textarea
 					name="new_biography"
 					placeholder="Biography"
 					required
+					class="form-control"
 				></textarea>
-			</td>
-			<td>
+			</div>
 				<button type="submit" class="btn btn-success" name="add_author">
 					Save
 				</button>
-			</td>
-			<td>
-				<button
+			    <button
 					type="button"
-					class="btn btn-secondary"
+					class="btn btn-danger"
 					onclick="hideAddAuthorForm()"
 				>
 					Cancel
 				</button>
-			</td>
-		</form>
+			</form>
+		</div>
 
-		<table>
+    <div class="container text-center">
+	   <h2 class="text-capitalize py-5">Book management</h2>
+		<table class="table m-auto table-bordered table-warning">
 			<thead>
 				<tr>
 					<th>Book Title</th>
@@ -161,7 +183,7 @@ session_start();
             <?php handleAddBook($pdo); ?>
 			</tbody>
 		</table>
-		<form id="addBookForm" action="./BOOK/process_book.php" method="POST">
+		<form id="addBookForm" class="p-3 my-2 border border-success" action="./BOOK/process_book.php" method="POST">
 
 				<div class="form-row">
 				    <div class="form-group col-md-6">
@@ -240,8 +262,11 @@ session_start();
 				<button type="submit" class="btn btn-success">Add New Book</button>
 				
 			</form>
-
-			<a href="COMMENT/comments.php" class="btn btn-secondary">Comments by users</a>
+		</div>
+		<div class="p-5 text-center">
+		<a href="COMMENT/comments.php" class="btn btn-warning">Comments by users</a>
+		</div>
+	</div>	
 
 		<!-- jQuery library -->
 		<script

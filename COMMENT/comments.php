@@ -20,11 +20,15 @@
         require_once __DIR__ . '/admin_comment.php';
         require_once __DIR__ . '/rejected_comments.php';
         ?>
-     
-    <div class="container">
-			<h1>Comments by users</h1>
+     <nav class="navbar navbar-light bg-light">
+             <a class="navbar-brand" href="./../main.php">
+				<img src="./../images/booklogo.png" width="50" height="50" alt="" />
+			</a>
+	</nav>
+    <div class="container text-center py-5">
+			<h1 class="my-5">Comments by users</h1>
 
-			<table border="1">
+			<table class="table m-auto table-bordered table-info">
 				<tr>
 					<th>ID</th>
 					<th>User ID</th>
@@ -49,11 +53,11 @@
 	            <?php endforeach; ?>
 			</table>
 		</div>
-        <div class="container">
-            <h2>Rejected Comments</h2>
+        <div class="container text-center p-3">
+        <h2 class="my-5">Rejected Comments</h2>
 
            <?php if (count($rejectedComments) > 0) : ?>
-             <table border="1">
+             <table class="table m-auto table-bordered table-danger">
                     <tr>
                         <th>ID</th>
                         <th>User ID</th>
@@ -78,7 +82,7 @@
                     <td>
                         <form action="approve_comment.php" method="post">
                             <input type="hidden" name="comment_id" value="<?= $comment['comment_id']; ?>">
-                            <button type="submit">Approve</button>
+                            <button class="btn btn-success" type="submit">Approve</button>
                         </form>
                     </td>
                 </tr>
@@ -88,6 +92,9 @@
                       <p>No rejected comments found.</p>
                   <?php endif; ?>
            </div>
+         <div class="container text-center">
+             <button class="btn btn-primary" id="go-back">Go back!</button>
+         </div>
 
         <!-- jQuery library -->
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="ha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -95,5 +102,6 @@
         <!-- Latest Compiled Bootstrap 4.6 JavaScript -->
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+        <script src="./../main.js"></script> 
     </body>
 </html>

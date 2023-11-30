@@ -45,7 +45,6 @@ session_start();
 			<?php
 			if (isset($_SESSION['user_id'])) {
 				echo '<a href="LOGIN/logout.php">Log Out</a>';
-				echo '<p>User Email: ' . $_SESSION['user_email'] . '</p>';
 			} else {
 				echo '
 				<form class="form-inline text-white">
