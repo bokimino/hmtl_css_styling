@@ -82,12 +82,16 @@
 				</div>
 			</form>
 		</div>
-
+        <footer class="text-white-50 bg-dark mt-3">
+           <div class="container text-center">
+                <p class="blockquote font-italic" id="quote"></p>
+           </div>
+        </footer>
 
 
 		<!-- jQuery library -->
 		<script
-			src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+		    src="https://code.jquery.com/jquery-3.6.0.min.js"
 			integrity="ha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 			crossorigin="anonymous"
 		></script>
@@ -103,5 +107,6 @@
 			integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
 			crossorigin="anonymous"
 		></script>
+		<script src="../main.js"></script>
 	</body>
 </html>

@@ -34,6 +34,20 @@ const urlParams = new URLSearchParams(window.location.search);
 if (urlParams.get('login') === 'success') {
     $('#modalLoginForm').modal('hide');
 }
-document.getElementById("go-back").addEventListener("click", () => {
-    history.back();
+
+$(document).ready(function () {
+    function fetchRandomQuote() {
+        $.ajax({
+            url: 'http://api.quotable.io/random',
+            method: 'GET',
+            success: function (data) {
+                $('#quote').text(data.content);
+            },
+            error: function (xhr, status, error) {
+                console.error('Error fetching quote:', error);
+            }
+        });
+    }
+
+    fetchRandomQuote();
 });
