@@ -68,3 +68,82 @@ function fetchAndDisplayNotes(bookId) {
     });
 }
 fetchAndDisplayNotes(bookId);
+function displayNotes(notes) {
+    var notesContainer = $('#notes-container');
+
+    notesContainer.empty();
+
+    if (notes.length > 0) {
+        notes.forEach(function (note) {
+            var noteText = note.note_text;
+
+            var noteContainer = $('<div>').addClass('note-container bg-light border ');
+
+            var noteElement = $('<div>').text(noteText).appendTo(noteContainer);
+
+            var updateButton = $('<button>').text('Update').addClass('update-note-btn btn btn-secondary m-2').appendTo(noteContainer);
+
+            var deleteButton = $('<button>').text('Delete').addClass('delete-note-btn btn btn-danger m-2').appendTo(noteContainer);
+
+            var updateInput = $('<textarea>').addClass('update-note-input form-control m-auto w-50').hide().appendTo(noteContainer);
+
+            var saveUpdateButton = $('<button>').text('Save').addClass('save-update-btn btn btn-success').hide().appendTo(noteContainer);
+
+            updateButton.on('click', function () {
+                updateInput.val(noteText).show();
+                updateButton.hide();
+                deleteButton.hide();
+                saveUpdateButton.show();
+            });
+
+            deleteButton.on('click', function () {
+                deleteNote(note.id);
+            });
+
+            saveUpdateButton.on('click', function () {
+                var updatedText = updateInput.val();
+
+                updateNote(note.id, updatedText);
+
+                updateInput.hide();
+                saveUpdateButton.hide();
+
+                updateButton.show();
+            });
+
+            notesContainer.append(noteContainer);
+        });
+    } else {
+        notesContainer.text('No notes available.');
+    }
+}
+
+
+function addNote(bookId, noteText) {
+    $.ajax({
+        url: '../NOTE/add_note.php',
+        method: 'POST',
+        data: {
+            book_id: bookId,
+            note_text: noteText
+        },
+        success: function (response) {
+            console.log('Note added successfully:', response);
+
+            fetchAndDisplayNotes(bookId);
+        },
+        error: function (xhr, status, error) {
+            console.error('Error adding note:', error);
+        }
+    });
+}
+
+$('#add-note-btn').on('click', function () {
+    var noteText = $('#note-text').val();
+
+    if (noteText.trim() !== '') {
+        addNote(bookId, noteText);
+
+        $('#note-text').val('');
+    }
+});
