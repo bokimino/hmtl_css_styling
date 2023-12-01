@@ -51,3 +51,20 @@ $(document).ready(function () {
 
     fetchRandomQuote();
 });
+function fetchAndDisplayNotes(bookId) {
+    $.ajax({
+        url: '../NOTE/get_notes.php',
+        method: 'GET',
+        data: {
+            book_id: bookId
+        },
+        success: function (response) {
+            // Handle success, e.g., update UI with the retrieved notes
+            displayNotes(response);
+        },
+        error: function (xhr, status, error) {
+            console.error('Error fetching notes:', error);
+        }
+    });
+}
+fetchAndDisplayNotes(bookId);
