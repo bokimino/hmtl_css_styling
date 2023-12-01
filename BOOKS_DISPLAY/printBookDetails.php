@@ -90,25 +90,25 @@ function printBookDetails($bookDetails, $loggedInUserId)
 {
     echo '<div class="card text-center style="width: 300">';
     echo '<div class="w-25 m-auto">';
-    echo '<img class="card-img-top" src="' . $bookDetails['image_url'] . '" alt="Card image cap">';
+    echo '<img class="card-img-top pt-3" src="' . $bookDetails['image_url'] . '" alt="Card image cap">';
     echo '</div>';
     echo '<div class="card-body">';
-    echo '<h5 class="card-title">' . $bookDetails['book_title'] . '</h5>';
-    echo '<p class="card-text">' . $bookDetails['author_first_name'] . ' ' . $bookDetails['author_last_name'] . '</p>';
+    echo '<h5 class="card-title font-italic">' . $bookDetails['book_title'] . '</h5>';
+    echo '<p class="card-text text-capitalize">' . $bookDetails['author_first_name'] . ' ' . $bookDetails['author_last_name'] . '</p>';
     echo '</div>';
-    echo '<ul class="list-group list-group-flush">';
-    echo '<li class="list-group-item">Category: ' . $bookDetails['category_title'] . '</li>';
-    echo '<li class="list-group-item">Year of Publication: ' . $bookDetails['year_of_publication'] . '</li>';
-    echo '<li class="list-group-item">Number of Pages: ' . $bookDetails['number_of_pages'] . '</li>';
+    echo '<ul class="list-group list-group-flush text-white">';
+    echo '<li class="list-group-item bg-warning">Category: ' . $bookDetails['category_title'] . '</li>';
+    echo '<li class="list-group-item bg-warning">Year of Publication: ' . $bookDetails['year_of_publication'] . '</li>';
+    echo '<li class="list-group-item bg-warning">Number of Pages: ' . $bookDetails['number_of_pages'] . '</li>';
     echo '</ul>';
-    echo '<div class="card-body">';
+    echo '<div class="card-body bg-success text-white">';
 
     
     echo '<h6>Comments:</h6>';
     echo '<ul>';
     echo '<ul class="list-group mt-3">';
             foreach ($bookDetails['comments'] as $comment) {
-                echo '<li class="list-group-item">' . $comment['comment_text'] . ' - ' .  $comment['created_at'];
+                echo '<li class="list-group-item  bg-success">' . $comment['comment_text'] . ' - ' .  $comment['created_at'];
                 echo '</li>';
             }
             echo '</ul>';
@@ -156,7 +156,7 @@ function leaveComment($bookDetails, $loggedInUserId) {
         } elseif ($userComment['deleted_at'] === null) {
             echo '<p>Your comment:</p>';
             echo '<p>' . $userComment['comment_text'] . ' - ' . $userComment['created_at'] . '</p>';
-            echo '<p><a href="../COMMENT/delete_comment.php?comment_id=' . $userComment['id'] . '&book_id=' . $bookDetails['book_id'] . '">Delete Comment</a></p>';
+            echo '<p><a class="btn btn-danger" href="../COMMENT/delete_comment.php?comment_id=' . $userComment['id'] . '&book_id=' . $bookDetails['book_id'] . '">Delete Comment</a></p>';
         }
     }
 }

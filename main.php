@@ -99,7 +99,7 @@ session_start();
 				  echo '<div class="card-body">';
 				  echo '<h5 class="card-title">' . $book['book_title'] . '</h5>';
 				  echo '</a>';
-				  echo '<p class="card-text">';
+				  echo '<p class="card-text font-weight-bold">';
 				  echo 'Author: ' . $book['author_first_name'] . ' ' . $book['author_last_name'] . '<br>';
 				  echo '</p>';
 				  echo '<div class="card-footer text-success">';
@@ -175,7 +175,7 @@ session_start();
 							</div>
 
 							<div class="modal-footer d-flex justify-content-center">
-								<button type="submit" class="btn btn-default">Login</button>
+								<button type="submit" class="btn btn-success">Login</button>
 							</div>
 						</form>
 					</div>
