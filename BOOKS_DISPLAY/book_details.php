@@ -4,7 +4,7 @@ $loggedInUserId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Document</title>
+        <title>Book</title>
         <meta charset="utf-8" />
         <meta name="keywords" content="" />
         <meta name="description" content="" />
@@ -28,7 +28,6 @@ $loggedInUserId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
            
            if (isset($_SESSION['user_id'])) {
                echo '<a href="./../LOGIN/logout.php">Log Out</a>';
-               echo '<p>User Email: ' . $_SESSION['user_email'] . '</p>';
            } else {
                echo '
                <form class="form-inline text-white">
@@ -39,14 +38,16 @@ $loggedInUserId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
            ?>
 		</nav>   
     <div class="container">
+		<h1 class="text-center my-5">Details</h1>
 			<div class="row">
-				<div class="col-10 offset-1">
+				<div class="col-10 offset-1 bg-warning p-3">
                 <?php 
                      printingBook($pdo, $loggedInUserId);?> 
                 </div>
 			</div>
 	</div> 
-	
+	</div>
+ </div> 
 	    <footer class="text-white-50 bg-dark mt-3">
            <div class="container text-center">
                 <p class="blockquote font-italic" id="quote"></p>
@@ -115,7 +116,7 @@ $loggedInUserId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 							</div>
 
 							<div class="modal-footer d-flex justify-content-center">
-								<button type="submit" class="btn btn-default">Login</button>
+								<button type="submit" class="btn btn-success">Login</button>
 							</div>
 						</form>
 					</div>
