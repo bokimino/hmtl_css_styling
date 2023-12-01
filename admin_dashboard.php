@@ -28,7 +28,7 @@ session_start();
          ?>
 		
 		<nav class="navbar navbar-light bg-light">
-			<a class="navbar-brand" href="#">
+			<a class="navbar-brand" href="main.php">
 				<img src="./images/booklogo.png" width="50" height="50" alt="" />
 			</a>
             
@@ -113,7 +113,7 @@ session_start();
              </tbody>
          </table>
 		 <?php if (isset($_SESSION['authorError'])) : ?>
-                   <p class="text-danger textareaMSG"><?php echo $_SESSION['authorError']; ?></p>
+                   <p class="text-danger font-weight-bold my-2 textareaMSG"><?php echo $_SESSION['authorError']; ?></p>
               <?php unset($_SESSION['authorError']); ?>
         <?php endif; ?>
 		 <form
