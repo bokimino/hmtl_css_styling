@@ -43,6 +43,8 @@ function addAuthor($pdo, $firstName, $lastName, $biography) {
 }
 
 function handleAddAuthor($pdo) {
+    ob_start();
+
     if (isset($_POST['add_author'])) {
         $newFirstName = trim($_POST['new_first_name']);
         $newLastName = trim($_POST['new_last_name']);
@@ -50,28 +52,32 @@ function handleAddAuthor($pdo) {
 
         if (empty($newFirstName) || empty($newLastName) || empty($newBiography)) {
             $_SESSION['authorError'] = 'All fields are required.';
-            header('Location: admin_dashboard.php');
+            echo '<script>window.location.href = "admin_dashboard.php";</script>';
             
-
+            ob_end_flush();
             exit();
         }
 
         if (strlen($newBiography) < 20) {
             $_SESSION['authorError'] = 'Biography must have at least 20 characters.';
-            header('Location: admin_dashboard.php');
-          
-
+            echo '<script>window.location.href = "admin_dashboard.php";</script>';
+            
+            ob_end_flush();
             exit();
         }
 
         if (addAuthor($pdo, $newFirstName, $newLastName, $newBiography)) {
-            header('Location: admin_dashboard.php');
-           
+
+            echo '<script>window.location.href = "admin_dashboard.php";</script>';
+
+            ob_end_flush();
             exit();
         } else {
             echo 'Error adding author.';
         }
     }
+
+    ob_end_flush();
 }
 
 
