@@ -147,3 +147,41 @@ $('#add-note-btn').on('click', function () {
         $('#note-text').val('');
     }
 });
+
+function updateNote(noteId, updatedText) {
+    $.ajax({
+        url: '../NOTE/update_note.php', 
+        method: 'POST',
+        data: {
+            note_id: noteId,
+            updated_text: updatedText
+        },
+        success: function (response) {
+            console.log('Note updated successfully:', response);
+            fetchAndDisplayNotes(bookId);
+        },
+        error: function (xhr, status, error) {
+            console.error('Error updating note:', error);
+        }
+    });
+}
+
+
+$('#notes-container').on('click', '.update-note-btn', function () {
+    var noteContainer = $(this).closest('.note-container');
+
+    noteContainer.find('.update-note-input').show();
+
+    $(this).hide();
+});
+
+$('#notes-container').on('click', '.save-update-btn', function () {
+    var noteContainer = $(this).closest('.note-container');
+
+    var noteId = noteContainer.data('note-id');
+    var updatedText = noteContainer.find('.update-note-input').val();
+
+
+    noteContainer.find('.update-note-input').hide();
+    noteContainer.find('.update-note-btn').show();
+});
