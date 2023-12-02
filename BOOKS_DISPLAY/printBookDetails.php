@@ -3,7 +3,8 @@ require_once __DIR__ . '/../connection.php';
 session_start();
 if (isset($_SESSION['user_id'])) {
 
-    $loggedInUserId=$_SESSION['user_id'];  
+    $loggedInUserId=$_SESSION['user_id']; 
+    $userRole = $_SESSION['user_role']; 
 } 
 $bookId = $_GET['id'];
 $refresh = isset($_GET['refresh']) ? $_GET['refresh'] : null;
@@ -84,7 +85,7 @@ function getBookDetailsWithComments($pdo, $bookId, $refresh = null)
     return $bookDetails;
 }
 
-function printBookDetails($bookDetails, $loggedInUserId)
+function printBookDetails($bookDetails, $loggedInUserId, $userRole)
 
 
 {
@@ -105,22 +106,22 @@ function printBookDetails($bookDetails, $loggedInUserId)
 
     
     echo '<h6>Comments:</h6>';
-    echo '<ul>';
+    echo '<ul class="px-0">';
     echo '<ul class="list-group mt-3">';
             foreach ($bookDetails['comments'] as $comment) {
                 echo '<li class="list-group-item  bg-success">' . $comment['comment_text'] . ' - ' .  $comment['created_at'];
                 echo '</li>';
             }
             echo '</ul>';
-    leaveComment($bookDetails, $loggedInUserId); 
-}function printingBook($pdo, $loggedInUserId) {
+    leaveComment($bookDetails, $loggedInUserId, $userRole); 
+}function printingBook($pdo, $loggedInUserId, $userRole) {
     if (isset($_GET['id'])) {
         $bookId = $_GET['id'];
 
         $bookDetails = getBookDetailsWithComments($pdo, $bookId);
 
         if ($bookDetails) {
-            printBookDetails($bookDetails, $loggedInUserId);
+            printBookDetails($bookDetails, $loggedInUserId, $userRole);
         } else {
             echo 'Book not found.';
         }
@@ -128,10 +129,14 @@ function printBookDetails($bookDetails, $loggedInUserId)
         echo 'No book selected.';
     }
 }
-function leaveComment($bookDetails, $loggedInUserId) {
+function leaveComment($bookDetails, $loggedInUserId, $userRole) {
     if (isset($_SESSION['user_id'])) {
         $userId = $_SESSION['user_id'];
         $userComment = null;
+        
+        if ($userRole == 2) {
+          $userComment = null;
+            
 
         foreach ($bookDetails['comments'] as $comment) {
             if ($comment['deleted_at'] === null) {
@@ -145,13 +150,13 @@ function leaveComment($bookDetails, $loggedInUserId) {
                 }
             }
         }
-     
+    
         if ($userComment === null || $userComment['deleted_at'] !== null) {
             echo '<form action="../COMMENT/process_comment.php" method="post">';
             echo '<label for="comment_text">Leave a comment:</label>';
-            echo '<textarea name="comment_text" id="comment_text" rows="4" cols="50"></textarea>';
+            echo '<textarea class="form-control m-2" name="comment_text" id="comment_text" rows="4" cols="50"></textarea>';
             echo '<input type="hidden" name="book_id" value="' . $bookDetails['book_id'] . '">';
-            echo '<button type="submit">Submit Comment</button>';
+            echo '<button class="btn btn-warning" type="submit">Submit Comment</button>';
             echo '</form>';
         } elseif ($userComment['deleted_at'] === null) {
             echo '<p>Your comment:</p>';
@@ -159,4 +164,5 @@ function leaveComment($bookDetails, $loggedInUserId) {
             echo '<p><a class="btn btn-danger" href="../COMMENT/delete_comment.php?comment_id=' . $userComment['id'] . '&book_id=' . $bookDetails['book_id'] . '">Delete Comment</a></p>';
         }
     }
+}
 }

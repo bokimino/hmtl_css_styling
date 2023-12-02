@@ -46,14 +46,16 @@ echo '<script>var bookId = ' . json_encode($bookId) . ';</script>';
         <div class="row">
             <div class="col-10 offset-1 bg-warning p-3">
                 <?php 
-                     printingBook($pdo, $loggedInUserId);?>
+                     printingBook($pdo, $loggedInUserId, $userRole);?>
             </div>
         </div>
     </div>
     </div>
     </div>
 
-    <?php if (isset($_SESSION['user_id'])) { 
+    <?php if (isset($_SESSION['user_id'])) {
+    
+    if ($_SESSION['user_role'] == 2) { 
         ?>
     <div class="container text-center py-4 bg-info mt-5">
         <h2 class="text-white p-4">Notes</h2>
@@ -72,7 +74,7 @@ echo '<script>var bookId = ' . json_encode($bookId) . ';</script>';
             </form>
         </div>
     </div>
-    <?php } ?>
+    <?php } } ?>
 
     <footer class="text-white-50 bg-dark mt-3">
         <div class="container text-center">
