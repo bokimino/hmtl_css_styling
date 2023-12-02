@@ -55,7 +55,7 @@ echo '<script>var bookId = ' . json_encode($bookId) . ';</script>';
 
     <?php if (isset($_SESSION['user_id'])) { 
         ?>
-    <div class="text-center py-4 bg-info">
+    <div class="container text-center py-4 bg-info mt-5">
         <h2 class="text-white p-4">Notes</h2>
         <div class="container font-italic" id="notes-container">
             <div class="note-container" data-note-id="1">
