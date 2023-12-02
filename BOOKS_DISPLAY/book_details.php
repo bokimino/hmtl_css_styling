@@ -1,5 +1,6 @@
 <?php require_once 'printBookDetails.php';
 $loggedInUserId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+echo '<script>var bookId = ' . json_encode($bookId) . ';</script>';
 ?>
 <!DOCTYPE html>
 <html>
@@ -52,10 +53,13 @@ $loggedInUserId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
     </div>
     </div>
 
+    <?php if (isset($_SESSION['user_id'])) { 
+        ?>
     <div class="text-center py-4 bg-info">
         <h2 class="text-white p-4">Notes</h2>
         <div class="container font-italic" id="notes-container">
             <div class="note-container" data-note-id="1">
+                <div id="error-message" class="text-danger"></div>
 
             </div>
         </div>
@@ -68,6 +72,7 @@ $loggedInUserId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
             </form>
         </div>
     </div>
+    <?php } ?>
 
     <footer class="text-white-50 bg-dark mt-3">
         <div class="container text-center">
@@ -121,7 +126,8 @@ $loggedInUserId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
         integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous">
     </script>
-    <script src="../main.js"></script>
+    <script src="./../main.js"></script>
+
 </body>
 
 </html>

@@ -150,7 +150,7 @@ $('#add-note-btn').on('click', function () {
 
 function updateNote(noteId, updatedText) {
     $.ajax({
-        url: '../NOTE/update_note.php', 
+        url: '../NOTE/update_note.php',
         method: 'POST',
         data: {
             note_id: noteId,
@@ -185,3 +185,20 @@ $('#notes-container').on('click', '.save-update-btn', function () {
     noteContainer.find('.update-note-input').hide();
     noteContainer.find('.update-note-btn').show();
 });
+function deleteNote(noteId) {
+    $.ajax({
+        url: '../NOTE/delete_note.php',
+        method: 'POST',
+        data: {
+            note_id: noteId
+        },
+        success: function (response) {
+            console.log('Note deleted successfully:', response);
+
+            fetchAndDisplayNotes(bookId);
+        },
+        error: function (xhr, status, error) {
+            console.error('Error deleting note:', error);
+        }
+    });
+}
