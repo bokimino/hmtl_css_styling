@@ -14,6 +14,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['book_id'])) {
         $softDeleteCommentsQuery = $pdo->prepare($softDeleteCommentsSQL);
         $softDeleteCommentsQuery->execute([$bookId]);
 
+        $softDeleteNotesSQL = "UPDATE note SET deleted_at = NOW() WHERE book_id = ?";
+        $softDeleteNotesQuery = $pdo->prepare($softDeleteNotesSQL);
+        $softDeleteNotesQuery->execute([$bookId]);
+
         $pdo->commit();
 
         header('Location: ../admin_dashboard.php');
@@ -21,10 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['book_id'])) {
     } catch (PDOException $e) {
         $pdo->rollBack();
 
-        echo 'Error soft deleting book and related comments: ' . $e->getMessage();
+        echo 'Error soft deleting book, comments, and notes: ' . $e->getMessage();
     }
 } else {
     echo 'Invalid request';
 }
-
-
