@@ -59,7 +59,6 @@ function fetchAndDisplayNotes(bookId) {
             book_id: bookId
         },
         success: function (response) {
-            // Handle success, e.g., update UI with the retrieved notes
             displayNotes(response);
         },
         error: function (xhr, status, error) {
