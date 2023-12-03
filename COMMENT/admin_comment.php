@@ -24,6 +24,3 @@ $sql = "SELECT
 
 $query = $pdo->query($sql);
 $comments = $query->fetchAll(PDO::FETCH_ASSOC);
-
-
-
