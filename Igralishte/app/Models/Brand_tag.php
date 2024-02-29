@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Brand_tag extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
+    
+    public function brands()
+    {
+        return $this->hasMany(Brand::class);
+    }
 }
