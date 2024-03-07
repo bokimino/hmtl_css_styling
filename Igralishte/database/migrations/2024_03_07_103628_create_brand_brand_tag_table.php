@@ -11,17 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('brands', function (Blueprint $table) {
+        Schema::create('brand_brand_tag', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->boolean('is_active')->default(true);
-            $table->text('description')->nullable();
-            $table->unsignedBigInteger('brand_category_id');
+            $table->unsignedBigInteger('brand_id');
             $table->unsignedBigInteger('brand_tag_id');
             $table->timestamps();
 
-            $table->foreign('brand_category_id')->references('id')->on('brand_categories');
-            $table->foreign('brand_tag_id')->references('id')->on('brand_tags');
+            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
+            $table->foreign('brand_tag_id')->references('id')->on('brand_tags')->onDelete('cascade');
+
+            $table->unique(['brand_id', 'brand_tag_id']);
         });
     }
 
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('brands');
+        Schema::dropIfExists('brand_brand_tag');
     }
 };

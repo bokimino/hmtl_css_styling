@@ -13,6 +13,6 @@ class Brand_tag extends Model
     
     public function brands()
     {
-        return $this->hasMany(Brand::class);
+        return $this->belongsToMany(Brand::class, 'brand_brand_tag');
     }
 }

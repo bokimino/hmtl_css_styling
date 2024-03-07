@@ -11,17 +11,17 @@ class Product extends Model
 
     protected $guarded = [];
 
-    public function color()
+    public function colors()
     {
-        return $this->belongsTo(Color::class);
+        return $this->belongsToMany(Color::class, 'product_colors');
     }
 
-    public function size()
+    public function sizes()
     {
-        return $this->belongsTo(Size::class);
+        return $this->belongsToMany(Size::class, 'product_sizes');
     }
 
-    public function discount()
+    public function discounts()
     {
         return $this->belongsToMany(Discount::class);
     }
@@ -38,7 +38,7 @@ class Product extends Model
 
     public function tags()
     {
-        return $this->belongsToMany(Product_tag::class);
+        return $this->belongsToMany(Product_tag::class, 'product_product_tags');
     }
 
     public function accessories()

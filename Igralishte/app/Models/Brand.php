@@ -18,7 +18,7 @@ class Brand extends Model
 
     public function tags()
     {
-        return $this->belongsToMany(Brand_tag::class);
+        return $this->belongsToMany(Brand_tag::class, 'brand_brand_tag');
     }
 
     public function images()
