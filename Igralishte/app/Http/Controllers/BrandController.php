@@ -12,7 +12,10 @@ class BrandController extends Controller
      */
     public function index()
     {
-        //
+        $activeBrands = Brand::where('is_active', true)->get();
+        $archivedBrands = Brand::where('is_active', false)->get();
+        return view('brand.index', compact('activeBrands', 'archivedBrands'));
+    
     }
 
     /**

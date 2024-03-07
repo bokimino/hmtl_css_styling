@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\DiscountController;
 
 /*
@@ -26,3 +27,13 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 //Discount
 Route::resource('discounts', DiscountController::class);
+
+//Brand
+//Route::resource('brands', BrandController::class);
+
+Route::get('/brands', [BrandController::class, 'index'])->name('brands.index');
+Route::get('/brands/create', [BrandController::class, 'create'])->name('brands.create');
+Route::post('/brands', [BrandController::class, 'store'])->name('brands.store');
+Route::get('/brands/{brand}/edit', [BrandController::class, 'edit'])->name('brands.edit');
+Route::put('/brands/{brand}', [BrandController::class, 'update'])->name('brands.update');
+Route::delete('/brands/{brand}', [BrandController::class, 'destroy'])->name('brands.destroy');
