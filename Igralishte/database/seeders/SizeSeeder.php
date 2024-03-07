@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class SizeSeeder extends Seeder
 {
@@ -12,6 +13,12 @@ class SizeSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        DB::table('sizes')->insert([
+            ['name' => 'sm'],
+            ['name' => 'm'],
+            ['name' => 'l'],
+            ['name' => 'xl'],
+            // Add more size records as needed
+        ]);
     }
 }
