@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Brand;
 use Illuminate\Http\Request;
+use App\Models\Brand_category;
+use App\Models\Brand_tag;
 
 class BrandController extends Controller
 {
@@ -15,7 +17,6 @@ class BrandController extends Controller
         $activeBrands = Brand::where('is_active', true)->get();
         $archivedBrands = Brand::where('is_active', false)->get();
         return view('brand.index', compact('activeBrands', 'archivedBrands'));
-    
     }
 
     /**
@@ -23,7 +24,9 @@ class BrandController extends Controller
      */
     public function create()
     {
-        //
+        $tags = Brand_tag::all();
+        $categories = Brand_category::all();
+        return view('brand.create', compact('categories', 'tags'));
     }
 
     /**
@@ -31,7 +34,30 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([]);
+
+        $brand = new Brand();
+        $brand->name = $request->input('name');
+        $brand->description = $request->input('description');
+        $brand->brand_category_id = $request->input('brand_category_id');
+        $brand->is_active = $request->has('is_active');
+
+        $brand->save();
+
+        $brandTagIds = $request->input('brand_tag_ids');
+        if ($brandTagIds) {
+            $brand->tags()->attach($brandTagIds);
+        }
+
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $imagePath = $image->store('brand_images');
+                $brand->images()->create(['image_path' => $imagePath]);
+            }
+        }
+
+        return redirect()->route('brands.index')->with('success', 'Brand created successfully.');
     }
 
     /**
