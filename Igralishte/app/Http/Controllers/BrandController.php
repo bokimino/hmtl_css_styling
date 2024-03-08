@@ -73,7 +73,10 @@ class BrandController extends Controller
      */
     public function edit(Brand $brand)
     {
-        //
+        $categories = Brand_category::all();
+        $tags = Brand_tag::all();
+
+        return view('brand.edit', compact('brand', 'categories', 'tags'));
     }
 
     /**
@@ -81,7 +84,36 @@ class BrandController extends Controller
      */
     public function update(Request $request, Brand $brand)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'brand_category_id' => 'required|exists:brand_categories,id',
+            'brand_tag_ids' => 'nullable|array',
+            'brand_tag_ids.*' => 'exists:brand_tags,id',
+            'images' => 'nullable|array',
+            'images.*' => 'image',
+            'is_active' => 'boolean',
+        ]);
+
+        $brand->name = $request->input('name');
+        $brand->description = $request->input('description');
+        $brand->brand_category_id = $request->input('brand_category_id');
+        $brand->is_active = $request->has('is_active');
+
+        // Sync brand tags
+        $brandTagIds = $request->input('brand_tag_ids') ?? [];
+        $brand->tags()->sync($brandTagIds);
+        // Handle images
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $imagePath = $image->store('brand_images');
+                $brand->images()->create(['image_path' => $imagePath]);
+            }
+        }
+
+        $brand->save();
+
+        return redirect()->route('brands.index')->with('success', 'Brand updated successfully.');
     }
 
     /**
