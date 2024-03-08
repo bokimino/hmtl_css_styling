@@ -75,8 +75,9 @@ class BrandController extends Controller
     {
         $categories = Brand_category::all();
         $tags = Brand_tag::all();
-
-        return view('brand.edit', compact('brand', 'categories', 'tags'));
+        $images = $brand->images;
+    
+        return view('brand.edit', compact('brand', 'categories', 'tags', 'images'));
     }
 
     /**
