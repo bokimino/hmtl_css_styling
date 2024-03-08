@@ -26,7 +26,7 @@
         <div class="form-group">
             <label for="brand_tag_ids">Tags:</label>
             <select name="brand_tag_ids[]" id="brand_tag_ids" class="form-control" multiple>
-            <option value="">Select Tag</option>
+                <option value="">Select Tag</option>
                 @foreach($tags as $tag)
                 <option value="{{ $tag->id }}">{{ $tag->name }}</option>
                 @endforeach
@@ -50,7 +50,7 @@
         <div class="form-group">
             <label>Status:</label><br>
             <label class="radio-inline">
-                <input type="radio" name="is_active" value="1" checked> Active
+                <input type="radio" name="is_active" value="1"> Active
             </label>
             <label class="radio-inline">
                 <input type="radio" name="is_active" value="0"> Inactive

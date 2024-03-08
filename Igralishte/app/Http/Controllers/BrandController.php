@@ -100,10 +100,8 @@ class BrandController extends Controller
         $brand->brand_category_id = $request->input('brand_category_id');
         $brand->is_active = $request->has('is_active');
 
-        // Sync brand tags
         $brandTagIds = $request->input('brand_tag_ids') ?? [];
         $brand->tags()->sync($brandTagIds);
-        // Handle images
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
                 $imagePath = $image->store('brand_images');
@@ -121,6 +119,11 @@ class BrandController extends Controller
      */
     public function destroy(Brand $brand)
     {
-        //
+        $brand->images()->delete();
+        $brand->tags()->detach();
+
+        $brand->delete();
+
+        return redirect()->route('brands.index')->with('success', 'Brand deleted successfully.');
     }
 }
