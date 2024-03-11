@@ -77,9 +77,9 @@ class DiscountController extends Controller
     public function edit(Discount $discount)
     {
         $categories = Discount_category::all();
+        $products = Product::all();
 
-
-        return view('discount.edit', compact('discount', 'categories'));
+        return view('discount.edit', compact('discount', 'categories', 'products'));
     }
 
     /**
@@ -91,16 +91,28 @@ class DiscountController extends Controller
             'code' => 'required|string|max:255',
             'discount' => 'required|numeric',
             'is_active' => 'boolean',
-            'category_id' => 'required|exists:discount_categories,id',
+            'discount_category_id' => 'required|exists:discount_categories,id',
+            'product_ids' => 'nullable|array',
+            'product_ids.*' => 'exists:products,id',
         ]);
 
-        $discount->code = $request->input('code');
-        $discount->discount = $request->input('discount');
-        $discount->is_active = $request->has('is_active');
-        $discount->discount_category_id = $request->input('category_id');
+        $discount->update([
+            'code' => $request->input('code'),
+            'discount' => $request->input('discount'),
+            'discount_category_id' => $request->input('discount_category_id'),
+            'is_active' => $request->input('is_active'),
+        ]);
 
+        $productIds = $request->input('product_ids', []);
 
-        $discount->save();
+        $previousProductIds = $discount->products->pluck('id')->toArray();
+
+        $productsToRemove = array_diff($previousProductIds, $productIds);
+
+        Product::whereIn('id', $productsToRemove)->update(['discount_id' => null]);
+
+        Product::whereIn('id', $productIds)->update(['discount_id' => $discount->id]);
+
 
         return redirect()->route('discounts.index')->with('success', 'Discount updated successfully.');
     }
