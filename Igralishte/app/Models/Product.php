@@ -21,9 +21,9 @@ class Product extends Model
         return $this->belongsToMany(Size::class, 'product_sizes');
     }
 
-    public function discounts()
+    public function discount()
     {
-        return $this->belongsToMany(Discount::class);
+        return $this->belongsTo(Discount::class);
     }
 
     public function category()

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\Discount;
-use App\Models\Discount_category;
 use Illuminate\Http\Request;
+use App\Models\Discount_category;
 
 class DiscountController extends Controller
 {
@@ -13,8 +14,10 @@ class DiscountController extends Controller
      */
     public function index()
     {
+        $activeDiscounts = Discount::where('is_active', true)->get();
+        $inactiveDiscounts = Discount::where('is_active', false)->get();
         $discounts = Discount::all();
-        return view('discount.index', compact('discounts'));
+        return view('discount.index', compact('discounts', 'activeDiscounts', 'inactiveDiscounts'));
     }
 
     /**
@@ -23,8 +26,8 @@ class DiscountController extends Controller
     public function create()
     {
         $categories = Discount_category::all();
-
-        return view('discount.create', compact('categories'));
+        $products = Product::all();
+        return view('discount.create', compact('categories', 'products'));
     }
 
     /**
@@ -36,21 +39,26 @@ class DiscountController extends Controller
             'code' => 'required|string|max:255',
             'discount' => 'required|numeric',
             'is_active' => 'boolean',
-            'category_id' => 'required|exists:discount_categories,id',
-
-
+            'discount_category_id' => 'required|exists:discount_categories,id',
+            'product_ids' => 'nullable|array',
+            'product_ids.*' => 'exists:products,id',
         ]);
 
         $discount = new Discount();
         $discount->code = $request->input('code');
         $discount->discount = $request->input('discount');
-        $discount->is_active = $request->has('is_active');
-        $discount->discount_category_id = $request->input('category_id');
-
+        $discount->discount_category_id = $request->input('discount_category_id');
+        $discount->is_active = $request->input('is_active');
         $discount->save();
 
-        $productIds = explode(',', $request->input('product_ids'));
-        $discount->products()->attach($productIds);
+        $productIds = $request->input('product_ids', []);
+        foreach ($productIds as $productId) {
+            $product = Product::find($productId);
+            if ($product) {
+                $product->discount_id = $discount->id;
+                $product->save();
+            }
+        }
 
         return redirect()->route('discounts.index')->with('success', 'Discount created successfully.');
     }
