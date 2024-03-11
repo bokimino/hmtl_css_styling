@@ -95,6 +95,7 @@ class DiscountController extends Controller
             'product_ids' => 'nullable|array',
             'product_ids.*' => 'exists:products,id',
         ]);
+        $oldIsActive = $discount->is_active;
 
         $discount->update([
             'code' => $request->input('code'),
@@ -102,7 +103,12 @@ class DiscountController extends Controller
             'discount_category_id' => $request->input('discount_category_id'),
             'is_active' => $request->input('is_active'),
         ]);
-
+        if ($oldIsActive && !$discount->is_active) {
+            foreach ($discount->products as $product) {
+                $product->discount_id = null;
+                $product->save();
+            }
+        }
         $productIds = $request->input('product_ids', []);
 
         $previousProductIds = $discount->products->pluck('id')->toArray();
