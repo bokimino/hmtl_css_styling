@@ -49,12 +49,11 @@
 
         <div class="form-group">
             <label>Status:</label><br>
-            <label class="radio-inline">
-                <input type="radio" name="is_active" value="1"> Active
-            </label>
-            <label class="radio-inline">
-                <input type="radio" name="is_active" value="0"> Inactive
-            </label>
+            <select name="is_active" class="form-control">
+            <option value="disabled">Status</option>
+                <option value="1">Active</option>
+                <option value="0">Inactive</option>
+            </select>
         </div>
 
         <button type="submit" class="btn btn-primary">Create Brand</button>

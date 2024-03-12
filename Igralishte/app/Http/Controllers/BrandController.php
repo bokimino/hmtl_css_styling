@@ -40,7 +40,7 @@ class BrandController extends Controller
         $brand->name = $request->input('name');
         $brand->description = $request->input('description');
         $brand->brand_category_id = $request->input('brand_category_id');
-        $brand->is_active = $request->has('is_active');
+        $brand->is_active = $request->input('is_active');
 
         $brand->save();
 
@@ -99,16 +99,23 @@ class BrandController extends Controller
         $brand->name = $request->input('name');
         $brand->description = $request->input('description');
         $brand->brand_category_id = $request->input('brand_category_id');
-        $brand->is_active = $request->has('is_active');
+        $brand->is_active = $request->input('is_active', false); 
 
         $brandTagIds = $request->input('brand_tag_ids') ?? [];
         $brand->tags()->sync($brandTagIds);
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                $imagePath = $image->store('brand_images');
-                $brand->images()->create(['image_path' => $imagePath]);
-            }
+         // Handle removal of existing images
+    $removeImageIds = $request->input('remove_images', []);
+    foreach ($removeImageIds as $imageId) {
+        $brand->images()->where('id', $imageId)->delete();
+    }
+
+    // Handle addition of new images
+    if ($request->hasFile('images')) {
+        foreach ($request->file('images') as $image) {
+            $imagePath = $image->store('brand_images');
+            $brand->images()->create(['image_path' => $imagePath]);
         }
+    }
 
         $brand->save();
 
