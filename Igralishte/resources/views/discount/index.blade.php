@@ -1,4 +1,8 @@
-<h1>Active Discounts</h1>
+@extends('layouts.main')
+
+@section('content')
+
+<h1>Активни</h1>
 
 <a href="{{ route('discounts.create') }}" class="btn btn-primary">Add New Discount</a>
 <table>
@@ -29,7 +33,7 @@
     </tbody>
 </table>
 
-<h1>Inactive Discounts</h1>
+<h1>Архива</h1>
 
 <table>
     <thead>
@@ -58,3 +62,4 @@
         @endforeach
     </tbody>
 </table>
+@endsection

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AdminController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -37,3 +38,5 @@ Route::post('/brands', [BrandController::class, 'store'])->name('brands.store');
 Route::get('/brands/{brand}/edit', [BrandController::class, 'edit'])->name('brands.edit');
 Route::put('/brands/{brand}', [BrandController::class, 'update'])->name('brands.update');
 Route::delete('/brands/{brand}', [BrandController::class, 'destroy'])->name('brands.destroy');
+
+Route::get('/profile', [AdminController::class, 'index'])->name('profile.index');
