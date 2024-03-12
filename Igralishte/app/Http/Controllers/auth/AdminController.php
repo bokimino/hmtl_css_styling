@@ -11,6 +11,10 @@ class AdminController extends Controller
     {
         return view('welcome');
     }
+    public function index()
+    {
+        return view('profile.index');
+    }
 
     public function showLoginForm()
     {
