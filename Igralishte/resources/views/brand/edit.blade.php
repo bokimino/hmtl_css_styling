@@ -60,9 +60,12 @@
 
         <!-- Is Active -->
         <div class="form-group">
-            <label for="is_active">Status:</label>
-            <input type="checkbox" name="is_active" id="is_active" {{ $brand->is_active ? 'checked' : '' }}>
-        </div>
+        <label>Status:</label><br>
+        <select name="is_active" class="form-control">
+            <option value="1" {{ $brand->is_active ? 'selected' : '' }}>Active</option>
+            <option value="0" {{ !$brand->is_active ? 'selected' : '' }}>Inactive</option>
+        </select>
+    </div>
 
         <button type="submit" class="btn btn-primary">Update Brand</button>
     </form>
