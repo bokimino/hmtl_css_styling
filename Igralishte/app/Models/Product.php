@@ -13,12 +13,12 @@ class Product extends Model
 
     public function colors()
     {
-        return $this->belongsToMany(Color::class, 'product_colors');
+        return $this->belongsToMany(Color::class, 'product_color', 'product_id', 'color_id');
     }
 
     public function sizes()
     {
-        return $this->belongsToMany(Size::class, 'product_sizes');
+        return $this->belongsToMany(Size::class, 'product_size', 'product_id', 'size_id');
     }
 
     public function discount()
@@ -50,6 +50,4 @@ class Product extends Model
     {
         return $this->hasMany(Product_image::class);
     }
-
-   
 }

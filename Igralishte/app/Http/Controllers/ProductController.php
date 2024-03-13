@@ -10,9 +10,16 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        // Retrieve the display mode from the query string
+        $display = $request->query('display', 'list');
+
+        // Fetch the products from the database
+        $products = Product::all(); // Or fetch products based on your criteria
+
+        // Pass the products and display mode to the view
+        return view('product.index', compact('products', 'display'));
     }
 
     /**
