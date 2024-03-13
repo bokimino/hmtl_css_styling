@@ -14,9 +14,10 @@ class BrandController extends Controller
      */
     public function index()
     {
+        $tags = Brand_tag::pluck('name')->toArray();
         $activeBrands = Brand::where('is_active', true)->get();
         $archivedBrands = Brand::where('is_active', false)->get();
-        return view('brand.index', compact('activeBrands', 'archivedBrands'));
+        return view('brand.index', compact('activeBrands', 'archivedBrands', 'tags'));
     }
 
     /**

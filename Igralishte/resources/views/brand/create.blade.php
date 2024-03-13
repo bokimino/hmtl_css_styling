@@ -1,3 +1,6 @@
+@extends('layouts.form')
+
+@section('content')
 <div class="container">
     <h1>Create New Brand</h1>
     <form action="{{ route('brands.store') }}" method="POST" enctype="multipart/form-data">
@@ -32,6 +35,13 @@
                 @endforeach
             </select>
         </div>
+        @php
+        $tagsJson = json_encode($tags ?? []);
+        @endphp
+        <div class="form-group">
+            <label for="">Tags</label>
+            <input name='tags' id="tag" class="">
+        </div>
 
         <div class="form-group">
             <label for="image1">Image 1:</label>
@@ -44,13 +54,13 @@
             <input type="file" name="images[]" id="image3" accept="image/*" multiple>
 
             <label for="image4">Image 4:</label>
-            <input type="file" name="images[]" id="image4" accept="image/*" multiple>
+            <input type="text" name="images[]" id="image4" accept="image/*" multiple>
         </div>
 
         <div class="form-group">
             <label>Status:</label><br>
             <select name="is_active" class="form-control">
-            <option value="disabled">Status</option>
+                <option value="disabled">Status</option>
                 <option value="1">Active</option>
                 <option value="0">Inactive</option>
             </select>
@@ -59,3 +69,4 @@
         <button type="submit" class="btn btn-primary">Create Brand</button>
     </form>
 </div>
+@endsection
