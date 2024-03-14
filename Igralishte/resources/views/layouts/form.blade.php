@@ -8,7 +8,9 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-
+    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
     <!-- Latest compiled and minified Bootstrap 4.6 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <!-- Latest Font-Awesome CDN -->
@@ -34,6 +36,11 @@
         .size-checkbox:checked+.size-label {
             background-color: yellow;
             border-color: yellow;
+        }
+
+        .tagify {
+            width: 100%;
+            max-width: 700px;
         }
     </style>
 </head>
@@ -73,27 +80,33 @@
 
         //Brendovi 
         $(document).ready(function() {
-        $('#brand_id').change(function() {
-            var brandId = $(this).val();
-            if (brandId) {
-                $.ajax({
-                    type: 'GET',
-                    url: '/fetch-brand-categories/' + brandId,
-                    success: function(response) {
-                        var options = '<option value="">Select Brand Category</option>';
-                        $.each(response, function(index, category) {
-                            options += '<option value="' + category.id + '">' + category.name + '</option>';
-                        });
-                        $('#brand_category_id').html(options);
-                    }
-                });
-            } else {
-                $('#brand_category_id').html('<option value="">Select Brand Category</option>');
-            }
+            $('#brand_id').change(function() {
+                var brandId = $(this).val();
+                if (brandId) {
+                    $.ajax({
+                        type: 'GET',
+                        url: '/fetch-brand-categories/' + brandId,
+                        success: function(response) {
+                            var options = '<option value="">Select Brand Category</option>';
+                            $.each(response, function(index, category) {
+                                options += '<option value="' + category.id + '">' + category.name + '</option>';
+                            });
+                            $('#brand_category_id').html(options);
+                        }
+                    });
+                } else {
+                    $('#brand_category_id').html('<option value="">Select Brand Category</option>');
+                }
+            });
         });
-    });
 
-        
+
+        var input = document.getElementById('tag')
+
+        new Tagify(input, {
+            whitelist: [1, 2, 3, 4, 5],
+            userInput: false
+        })
     </script>
 </body>
 
