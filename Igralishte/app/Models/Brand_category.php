@@ -11,8 +11,8 @@ class Brand_category extends Model
 
     protected $guarded = [];
 
-    public function brand()
+    public function brands()
     {
-        return $this->belongsTo(Brand::class);
+        return $this->belongsToMany(Brand::class);
     }
 }

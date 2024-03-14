@@ -107,17 +107,75 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
-    }
+        $sizes = Size::all();
+        $colors = Color::all();
+        $brandCategories = Brand_category::all();
+        $brands = Brand::all();
+        $discounts = Discount::where('is_active', true)->get();
 
+        return view('product.edit', compact('product', 'sizes', 'colors', 'brandCategories', 'brands', 'discounts'));
+    }
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Product $product)
     {
-        //
-    }
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'price' => 'required|numeric',
+            'is_active' => 'nullable|boolean',
+            'size_description' => 'nullable|string',
+            'maintenance' => 'nullable|string',
+            'quantity' => 'required|integer|min:1',
+            'brand_id' => 'required|exists:brands,id',
+            'discount_id' => 'nullable|exists:discounts,id',
+            'tags' => 'nullable|string',
+            'sizes' => 'nullable|array',
+            'sizes.*' => 'exists:sizes,id',
+            'colors' => 'nullable|array',
+            'colors.*' => 'exists:colors,id',
+            // Add other validation rules as needed
+        ]);
 
+        // Update the product data
+        $product->update([
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'price' => $request->input('price'),
+            'is_active' => $request->input('is_active'),
+            'size_description' => $request->input('size_description'),
+            'maintenance' => $request->input('maintenance'),
+            'quantity' => $request->input('quantity'),
+            'brand_id' => $request->input('brand_id'),
+            'discount_id' => $request->input('discount_id'),
+            // Update other fields as needed
+        ]);
+
+        // Update or attach tags
+        $tagsInput = $request->input('tags', '');
+        $tagsArray = explode(',', $tagsInput);
+        $tagIds = [];
+        foreach ($tagsArray as $tagName) {
+            $tagName = trim($tagName);
+
+            if (!empty($tagName)) {
+                $tag = Product_tag::firstOrCreate(['name' => $tagName]);
+                $tagIds[] = $tag->id;
+            }
+        }
+        $product->tags()->sync($tagIds);
+
+        // Update sizes
+        $selectedSizes = $request->input('sizes', []);
+        $product->sizes()->sync($selectedSizes);
+
+        // Update colors
+        $selectedColors = $request->input('colors', []);
+        $product->colors()->sync($selectedColors);
+
+        return redirect()->route('products.index')->with('success', 'Product updated successfully.');
+    }
     /**
      * Remove the specified resource from storage.
      */
@@ -127,8 +185,11 @@ class ProductController extends Controller
 
         return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
     }
-    public function getBrandCategories(Brand $brand)
+    public function fetchBrandCategories($brandId)
     {
-        return $brand->categories()->select('id', 'name')->get();
+        $brand = Brand::find($brandId);
+        $brandCategories = $brand->brandCategories; 
+
+        return response()->json($brandCategories);
     }
 }

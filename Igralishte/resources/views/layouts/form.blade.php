@@ -71,7 +71,27 @@
             });
         });
 
-        
+        //Brendovi 
+        $(document).ready(function() {
+        $('#brand_id').change(function() {
+            var brandId = $(this).val();
+            if (brandId) {
+                $.ajax({
+                    type: 'GET',
+                    url: '/fetch-brand-categories/' + brandId,
+                    success: function(response) {
+                        var options = '<option value="">Select Brand Category</option>';
+                        $.each(response, function(index, category) {
+                            options += '<option value="' + category.id + '">' + category.name + '</option>';
+                        });
+                        $('#brand_category_id').html(options);
+                    }
+                });
+            } else {
+                $('#brand_category_id').html('<option value="">Select Brand Category</option>');
+            }
+        });
+    });
 
         
     </script>

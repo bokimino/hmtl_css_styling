@@ -90,11 +90,10 @@
         <label for="brand_category_id">Brand Category:</label>
         <select id="brand_category_id" name="brand_category_id" class="form-control">
             <option value="">Select Brand Category</option>
-            @foreach ($brandCategories as $category)
-            <option value="{{ $category->id }}">{{ $category->name }}</option>
-            @endforeach
+            <!-- Populate brand categories dynamically based on selected brand -->
         </select>
     </div>
+
 
     <div class="form-group">
         <label for="discount_id">Discount:</label><br>
