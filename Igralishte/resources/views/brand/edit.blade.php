@@ -1,10 +1,30 @@
-<h1>Edit Brand</h1>
+@extends('layouts.form')
+
+@section('content')
+
 
 <div class="container">
-    <h1>Edit Brand</h1>
+
     <form action="{{ route('brands.update', $brand->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
+        <div class="form-row">
+            <div class="form-group col-2">
+                <a href="{{ url()->previous() }}">
+                    <x-back-button />
+                </a>
+            </div>
+            <div class="form-group col-6">
+                <p>Попуст/промо код</p>
+            </div>
+            <div class="form-group col-4">
+                <select name="is_active" id="is_active" class="form-control">
+                    <option value="1" {{ $brand->is_active ? 'selected' : '' }}>Active</option>
+                    <option value="0" {{ !$brand->is_active ? 'selected' : '' }}>Inactive</option>
+                </select>
+            </div>
+        </div>
+
 
         <!-- Brand Name -->
         <div class="form-group">
@@ -20,27 +40,22 @@
 
         <!-- Brand Category -->
         <div class="form-group">
-            <label for="brand_category_id">Category:</label>
-            <select name="brand_category_id" id="brand_category_id" class="form-control" required>
-                <option value="">Select Category</option>
-                @foreach ($categories as $category)
-                <option value="{{ $category->id }}" {{ $category->id == $brand->brand_category_id ? 'selected' : '' }}>
-                    {{ $category->name }}
-                </option>
-                @endforeach
-            </select>
+            <label for="brand_category_ids">Categories:</label>
+            <div>
+                <button type="button" id="show-categories-btn" class="form-control text-left">Select Categories</button>
+                <select name="brand_category_ids[]" id="brand_category_ids" class="form-control" multiple required style="display: none;">
+                    @foreach ($categories as $category)
+                    <option value="{{ $category->id }}" {{ in_array($category->id, $brand->categories->pluck('id')->toArray()) ? 'selected' : '' }}>
+                        {{ $category->name }}
+                    </option>
+                    @endforeach
+                </select>
+            </div>
         </div>
-
         <!-- Brand Tags -->
         <div class="form-group">
-            <label for="brand_tag_ids">Tags:</label>
-            <select name="brand_tag_ids[]" id="brand_tag_ids" class="form-control" multiple>
-                @foreach ($tags as $tag)
-                <option value="{{ $tag->id }}" {{ in_array($tag->id, $brand->tags->pluck('id')->toArray()) ? 'selected' : '' }}>
-                    {{ $tag->name }}
-                </option>
-                @endforeach
-            </select>
+            <label for="tags">Tags:</label>
+            <input type="text" name="tags" id="tags" class="form-control" placeholder="Enter tags separated by commas" value="{{ implode(', ', $brand->tags->pluck('name')->toArray()) }}">
         </div>
 
         <!-- Images -->
@@ -58,15 +73,7 @@
             <input type="file" name="images[]" id="image4" accept="image/*" multiple>
         </div>
 
-        <!-- Is Active -->
-        <div class="form-group">
-        <label>Status:</label><br>
-        <select name="is_active" class="form-control">
-            <option value="1" {{ $brand->is_active ? 'selected' : '' }}>Active</option>
-            <option value="0" {{ !$brand->is_active ? 'selected' : '' }}>Inactive</option>
-        </select>
-    </div>
-
         <button type="submit" class="btn btn-primary">Update Brand</button>
     </form>
 </div>
+@endsection
