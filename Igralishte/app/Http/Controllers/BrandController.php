@@ -23,11 +23,15 @@ class BrandController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
+
+        $brandId = $request->input('brand_id');
         $tags = Brand_tag::all();
         $categories = Brand_category::all();
-        return view('brand.create', compact('categories', 'tags'));
+        $brandTags = $brandId ? Brand::find($brandId)->tags : [];
+
+        return view('brand.create', compact('categories', 'tags', 'brandTags'));
     }
 
     /**
@@ -40,17 +44,24 @@ class BrandController extends Controller
         $brand = new Brand();
         $brand->name = $request->input('name');
         $brand->description = $request->input('description');
-        $brand->brand_category_id = $request->input('brand_category_id');
         $brand->is_active = $request->input('is_active');
 
         $brand->save();
 
-        $brandTagIds = $request->input('brand_tag_ids');
-        if ($brandTagIds) {
-            $brand->tags()->attach($brandTagIds);
+        // Attach selected categories to the brand
+        $brand->categories()->attach($request->input('brand_category_id'));
+
+        $tagsInput = $request->input('tags', '');
+        $tagsArray = explode(',', $tagsInput);
+
+        foreach ($tagsArray as $tagName) {
+            $tagName = trim($tagName);
+    
+            if (!empty($tagName)) {
+                $tag = Brand_tag::firstOrCreate(['name' => $tagName]);
+                $brand->tags()->attach($tag);
+            }
         }
-
-
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
                 $imagePath = $image->store('brand_images');
@@ -77,7 +88,7 @@ class BrandController extends Controller
         $categories = Brand_category::all();
         $tags = Brand_tag::all();
         $images = $brand->images;
-    
+
         return view('brand.edit', compact('brand', 'categories', 'tags', 'images'));
     }
 
@@ -89,34 +100,39 @@ class BrandController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'brand_category_id' => 'required|exists:brand_categories,id',
+            'brand_category_ids' => 'nullable|array',
+            'brand_category_ids.*' => 'exists:brand_categories,id',
             'brand_tag_ids' => 'nullable|array',
             'brand_tag_ids.*' => 'exists:brand_tags,id',
             'images' => 'nullable|array',
             'images.*' => 'image',
+            'remove_images' => 'nullable|array',
+            'remove_images.*' => 'exists:brand_images,id',
             'is_active' => 'boolean',
         ]);
 
         $brand->name = $request->input('name');
         $brand->description = $request->input('description');
-        $brand->brand_category_id = $request->input('brand_category_id');
-        $brand->is_active = $request->input('is_active', false); 
+        $brand->is_active = $request->input('is_active', false);
+
+        $brandCategoryIds = $request->input('brand_category_ids') ?? [];
+        $brand->categories()->sync($brandCategoryIds);
 
         $brandTagIds = $request->input('brand_tag_ids') ?? [];
         $brand->tags()->sync($brandTagIds);
-         // Handle removal of existing images
-    $removeImageIds = $request->input('remove_images', []);
-    foreach ($removeImageIds as $imageId) {
-        $brand->images()->where('id', $imageId)->delete();
-    }
-
-    // Handle addition of new images
-    if ($request->hasFile('images')) {
-        foreach ($request->file('images') as $image) {
-            $imagePath = $image->store('brand_images');
-            $brand->images()->create(['image_path' => $imagePath]);
+        // Handle removal of existing images
+        $removeImageIds = $request->input('remove_images', []);
+        foreach ($removeImageIds as $imageId) {
+            $brand->images()->where('id', $imageId)->delete();
         }
-    }
+
+        // Handle addition of new images
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $imagePath = $image->store('brand_images');
+                $brand->images()->create(['image_path' => $imagePath]);
+            }
+        }
 
         $brand->save();
 

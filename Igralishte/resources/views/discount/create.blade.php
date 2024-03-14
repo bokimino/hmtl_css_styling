@@ -10,8 +10,7 @@
             <div class="form-row">
                 <div class="form-group col-2">
                     <a href="{{ url()->previous() }}">
-                        <!-- <i class="fa-solid fa-arrow-left-long"></i> -->
-                        Back
+                        <x-back-button />
                     </a>
                 </div>
                 <div class="form-group col-6">

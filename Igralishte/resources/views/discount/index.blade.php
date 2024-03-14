@@ -21,7 +21,7 @@
             <td>{{ $discount->discount }}</td>
             <td>{{ $discount->category->name }}</td>
             <td>
-                <a href="{{ route('discounts.edit', $discount->id) }}">Edit</a>
+                <a href="{{ route('discounts.edit', $discount->id) }}"><x-edit-button /></a>
                 <form action="{{ route('discounts.destroy', $discount->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
@@ -51,7 +51,7 @@
             <td>{{ $discount->discount }}</td>
             <td>{{ $discount->category->name }}</td>
             <td>
-                <a href="{{ route('discounts.edit', $discount->id) }}">Edit</a>
+                <a href="{{ route('discounts.edit', $discount->id) }}"><x-edit-button /></a>
                 <form action="{{ route('discounts.destroy', $discount->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
