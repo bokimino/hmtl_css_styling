@@ -20,7 +20,7 @@ class ProductController extends Controller
     {
         $display = $request->query('display', 'list');
 
-        $products = Product::all(); 
+        $products = Product::all();
 
         return view('product.index', compact('products', 'display'));
     }
@@ -73,15 +73,15 @@ class ProductController extends Controller
 
         $product->save();
 
-        $tagsInput = $request->input('tags', ''); 
-        $tagsArray = explode(',', $tagsInput); 
-        
+        $tagsInput = $request->input('tags', '');
+        $tagsArray = explode(',', $tagsInput);
+
         foreach ($tagsArray as $tagName) {
             $tagName = trim($tagName);
-        
-            if (!empty($tagName)) { 
+
+            if (!empty($tagName)) {
                 $tag = Product_tag::firstOrCreate(['name' => $tagName]);
-        
+
                 $product->tags()->attach($tag);
             }
         }
@@ -123,7 +123,9 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+
+        return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
     }
     public function getBrandCategories(Brand $brand)
     {
