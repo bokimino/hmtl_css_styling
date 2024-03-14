@@ -42,6 +42,56 @@
             width: 100%;
             max-width: 700px;
         }
+
+        .image-label {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 150px;
+            height: 150px;
+            border: 1px dashed #ccc;
+            cursor: pointer;
+        }
+
+        .image-label i {
+            font-size: 48px;
+        }
+
+        .image-preview {
+            position: relative;
+            display: inline-block;
+            margin-right: 10px;
+            width: 150px;
+            /* Set the width of the image preview container */
+            height: 150px;
+            /* Set the height of the image preview container */
+        }
+
+        .image-preview img {
+            display: block;
+            max-width: 100%;
+            /* Ensure the image does not exceed the width of its container */
+            max-height: 100%;
+            /* Ensure the image does not exceed the height of its container */
+        }
+
+        .remove-image {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 5px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .remove-image i {
+            color: red;
+        }
+
+        .image-upload {
+            display: none !important;
+        }
     </style>
 </head>
 
@@ -107,6 +157,45 @@
             whitelist: [1, 2, 3, 4, 5],
             userInput: false
         })
+
+        //This is IMAGES
+        $(document).ready(function() {
+            // Handle file input change
+            $('#image-upload').change(function() {
+                if (this.files && this.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('#image-preview').append('<div class="image-preview"><img src="'  + e.target.result + '" width="200px" height="200px"><span class="remove-image">X</span></div>');
+                    };
+                    reader.readAsDataURL(this.files[0]);
+                }
+            });
+
+            // Handle click on remove image
+            $(document).on('click', '.remove-image', function() {
+                $(this).parent('.image-preview').remove();
+            });
+        });
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const showCategoriesBtn = document.getElementById('show-categories-btn');
+            const categoriesSelect = document.getElementById('brand_category_id');
+
+            showCategoriesBtn.addEventListener('click', function() {
+                categoriesSelect.style.display = 'block';
+                showCategoriesBtn.style.display = 'none';
+            });
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            const showCategoriesBtn = document.getElementById('show-categories-btn');
+            const categoriesSelect = document.getElementById('brand_category_ids');
+
+            showCategoriesBtn.addEventListener('click', function() {
+                categoriesSelect.style.display = 'block';
+                showCategoriesBtn.style.display = 'none';
+            });
+        });
     </script>
 </body>
 
