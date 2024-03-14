@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
-
+    
     protected $guarded = [];
 
     public function colors()
@@ -38,7 +38,7 @@ class Product extends Model
 
     public function tags()
     {
-        return $this->belongsToMany(Product_tag::class, 'product_product_tags');
+        return $this->belongsToMany(Product_tag::class, 'product_product_tag');
     }
 
     public function accessories()

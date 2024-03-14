@@ -9,6 +9,7 @@
     <a href="{{ route('products.index', ['display' => 'list']) }}" class="btn btn-primary">List View</a>
     <a href="{{ route('products.index', ['display' => 'card']) }}" class="btn btn-primary">Card View</a>
 </div>
+<a href="{{ route('products.create') }}" class="btn btn-primary">Add New Product</a>
 
 @if ($display === 'list')
 <!-- Display products as a list -->
