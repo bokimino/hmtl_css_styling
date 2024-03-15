@@ -3,21 +3,19 @@
 @section('content')
 
 
-<div class="container">
+<div class="container my-4">
 
     <form action="{{ route('brands.update', $brand->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="form-row">
-            <div class="form-group col-2">
+            <div class="form-group col d-flex align-items-center">
                 <a href="{{ url()->previous() }}">
                     <x-back-button />
                 </a>
+                <p class="ml-2 mb-0">Попуст/промо код</p>
             </div>
-            <div class="form-group col-6">
-                <p>Попуст/промо код</p>
-            </div>
-            <div class="form-group col-4">
+            <div class="form-group col col-md-2 col-lg-2 offset-md-4 offset-lg-4">
                 <select name="is_active" id="is_active" class="form-control">
                     <option value="1" {{ $brand->is_active ? 'selected' : '' }}>Active</option>
                     <option value="0" {{ !$brand->is_active ? 'selected' : '' }}>Inactive</option>
@@ -73,7 +71,14 @@
             <input type="file" name="images[]" id="image4" accept="image/*" multiple>
         </div>
 
-        <button type="submit" class="btn btn-primary">Update Brand</button>
+        <div class="row">
+            <div class="col-8">
+                <button type="submit" class="btn btn-primary btn-block">Зачувај</button>
+            </div>
+            <div class="col-4">
+                <a href="{{ url()->previous() }}" class="btn text-underline">Откажи</a>
+            </div>
+        </div>
     </form>
 </div>
 @endsection

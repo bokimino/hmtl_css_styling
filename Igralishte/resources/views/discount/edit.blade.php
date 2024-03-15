@@ -2,28 +2,25 @@
 
 @section('content')
 
-<div class="container-lg">
+<div class="container-lg my-4">
     <form action="{{ route('discounts.update', $discount) }}" method="POST">
         @csrf
         @method('PUT')
 
         <div class="form-row">
-            <div class="form-group col-2">
+            <div class="form-group col d-flex align-items-center">
                 <a href="{{ url()->previous() }}">
                     <x-back-button />
                 </a>
+                <p class="ml-2 mb-0">Попуст/промо код</p>
             </div>
-            <div class="form-group col-6">
-                <p>Попуст/промо код</p>
-            </div>
-            <div class="form-group col-4">
+            <div class="form-group col col-md-2 col-lg-2 offset-md-4 offset-lg-4">
                 <select name="is_active" id="is_active" class="form-control">
                     <option value="1" {{ $discount->is_active ? 'selected' : '' }}>Active</option>
                     <option value="0" {{ !$discount->is_active ? 'selected' : '' }}>Not Active</option>
                 </select>
             </div>
         </div>
-
         <div class="form-group">
             <label for="code">Name of Discount:</label>
             <input type="text" name="code" id="code" class="form-control" value="{{ $discount->code }}">

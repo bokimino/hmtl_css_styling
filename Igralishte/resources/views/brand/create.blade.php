@@ -5,15 +5,13 @@
     <form action="{{ route('brands.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-row">
-            <div class="form-group col-2">
+            <div class="form-group col d-flex align-items-center">
                 <a href="{{ url()->previous() }}">
                     <x-back-button />
                 </a>
+                <p class="ml-2 mb-0">Brend</p>
             </div>
-            <div class="form-group col-6">
-                <p>Brend</p>
-            </div>
-            <div class="form-group col-4">
+            <div class="form-group col col-md-2 col-lg-2 offset-md-4 offset-lg-4">
                 <select name="is_active" id="is_active" class="form-control">
                     <option value="disabled">Статус</option>
                     <option value="1">Активен</option>

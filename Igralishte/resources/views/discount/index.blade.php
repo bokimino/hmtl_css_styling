@@ -17,7 +17,7 @@
     <div class="card mb-3 roundedInput">
         <div class="card-body d-flex justify-content-between ">
 
-            <div class="">
+            <div class="align-self-center">
                 <p class="mb-0">{{ $discount->code }}</p>
             </div>
             <div class="">
@@ -25,7 +25,7 @@
                 <form action="{{ route('discounts.destroy', $discount->id) }}" method="POST" class="d-inline">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" onclick="return confirmDelete()">Delete</button>
+                    <button type="submit" class="border-0 bg-white p-0" onclick="return confirmDelete()"><x-delete-button /></button>
                 </form>
             </div>
 
@@ -41,15 +41,15 @@
     <div class="card mb-3 roundedInput">
         <div class="card-body d-flex justify-content-between ">
 
-            <div class="">
+            <div class="align-self-center">
                 <p class="mb-0 text-secondary">{{ $discount->code }}</p>
             </div>
             <div class="">
-                <a href="{{ route('discounts.edit', $discount->id) }}" class=""> <x-edit-button /></a>
+                <a href="{{ route('discounts.edit', $discount->id) }}" class=""><x-edit-button /></a>
                 <form action="{{ route('discounts.destroy', $discount->id) }}" method="POST" class="d-inline">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" onclick="return confirmDelete()">Delete</button>
+                    <button type="submit" class="border-0 bg-white p-0" onclick="return confirmDelete()"><x-delete-button /></button>
                 </form>
             </div>
 
