@@ -20,6 +20,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <!-- Latest Font-Awesome CDN -->
     <script src="https://kit.fontawesome.com/3257d9ad29.js" crossorigin="anonymous"></script>
+    <style>
+        .roundedInput {
+            border-radius: 10px;
+        }
+    </style>
 </head>
 
 <body>
@@ -45,7 +50,7 @@
                     </ul>
                 </div>
                 <!-- Main Content -->
-                <div class="col-9">
+                <div class="col-9 mt-3">
                     @yield('content')
                 </div>
             </div>
