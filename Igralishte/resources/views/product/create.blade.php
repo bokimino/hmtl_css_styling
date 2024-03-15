@@ -13,7 +13,7 @@
             </div>
 
             <div class="form-group col col-md-2 col-lg-2 offset-md-4 offset-lg-4">
-                <select name="is_active" id="is_active" class="form-control">
+                <select name="is_active" id="is_active" class="form-control roundedInput">
                     <option value="disabled">Статус</option>
                     <option value="1">Активен</option>
                     <option value="0">Архивирај</option>
@@ -23,7 +23,7 @@
 
         <div class="form-group">
             <label>Name:</label>
-            <input type="text" name="name" class="form-control">
+            <input type="text" name="name" class="form-control roundedInput">
         </div>
 
         <div class="form-group">
@@ -39,9 +39,9 @@
         <div class="form-group">
             <label>Quantity:</label>
             <div class="quantity-input">
-                <button type="button" class="btn btn-sm btn-secondary decrease">-</button>
-                <input type="text" name="quantity" value="1" class="form-control" readonly>
-                <button type="button" class="btn btn-sm btn-secondary increase">+</button>
+                <button type="button" class="btn btn-sm btn-secondary decrease rounded-circle" style="width: 30px;">-</button>
+                <input type="text" name="quantity" value="1" class="text-center border-0" style="width: 30px;" readonly>
+                <button type="button" class="btn btn-sm btn-secondary increase rounded-circle" style="width: 30px;">+</button>
             </div>
         </div>
 
@@ -49,7 +49,7 @@
             <label>Sizes:</label><br>
             @foreach ($sizes as $size)
             <input type="checkbox" name="sizes[]" value="{{ $size->id }}" id="size{{ $size->id }}" class="size-checkbox visually-hidden">
-            <label for="size{{ $size->id }}" class="size-label">{{ $size->name }}</label>
+            <label for="size{{ $size->id }}" class="size-label rounded text-uppercase font-weight-bold">{{ $size->name }}</label>
             @endforeach
         </div>
 
@@ -113,8 +113,13 @@
             </select>
         </div>
 
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="row">
+            <div class="col-8">
+                <button type="submit" class="btn btn-dark btn-block font-weight-bold">Зачувај</button>
+            </div>
+            <div class="col-4 align-self-center">
+                <a href="{{ url()->previous() }}" class="underline text-dark">Откажи</a>
+            </div>
         </div>
 
     </form>

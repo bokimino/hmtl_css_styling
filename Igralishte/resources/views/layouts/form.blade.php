@@ -34,8 +34,8 @@
 
         /* Style for selected checkboxes */
         .size-checkbox:checked+.size-label {
-            background-color: yellow;
-            border-color: yellow;
+            background-color: #8A8328;
+
         }
 
         .tagify {
@@ -91,6 +91,15 @@
 
         .image-upload {
             display: none !important;
+        }
+
+        .fancyOlive {
+            background-color: #8A8328;
+        }
+
+        .underline {
+            border-bottom: 2px solid black;
+            display: inline;
         }
     </style>
 </head>
@@ -165,7 +174,7 @@
                 if (this.files && this.files[0]) {
                     var reader = new FileReader();
                     reader.onload = function(e) {
-                        $('#image-preview').append('<div class="image-preview"><img src="'  + e.target.result + '" width="200px" height="200px"><span class="remove-image">X</span></div>');
+                        $('#image-preview').append('<div class="image-preview"><img src="' + e.target.result + '" width="200px" height="200px"><span class="remove-image">X</span></div>');
                     };
                     reader.readAsDataURL(this.files[0]);
                 }

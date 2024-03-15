@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container-lg my-4">
+<div class="container-lg p-3">
     <form action="{{ route('discounts.update', $discount) }}" method="POST">
         @csrf
         @method('PUT')
@@ -52,10 +52,10 @@
         </div>
         <div class="row">
             <div class="col-8">
-                <button type="submit" class="btn btn-primary btn-block">Зачувај</button>
+                <button type="submit" class="btn btn-dark btn-block font-weight-bold">Зачувај</button>
             </div>
-            <div class="col-4">
-                <a href="{{ url()->previous() }}" class="btn text-underline">Откажи</a>
+            <div class="col-4 align-self-center">
+                <a href="{{ url()->previous() }}" class="underline text-dark">Откажи</a>
             </div>
         </div>
     </form>

@@ -18,11 +18,8 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $display = $request->query('display', 'list');
-
         $products = Product::all();
-
-        return view('product.index', compact('products', 'display'));
+        return view('product.index', compact('products'));
     }
 
     /**
@@ -188,7 +185,7 @@ class ProductController extends Controller
     public function fetchBrandCategories($brandId)
     {
         $brand = Brand::find($brandId);
-        $brandCategories = $brand->brandCategories; 
+        $brandCategories = $brand->brandCategories;
 
         return response()->json($brandCategories);
     }
