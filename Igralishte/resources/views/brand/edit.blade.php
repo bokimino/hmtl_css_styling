@@ -82,3 +82,26 @@
     </form>
 </div>
 @endsection
+
+@section('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const showCategoriesBtn = document.getElementById('show-categories-btn');
+        const categoriesSelect = document.getElementById('brand_category_id');
+
+        showCategoriesBtn.addEventListener('click', function() {
+            categoriesSelect.style.display = 'block';
+            showCategoriesBtn.style.display = 'none';
+        });
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+        const showCategoriesBtn = document.getElementById('show-categories-btn');
+        const categoriesSelect = document.getElementById('brand_category_ids');
+
+        showCategoriesBtn.addEventListener('click', function() {
+            categoriesSelect.style.display = 'block';
+            showCategoriesBtn.style.display = 'none';
+        });
+    });
+</script>
+@endsection

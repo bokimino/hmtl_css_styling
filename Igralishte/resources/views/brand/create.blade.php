@@ -43,7 +43,7 @@
                 </select>
             </div>
         </div>
-
+        <div id="square2" class="square" style="display: none;"></div>
         <div class="form-group">
             <label for="image1">Image 1:</label>
             <input type="file" name="images[]" id="image1" accept="image/*" multiple>
@@ -80,4 +80,27 @@
         </div>
     </form>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const showCategoriesBtn = document.getElementById('show-categories-btn');
+        const categoriesSelect = document.getElementById('brand_category_id');
+
+        showCategoriesBtn.addEventListener('click', function() {
+            categoriesSelect.style.display = 'block';
+            showCategoriesBtn.style.display = 'none';
+        });
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+        const showCategoriesBtn = document.getElementById('show-categories-btn');
+        const categoriesSelect = document.getElementById('brand_category_ids');
+
+        showCategoriesBtn.addEventListener('click', function() {
+            categoriesSelect.style.display = 'block';
+            showCategoriesBtn.style.display = 'none';
+        });
+    });
+</script>
 @endsection
