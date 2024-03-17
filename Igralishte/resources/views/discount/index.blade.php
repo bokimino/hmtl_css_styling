@@ -1,65 +1,60 @@
 @extends('layouts.main')
-
 @section('content')
+<div class="container">
+    <div class="text-right mb-2">
+        <form class="form-inline mb-3">
+            <input class="form-control roundedInput w-100" type="search" placeholder="Search" aria-label="Search">
+        </form>
+        <a href="{{ route('discounts.create') }}" class="text-secondary font-weight-bold">Add New Discount <x-add-button /></a>
+    </div>
+</div>
 
-<h1>Активни</h1>
+<div class="container">
+    <h2 class="h6">Активни</h2>
 
-<a href="{{ route('discounts.create') }}" class="btn btn-primary">Add New Discount</a>
-<table>
-    <thead>
-        <tr>
-            <th>Code</th>
-            <th>Discount</th>
-            <th>Category</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($activeDiscounts as $discount)
-        <tr>
-            <td>{{ $discount->code }}</td>
-            <td>{{ $discount->discount }}</td>
-            <td>{{ $discount->category->name }}</td>
-            <td>
-                <a href="{{ route('discounts.edit', $discount->id) }}"><x-edit-button /></a>
-                <form action="{{ route('discounts.destroy', $discount->id) }}" method="POST">
+    @foreach ($activeDiscounts as $discount)
+    <div class="card mb-3 roundedInput">
+        <div class="card-body d-flex justify-content-between ">
+
+            <div class="align-self-center">
+                <p class="mb-0">{{ $discount->code }}</p>
+            </div>
+            <div class="">
+                <a href="{{ route('discounts.edit', $discount->id) }}" class=""> <x-edit-button /></a>
+                <form action="{{ route('discounts.destroy', $discount->id) }}" method="POST" class="d-inline">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" onclick="return confirmDelete()">Delete</button>
+                    <button type="submit" class="border-0 bg-white p-0" onclick="return confirmDelete()"><x-delete-button /></button>
                 </form>
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
+            </div>
 
-<h1>Архива</h1>
+        </div>
+    </div>
+    @endforeach
 
-<table>
-    <thead>
-        <tr>
-            <th>Code</th>
-            <th>Discount</th>
-            <th>Category</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($inactiveDiscounts as $discount)
-        <tr>
-            <td>{{ $discount->code }}</td>
-            <td>{{ $discount->discount }}</td>
-            <td>{{ $discount->category->name }}</td>
-            <td>
-                <a href="{{ route('discounts.edit', $discount->id) }}"><x-edit-button /></a>
-                <form action="{{ route('discounts.destroy', $discount->id) }}" method="POST">
+
+    <h2 class="h6">Архива</h2>
+
+
+    @foreach ($inactiveDiscounts as $discount)
+    <div class="card mb-3 roundedInput">
+        <div class="card-body d-flex justify-content-between ">
+
+            <div class="align-self-center">
+                <p class="mb-0 text-secondary">{{ $discount->code }}</p>
+            </div>
+            <div class="">
+                <a href="{{ route('discounts.edit', $discount->id) }}" class=""><x-edit-button /></a>
+                <form action="{{ route('discounts.destroy', $discount->id) }}" method="POST" class="d-inline">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" onclick="return confirmDelete()">Delete</button>
+                    <button type="submit" class="border-0 bg-white p-0" onclick="return confirmDelete()"><x-delete-button /></button>
                 </form>
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
+            </div>
+
+        </div>
+    </div>
+    @endforeach
+</div>
+
 @endsection
