@@ -54,3 +54,4 @@ Route::put('/products/{product}', [ProductController::class, 'update'])->name('p
 Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
 
 
+Route::get('/fetch-brand-categories/{brandId}', [ProductController::class, 'fetchBrandCategories']);

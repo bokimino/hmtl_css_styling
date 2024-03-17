@@ -18,11 +18,8 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $display = $request->query('display', 'list');
-
         $products = Product::all();
-
-        return view('product.index', compact('products', 'display'));
+        return view('product.index', compact('products'));
     }
 
     /**
@@ -35,12 +32,12 @@ class ProductController extends Controller
         $sizes = Size::all();
         $colors = Color::all();
 
-        // Fetch product tags if product ID is available
         $productTags = $productId ? Product::find($productId)->tags : [];
 
         $brandCategories = Brand_category::all();
         $brands = Brand::all();
         $discounts = Discount::where('is_active', true)->get();
+
 
         return view('product.create', compact('sizes', 'colors', 'productTags', 'brandCategories', 'brands', 'discounts'));
     }
@@ -69,6 +66,8 @@ class ProductController extends Controller
         $product->quantity = $request->input('quantity');
         $product->brand_id = $request->input('brand_id');
         $product->discount_id = $request->input('discount_id');
+        $product->brand_category_id = $request->input('brand_category_id');
+
 
 
         $product->save();
@@ -135,10 +134,8 @@ class ProductController extends Controller
             'sizes.*' => 'exists:sizes,id',
             'colors' => 'nullable|array',
             'colors.*' => 'exists:colors,id',
-            // Add other validation rules as needed
         ]);
 
-        // Update the product data
         $product->update([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
@@ -149,10 +146,9 @@ class ProductController extends Controller
             'quantity' => $request->input('quantity'),
             'brand_id' => $request->input('brand_id'),
             'discount_id' => $request->input('discount_id'),
-            // Update other fields as needed
-        ]);
+            'brand_category_id' => $request->input('brand_category_id'),
 
-        // Update or attach tags
+        ]);
         $tagsInput = $request->input('tags', '');
         $tagsArray = explode(',', $tagsInput);
         $tagIds = [];
@@ -166,11 +162,9 @@ class ProductController extends Controller
         }
         $product->tags()->sync($tagIds);
 
-        // Update sizes
         $selectedSizes = $request->input('sizes', []);
         $product->sizes()->sync($selectedSizes);
 
-        // Update colors
         $selectedColors = $request->input('colors', []);
         $product->colors()->sync($selectedColors);
 
@@ -187,9 +181,9 @@ class ProductController extends Controller
     }
     public function fetchBrandCategories($brandId)
     {
-        $brand = Brand::find($brandId);
-        $brandCategories = $brand->brandCategories; 
+        $brand = Brand::findOrFail($brandId);
+        $categories = $brand->categories;
 
-        return response()->json($brandCategories);
+        return response()->json($categories);
     }
 }
