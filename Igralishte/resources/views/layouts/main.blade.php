@@ -36,6 +36,11 @@
         .fancyOlive {
             color: #8A8328;
         }
+        .color-square{
+            height: 15px;
+            width: 15px;
+            display: inline-block;
+        }
     </style>
 </head>
 

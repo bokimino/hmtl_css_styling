@@ -32,12 +32,12 @@ class ProductController extends Controller
         $sizes = Size::all();
         $colors = Color::all();
 
-        // Fetch product tags if product ID is available
         $productTags = $productId ? Product::find($productId)->tags : [];
 
         $brandCategories = Brand_category::all();
         $brands = Brand::all();
         $discounts = Discount::where('is_active', true)->get();
+
 
         return view('product.create', compact('sizes', 'colors', 'productTags', 'brandCategories', 'brands', 'discounts'));
     }

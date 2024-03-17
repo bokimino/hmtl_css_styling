@@ -19,7 +19,6 @@
 <!-- Filter options go here -->
 
 <div class="container ">
-
     <!-- Display products as a list -->
     <div class="div" id="list">
         @foreach ($products as $product)
@@ -59,28 +58,26 @@
                     <h5 class="card-title mb-0 mt-2">{{ $product->name }} {{ $product->id }}</h5>
                 </div>
                 <div class="card-footer border-0 bg-white pt-0">
-                    <small class="text-muted d-block">Colors:
+                    <div class="text-muted d-block">
+                        <small>Colors:</small>
                         @foreach($product->colors as $color)
-                        {{ $color->name }}
-                        @if (!$loop->last)
-                        ,
-                        @endif
-                        @endforeach</small>
+                        <div class="color-square rounded" style="background-color: {{ $color->hex }};"></div>
+                        @endforeach
+                    </div>
                     <div class="d-flex justify-content-between">
                         <small class="text-muted">Sizes:
                             @foreach($product->sizes as $size)
-                            {{ $size->name }}
+                            <span class="text-dark text-capitalize"> {{ $size->name }}</span>
                             @if (!$loop->last),
                             @endif
                             @endforeach</small>
-                        <small class="text-muted">Price: ${{ $product->price }}</small>
+                        <small class="text-muted">Price: <span class="text-dark">{{ $product->price }} ден.</span></small>
                     </div>
                 </div>
             </div>
         </div>
         @endforeach
     </div>
-
 </div>
 @endsection
 
