@@ -67,7 +67,6 @@ class BrandController extends Controller
 
         $brand->save();
 
-        // Attach selected categories to the brand
         $brand->categories()->attach($request->input('brand_category_id'));
 
         $tagsInput = $request->input('tags', '');

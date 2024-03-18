@@ -36,10 +36,36 @@
         .fancyOlive {
             color: #8A8328;
         }
-        .color-square{
+
+        .borderBotOlive {
+            border-bottom: 1px solid #8A8328;
+        }
+
+        .color-square {
             height: 15px;
             width: 15px;
             display: inline-block;
+        }
+
+        .image-preview-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        #image-preview {
+            width: 100px;
+            /* Adjust as needed */
+            height: 100px;
+            /* Adjust as needed */
+            border-radius: 50%;
+        }
+
+        #change-image-btn {
+            position: absolute;
+            bottom: -10px;
+            /* Adjust as needed */
+            left: 50%;
+            transform: translateX(-50%);
         }
     </style>
 </head>
@@ -83,7 +109,7 @@
                         </a>
                     </li>
                     <li class="roundedInput col-md-12 px-md-0">
-                        <a href="{{ route('profile.index') }}" id="profileButton" class="nav-link my-2 px-2 d-flex font-weight-bold text-secondary align-items-center roundedInput" @if($currentRoute=='profile.index' ) @style('background-color: #FFDBDB;') @endif>
+                        <a href="{{ route('admin.profile.edit') }}" id="profileButton" class="nav-link my-2 px-2 d-flex font-weight-bold text-secondary align-items-center roundedInput" @if($currentRoute=='admin.profile.edit' || $currentRoute=='admin.profile.editPassword' ) @style('background-color: #FFDBDB;') @endif>
                             <x-profile-button />
                             <p class="d-none d-md-block ml-1 mb-0 py-md-2 p-lg-2">Профил</p>
                         </a>
