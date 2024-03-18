@@ -28,6 +28,13 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+//Profile
+
+Route::get('/profile/edit', [AdminController::class, 'edit'])->name('admin.profile.edit');
+Route::post('/profile/update', [AdminController::class, 'update'])->name('admin.profile.update');
+Route::post('/admin/profile/update-password', [AdminController::class, 'updatePassword'])->name('admin.profile.updatePassword');
+Route::get('/admin/profile/edit-password', [AdminController::class, 'editPassword'])->name('admin.profile.editPassword');
+
 //Discount
 Route::resource('discounts', DiscountController::class);
 
