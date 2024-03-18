@@ -4,7 +4,7 @@
 <div class="container">
     <div class="text-right mb-2">
         <div class="d-flex justify-content-between align-items-center">
-            <div class="input-group mb-4 border roundedInput ">
+            <div class="input-group mb-4 border roundedInput">
                 <form action="{{ route('products.index') }}" method="GET" class="d-flex ml-2 justify-content-between">
                     <input type="text" name="query" class="form-control bg-none border-0 py-2" placeholder="Пребарувај...">
                     <div class="input-group-append border-0">

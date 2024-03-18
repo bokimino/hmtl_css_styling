@@ -194,12 +194,4 @@ class ProductController extends Controller
 
         return response()->json($categories);
     }
-    public function search(Request $request)
-    {
-        $query = $request->input('query');
-
-        $products = Product::where('name', 'like', '%' . $query . '%')->get();
-
-        return view('products.index', compact('products'));
-    }
 }
