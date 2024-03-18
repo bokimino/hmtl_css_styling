@@ -4,9 +4,14 @@
 <div class="container">
     <div class="text-right mb-2">
         <div class="d-flex justify-content-between align-items-center">
-            <form class="form-inline mb-3 w-100 mr-2">
-                <input class="form-control roundedInput" type="search" placeholder="Search" aria-label="Search">
-            </form>
+            <div class="input-group mb-4 border roundedInput">
+                <form action="{{ route('products.index') }}" method="GET" class="d-flex ml-2 justify-content-between">
+                    <input type="text" name="query" class="form-control bg-none border-0 py-2" placeholder="Пребарувај...">
+                    <div class="input-group-append border-0">
+                        <button id="button-addon3" type="button" class="btn "><x-search-icon /></button>
+                    </div>
+                </form>
+            </div>
             <div class="btn-group mb-3" role="group" aria-label="Display Options">
                 <button type="button" class="roundedInput  p-1 " id="grid-btn" style="background-color: white;"><x-grid-button /></button>
                 <button type="button" class="roundedInput  p-1  ml-2" id="list-btn" style="background-color: #FFDBDB;"><x-list-button /></button>
@@ -61,7 +66,7 @@
                     <div class="text-muted d-block">
                         <small>Colors:</small>
                         @foreach($product->colors as $color)
-                        <div class="color-square rounded" style="background-color: {{ $color->hex }};"></div>
+                        <div class="color-square rounded" <?php ?> style="background-color: {{ $color->hex }};"></div>
                         @endforeach
                     </div>
                     <div class="d-flex justify-content-between">
