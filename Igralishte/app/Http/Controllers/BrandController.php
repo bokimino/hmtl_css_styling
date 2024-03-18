@@ -12,11 +12,30 @@ class BrandController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $searchTerm = $request->input('query');
+
+        $activeBrands = Brand::where('is_active', true)
+            ->where(function ($query) use ($searchTerm) {
+                $query->where('name', 'like', '%' . $searchTerm . '%')
+                    ->orWhereHas('categories', function ($subquery) use ($searchTerm) {
+                        $subquery->where('name', 'like', '%' . $searchTerm . '%');
+                    });
+            })
+            ->get();
+
+        $archivedBrands = Brand::where('is_active', false)
+            ->where(function ($query) use ($searchTerm) {
+                $query->where('name', 'like', '%' . $searchTerm . '%')
+                    ->orWhereHas('categories', function ($subquery) use ($searchTerm) {
+                        $subquery->where('name', 'like', '%' . $searchTerm . '%');
+                    });
+            })
+            ->get();
+
         $tags = Brand_tag::pluck('name')->toArray();
-        $activeBrands = Brand::where('is_active', true)->get();
-        $archivedBrands = Brand::where('is_active', false)->get();
+
         return view('brand.index', compact('activeBrands', 'archivedBrands', 'tags'));
     }
 
@@ -56,7 +75,7 @@ class BrandController extends Controller
 
         foreach ($tagsArray as $tagName) {
             $tagName = trim($tagName);
-    
+
             if (!empty($tagName)) {
                 $tag = Brand_tag::firstOrCreate(['name' => $tagName]);
                 $brand->tags()->attach($tag);

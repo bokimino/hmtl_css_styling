@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
     <div class="text-right mb-2">
-        <form action="{{ route('discounts.index') }}" method="GET">
+        <form action="{{ route('discounts.index') }}" method="GET" class="mb-3">
             <input class="form-control roundedInput w-100" name="query" type="search" placeholder="Пребарувај...">
         </form>
         <a href="{{ route('discounts.create') }}" class="text-secondary font-weight-bold">Add New Discount <x-add-button /></a>

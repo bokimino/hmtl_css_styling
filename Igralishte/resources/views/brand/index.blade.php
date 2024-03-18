@@ -3,8 +3,8 @@
 @section('content')
 <div class="container">
     <div class="text-right mb-2">
-        <form class="form-inline mb-3">
-            <input class="form-control roundedInput w-100" type="search" placeholder="Search" aria-label="Search">
+        <form class="form-inline mb-3" action="{{ route('brands.index') }}" method="GET">
+            <input class="form-control roundedInput w-100" name="query" type="search" placeholder="Пребарувај...">
         </form>
         <a href="{{ route('brands.create') }}" class="text-secondary font-weight-bold">Create New Brand <x-add-button /></a>
     </div>
