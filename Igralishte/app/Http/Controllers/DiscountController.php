@@ -12,11 +12,26 @@ class DiscountController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $activeDiscounts = Discount::where('is_active', true)->get();
-        $inactiveDiscounts = Discount::where('is_active', false)->get();
+        $searchTerm = $request->input('query');
+
+        $activeDiscounts = Discount::where('is_active', true)
+            ->where(function ($query) use ($searchTerm) {
+                $query->where('code', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('discount', 'like', '%' . $searchTerm . '%');
+            })
+            ->get();
+
+        $inactiveDiscounts = Discount::where('is_active', false)
+            ->where(function ($query) use ($searchTerm) {
+                $query->where('code', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('discount', 'like', '%' . $searchTerm . '%');
+            })
+            ->get();
+
         $discounts = Discount::all();
+
         return view('discount.index', compact('discounts', 'activeDiscounts', 'inactiveDiscounts'));
     }
 
