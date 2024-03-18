@@ -18,7 +18,15 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $products = Product::all();
+        $searchTerm = $request->input('query');
+
+        $products = Product::query()
+            ->where('name', 'like', '%' . $searchTerm . '%')
+            ->orWhereHas('brand', function ($query) use ($searchTerm) {
+                $query->where('name', 'like', '%' . $searchTerm . '%');
+            })
+            ->get();
+    
         return view('product.index', compact('products'));
     }
 
@@ -185,5 +193,13 @@ class ProductController extends Controller
         $categories = $brand->categories;
 
         return response()->json($categories);
+    }
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        $products = Product::where('name', 'like', '%' . $query . '%')->get();
+
+        return view('products.index', compact('products'));
     }
 }
