@@ -35,6 +35,12 @@
             <label for="description">Description:</label>
             <textarea name="description" id="description" class="form-control">{{ $brand->description }}</textarea>
         </div>
+        <!-- Brand Tags -->
+        <div class="form-group">
+            <label for="tags">Tags:</label>
+            <input type="text" name="tags" id="tags" class="form-control" placeholder="Enter tags separated by commas" value="{{ implode(', ', $brand->tags->pluck('name')->toArray()) }}">
+        </div>
+
 
         <!-- Brand Category -->
         <div class="form-group">
@@ -50,27 +56,24 @@
                 </select>
             </div>
         </div>
-        <!-- Brand Tags -->
-        <div class="form-group">
-            <label for="tags">Tags:</label>
-            <input type="text" name="tags" id="tags" class="form-control" placeholder="Enter tags separated by commas" value="{{ implode(', ', $brand->tags->pluck('name')->toArray()) }}">
+        <div class="row">
+            @for($i = 0; $i < 4; $i++) @php $image=isset($images[$i]) ? $images[$i] : null; $imagePath=$image ? asset('storage/' . $image->image_path) : '';
+                @endphp
+                <div class="col">
+                    <div class='square-box'>
+                        <div class="image-preview" id="preview{{ $i + 1 }}">
+                            <img src="{{ $imagePath }}" alt="Preview Image {{ $i + 1 }}">
+                            <button class="remove-image" id="remove{{ $i + 1 }}">X</button>
+                        </div>
+                        <div class='square-content'>
+                            <input type="file" name="images[]" class="image-upload" id="upload{{ $i + 1 }}">
+                            <label for="upload{{ $i + 1 }}" class="upload-label">+</label>
+                        </div>
+                    </div>
+                </div>
+                @endfor
+                
         </div>
-
-        <!-- Images -->
-        <div class="form-group">
-            <label for="image1">Image 1:</label>
-            <input type="file" name="images[]" id="image1" accept="image/*" multiple>
-
-            <label for="image2">Image 2:</label>
-            <input type="file" name="images[]" id="image2" accept="image/*" multiple>
-
-            <label for="image3">Image 3:</label>
-            <input type="file" name="images[]" id="image3" accept="image/*" multiple>
-
-            <label for="image4">Image 4:</label>
-            <input type="file" name="images[]" id="image4" accept="image/*" multiple>
-        </div>
-
         <div class="row">
             <div class="col-8">
                 <button type="submit" class="btn btn-dark btn-block font-weight-bold">Зачувај</button>
