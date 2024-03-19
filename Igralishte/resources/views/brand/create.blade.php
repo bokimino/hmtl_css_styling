@@ -32,6 +32,56 @@
             <label for="tags">Tags:</label>
             <input type="text" name="tags" id="tags" class="form-control" placeholder="Enter tags separated by commas">
         </div>
+        <div class="row">
+            <div class="col">
+                <div class='square-box'>
+                    <div class="image-preview" id="preview1">
+                        <img src="" alt="Preview Image 1">
+                        <button class="remove-image" id="remove1">X</button>
+                    </div>
+                    <div class='square-content'>
+                        <input type="file" name="images[]" class="image-upload" id="upload1">
+                        <label for="upload1" class="upload-label">+</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class='square-box'>
+                    <div class="image-preview" id="preview2">
+                        <img src="" alt="Preview Image 2">
+                        <button class="remove-image" id="remove2">X</button>
+                    </div>
+                    <div class='square-content'>
+                        <input type="file" name="images[]" class="image-upload" id="upload2">
+                        <label for="upload2" class="upload-label">+</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class='square-box'>
+                    <div class="image-preview" id="preview3">
+                        <img src="" alt="Preview Image 3">
+                        <button class="remove-image" id="remove3">X</button>
+                    </div>
+                    <div class='square-content'>
+                        <input type="file" name="images[]" class="image-upload" id="upload3">
+                        <label for="upload3" class="upload-label">+</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class='square-box'>
+                    <div class="image-preview" id="preview4">
+                        <img src="" alt="Preview Image 4">
+                        <button class="remove-image" id="remove4">X</button>
+                    </div>
+                    <div class='square-content'>
+                        <input type="file" name="images[]" class="image-upload" id="upload4">
+                        <label for="upload4" class="upload-label">+</label>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="form-group">
             <label for="brand_category_id">Categories:</label>
             <div>
@@ -43,33 +93,6 @@
                 </select>
             </div>
         </div>
-        <div id="square2" class="square" style="display: none;"></div>
-        <div class="form-group">
-            <label for="image1">Image 1:</label>
-            <input type="file" name="images[]" id="image1" accept="image/*" multiple>
-
-            <label for="image2">Image 2:</label>
-            <input type="file" name="images[]" id="image2" accept="image/*" multiple>
-
-            <label for="image3">Image 3:</label>
-            <input type="file" name="images[]" id="image3" accept="image/*" multiple>
-
-            <label for="image4">Image 4:</label>
-            <input type="text" name="images[]" id="image4" accept="image/*" multiple>
-        </div>
-
-        <div class="form-group">
-            <label for="images">Images:</label>
-            <div id="image-preview-container">
-                <div class="image-preview" id="image-preview">
-                    <label for="image-upload" class="image-label">
-                        +
-                        <input type="file" id="image-upload" class="image-upload" accept="image/*" multiple>
-                    </label>
-                </div>
-            </div>
-        </div>
-
         <div class="row">
             <div class="col-8">
                 <button type="submit" class="btn btn-dark btn-block font-weight-bold">Зачувај</button>

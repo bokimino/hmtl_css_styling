@@ -16,81 +16,9 @@
     <!-- Latest Font-Awesome CDN -->
     <script src="https://kit.fontawesome.com/3257d9ad29.js" crossorigin="anonymous"></script>
     <style>
-        .size-checkbox {
-            display: none;
-        }
-
-        .size-label {
-            display: inline-block;
-            width: 30px;
-            height: 30px;
-            background-color: pink;
-            border: 1px solid pink;
-            margin-right: 10px;
-            text-align: center;
-            line-height: 30px;
-            cursor: pointer;
-        }
-
-        /* Style for selected checkboxes */
         .size-checkbox:checked+.size-label {
             background-color: #8A8328;
 
-        }
-
-        .tagify {
-            width: 100%;
-            max-width: 700px;
-        }
-
-        .image-label {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 150px;
-            height: 150px;
-            border: 1px dashed #ccc;
-            cursor: pointer;
-        }
-
-        .image-label i {
-            font-size: 48px;
-        }
-
-        .image-preview {
-            position: relative;
-            display: inline-block;
-            margin-right: 10px;
-            width: 150px;
-            /* Set the width of the image preview container */
-            height: 150px;
-            /* Set the height of the image preview container */
-        }
-
-        .image-preview img {
-            display: block;
-            max-width: 100%;
-            /* Ensure the image does not exceed the width of its container */
-            max-height: 100%;
-            /* Ensure the image does not exceed the height of its container */
-        }
-
-        .remove-image {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background-color: rgba(255, 255, 255, 0.7);
-            padding: 5px;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-
-        .remove-image i {
-            color: red;
-        }
-
-        .image-upload {
-            display: none !important;
         }
 
         .fancyOlive {
@@ -115,6 +43,65 @@
             border: 3px solid black;
 
         }
+
+        .image-preview {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 2px solid #ccc;
+            display: none;
+        }
+
+        .image-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-preview button {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .image-upload {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .upload-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 36px;
+            color: #ccc;
+            cursor: pointer;
+        }
+
+        .square-box {
+            width: 100%;
+            padding-bottom: 100%;
+            position: relative;
+            background-color: #f8f9fa;
+        }
+
+        .square-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
     </style>
 </head>
 
@@ -132,24 +119,32 @@
     <script>
         //This is IMAGES
         $(document).ready(function() {
-            // Handle file input change
-            $('#image-upload').change(function() {
-                if (this.files && this.files[0]) {
-                    var reader = new FileReader();
-                    reader.onload = function(e) {
-                        $('#image-preview').append('<div class="image-preview"><img src="' + e.target.result + '" width="200px" height="200px"><span class="remove-image">X</span></div>');
-                        $('#image-preview').style.display = 'none';
-                    };
-                    reader.readAsDataURL(this.files[0]);
+            $('.image-upload').change(function() {
+                var inputId = $(this).attr('id').replace('upload', '');
+                var previewId = '#preview' + inputId;
+                var removeBtn = '#remove' + inputId;
+
+                var file = this.files[0];
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $(previewId + ' img').attr('src', e.target.result);
+                    $(previewId).show();
                 }
+
+                reader.readAsDataURL(file);
             });
 
-            // Handle click on remove image
-            $(document).on('click', '.remove-image', function() {
-                $(this).parent('.image-preview').remove();
+            $('.remove-image').click(function() {
+                var inputId = $(this).attr('id').replace('remove', '');
+                var previewId = '#preview' + inputId;
+                var fileInput = '#upload' + inputId;
+
+                $(previewId + ' img').attr('src', '');
+                $(previewId).hide();
+                $(fileInput).val('');
             });
         });
-
     </script>
 </body>
 
