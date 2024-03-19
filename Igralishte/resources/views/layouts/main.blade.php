@@ -61,6 +61,11 @@
             left: 50%;
             transform: translateX(-50%);
         }
+
+        .custom-input-border-color .form-control:focus {
+            border-color: transparent;
+            box-shadow: none;
+        }
     </style>
 </head>
 

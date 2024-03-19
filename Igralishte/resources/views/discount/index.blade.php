@@ -2,9 +2,14 @@
 @section('content')
 <div class="container">
     <div class="text-right mb-2">
-        <form action="{{ route('discounts.index') }}" method="GET" class="mb-3">
-            <input class="form-control roundedInput w-100" name="query" type="search" placeholder="Пребарувај...">
-        </form>
+        <div class="input-group mr-2 border roundedInput custom-input-border-color mb-3">
+            <form action="{{ route('discounts.index') }}" method="GET" class="d-flex ml-2 justify-content-between">
+                <input type="text" name="query" size="100%" class="form-control roundedInput bg-none border-0 py-2" placeholder="Пребарувај...">
+                <div class="input-group-append border-0 ">
+                    <button id="button-addon3" type="submit" class="btn "><x-search-icon /></button>
+                </div>
+            </form>
+        </div>
         <a href="{{ route('discounts.create') }}" class="text-secondary font-weight-bold">Add New Discount <x-add-button /></a>
     </div>
 </div>
