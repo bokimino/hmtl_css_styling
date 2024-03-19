@@ -47,7 +47,7 @@
         <div class="form-group">
             <label for="password">Лозинка</label>
             <input type="password" class="form-control roundedInput @error('password') is-invalid @enderror" name="password" id="password" placeholder="*********" disabled>
-            <a class="fancyOlive borderBotOlive" href="{{ route('admin.profile.editPassword') }}">Промени лозинка</a>
+            <a class="fancyOlive" href="{{ route('admin.profile.editPassword') }}">Промени лозинка</a>
             @error('password')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>

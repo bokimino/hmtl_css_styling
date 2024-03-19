@@ -143,6 +143,8 @@ class DiscountController extends Controller
      */
     public function destroy(Discount $discount)
     {
+        Product::where('discount_id', $discount->id)->update(['discount_id' => null]);
+
         $discount->delete();
 
         return redirect()->route('discounts.index')->with('success', 'Discount deleted successfully.');
