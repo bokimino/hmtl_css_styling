@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <a href="{{ url()->previous() }}">
+                    <a class="text-decoration-none" href="{{ url()->previous() }}">
                         <x-back-button />
                     </a>
                     <span>Промени лозинка</span>
@@ -57,7 +57,7 @@
                                 <button type="submit" class="btn btn-dark btn-block font-weight-bold">Зачувај</button>
                             </div>
                             <div class="col-4 align-self-center">
-                                <a href="{{ url()->previous() }}" class="underline text-dark">Откажи</a>
+                                <a href="{{ url()->previous() }}" class="text-dark">Откажи</a>
                             </div>
                         </div>
                     </form>

@@ -27,7 +27,7 @@
     <!-- Display products as a list -->
     <div class="div" id="list">
         @foreach ($products as $product)
-        <div class="card mb-3 roundedInput ">
+        <div class="card mb-3 roundedInput bg-light">
             <div class="card-body d-flex justify-content-between px-4 py-3">
                 <div class="align-self-center">
                     <p class="m-0">
@@ -55,7 +55,7 @@
     <div class="row " id="grid" style="display: none;">
         @foreach ($products as $product)
         <div class="col-lg-4 col-md-6 mb-3">
-            <div class="card roundedInput">
+            <div class="card roundedInput bg-light">
                 <!-- <img src="{{ $product->image_url }}" class="card-img-top" alt="{{ $product->name }}"> -->
                 <div class="card-body p-3">
                     <p class="card-text mb-1">Quantity: {{ $product->quantity }}</p>

@@ -15,7 +15,7 @@
     <h2 class="h6">Активни</h2>
 
     @foreach($activeBrands as $brand)
-    <div class="card mb-3 roundedInput">
+    <div class="card mb-3 roundedInput bg-light">
         <div class="card-body d-flex justify-content-between ">
 
             <div class="align-self-center">
@@ -38,7 +38,7 @@
     <!-- Archived Brands -->
     <h2 class="h6">Архива</h2>
     @foreach($archivedBrands as $brand)
-    <div class="card mb-3 roundedInput">
+    <div class="card mb-3 roundedInput bg-light">
         <div class="card-body d-flex justify-content-between ">
 
             <div class="align-self-center">

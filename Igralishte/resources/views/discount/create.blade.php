@@ -54,7 +54,7 @@
                 <button type="submit" class="btn btn-dark btn-block font-weight-bold">Зачувај</button>
             </div>
             <div class="col-4 align-self-center">
-                <a href="{{ url()->previous() }}" class="underline text-dark">Откажи</a>
+                <a href="{{ url()->previous() }}" class="text-dark">Откажи</a>
             </div>
         </div>
     </form>

@@ -14,12 +14,9 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-    <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <!-- Latest compiled and minified Bootstrap 4.6 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <!-- Latest Font-Awesome CDN -->
-    <script src="https://kit.fontawesome.com/3257d9ad29.js" crossorigin="anonymous"></script>
+
     <style>
         .roundedInput {
             border-radius: 10px;
@@ -37,8 +34,8 @@
             color: #8A8328;
         }
 
-        .borderBotOlive {
-            border-bottom: 1px solid #8A8328;
+        .fancyOlive:hover {
+            color: #8A8328;
         }
 
         .color-square {
@@ -54,16 +51,13 @@
 
         #image-preview {
             width: 100px;
-            /* Adjust as needed */
             height: 100px;
-            /* Adjust as needed */
             border-radius: 50%;
         }
 
         #change-image-btn {
             position: absolute;
             bottom: -10px;
-            /* Adjust as needed */
             left: 50%;
             transform: translateX(-50%);
         }
@@ -79,7 +73,7 @@
 
             <div class="flex-sm-column flex-row flex-nowrap min-vh-100 " style="position: relative;">
                 <div class="d-flex align-items-center ml-md-2 mb-3">
-                    <a href="#" class="d-block p-3 link-dark text-decoration-none" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
+                    <a href="{{ route('products.index') }}" class="d-block p-3 link-dark text-decoration-none" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
                         <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" style="width: 40px" alt="Avatar" />
                     </a>
                     @if(auth()->check())

@@ -13,7 +13,7 @@
     <h2 class="h6">Активни</h2>
 
     @foreach ($activeDiscounts as $discount)
-    <div class="card mb-3 roundedInput">
+    <div class="card mb-3 roundedInput bg-light">
         <div class="card-body d-flex justify-content-between ">
 
             <div class="align-self-center">
@@ -24,7 +24,7 @@
                 <form action="{{ route('discounts.destroy', $discount->id) }}" method="POST" class="d-inline">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="border-0 bg-white p-0" onclick="return confirmDelete()"><x-delete-button /></button>
+                    <button type="submit" class="border-0 bg-white p-0" onclick="return confirm('Are you sure you want to delete?')"><x-delete-button /></button>
                 </form>
             </div>
 
@@ -37,7 +37,7 @@
 
 
     @foreach ($inactiveDiscounts as $discount)
-    <div class="card mb-3 roundedInput">
+    <div class="card mb-3 roundedInput bg-light">
         <div class="card-body d-flex justify-content-between ">
 
             <div class="align-self-center">
@@ -48,7 +48,7 @@
                 <form action="{{ route('discounts.destroy', $discount->id) }}" method="POST" class="d-inline">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="border-0 bg-white p-0" onclick="return confirmDelete()"><x-delete-button /></button>
+                    <button type="submit" class="border-0 bg-white p-0" onclick="return confirm('Are you sure you want to delete?')"><x-delete-button /></button>
                 </form>
             </div>
 
