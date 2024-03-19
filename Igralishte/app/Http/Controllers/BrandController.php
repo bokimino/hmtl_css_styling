@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
+use App\Models\Product;
+use App\Models\Brand_tag;
 use Illuminate\Http\Request;
 use App\Models\Brand_category;
-use App\Models\Brand_tag;
 
 class BrandController extends Controller
 {
@@ -58,7 +59,19 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([]);
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'is_active' => 'required|boolean',
+            'brand_category_ids' => 'required|array',
+            'brand_category_ids.*' => 'exists:brand_categories,id',
+            'brand_tag_ids' => 'required|array',
+            'brand_tag_ids.*' => 'exists:brand_tags,id',
+            'images' => 'required|array',
+            'images.*' => 'required|image',
+            'remove_images' => 'nullable|array',
+            'remove_images.*' => 'exists:brand_images,id',
+        ]);
 
         $brand = new Brand();
         $brand->name = $request->input('name');
@@ -117,16 +130,16 @@ class BrandController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'brand_category_ids' => 'nullable|array',
+            'description' => 'required|string',
+            'is_active' => 'required|boolean',
+            'brand_category_ids' => 'required|array',
             'brand_category_ids.*' => 'exists:brand_categories,id',
-            'brand_tag_ids' => 'nullable|array',
+            'brand_tag_ids' => 'required|array',
             'brand_tag_ids.*' => 'exists:brand_tags,id',
             'images' => 'nullable|array',
             'images.*' => 'image',
             'remove_images' => 'nullable|array',
             'remove_images.*' => 'exists:brand_images,id',
-            'is_active' => 'boolean',
         ]);
 
         $brand->name = $request->input('name');
@@ -138,17 +151,24 @@ class BrandController extends Controller
 
         $brandTagIds = $request->input('brand_tag_ids') ?? [];
         $brand->tags()->sync($brandTagIds);
-        // Handle removal of existing images
+
         $removeImageIds = $request->input('remove_images', []);
         foreach ($removeImageIds as $imageId) {
             $brand->images()->where('id', $imageId)->delete();
         }
 
-        // Handle addition of new images
         if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                $imagePath = $image->store('brand_images');
-                $brand->images()->create(['image_path' => $imagePath]);
+            foreach ($request->file('images') as $index => $image) {
+                if ($index < 4) {
+                    $imagePath = $image->store('brand_images');
+                    if ($index < count($brand->images)) {
+
+                        $brand->images()->where('id', $request->input('image_ids.' . $index))->update(['image_path' => $imagePath]);
+                    } else {
+
+                        $brand->images()->create(['image_path' => $imagePath]);
+                    }
+                }
             }
         }
 
@@ -162,6 +182,8 @@ class BrandController extends Controller
      */
     public function destroy(Brand $brand)
     {
+        Product::where('brand_id', $brand->id)->update(['brand_id' => null]);
+
         $brand->images()->delete();
         $brand->tags()->detach();
 
