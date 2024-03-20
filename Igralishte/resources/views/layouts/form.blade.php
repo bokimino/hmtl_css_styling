@@ -16,6 +16,22 @@
     <!-- Latest Font-Awesome CDN -->
     <script src="https://kit.fontawesome.com/3257d9ad29.js" crossorigin="anonymous"></script>
     <style>
+        .size-checkbox {
+            display: none;
+        }
+
+        .size-label {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-color: pink;
+            border: 1px solid pink;
+            margin-right: 10px;
+            text-align: center;
+            line-height: 30px;
+            cursor: pointer;
+        }
+
         .size-checkbox:checked+.size-label {
             background-color: #8A8328;
 
