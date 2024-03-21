@@ -14,7 +14,7 @@
     <!-- Latest compiled and minified Bootstrap 4.6 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <!-- Latest Font-Awesome CDN -->
-    <script src="https://kit.fontawesome.com/3257d9ad29.js" crossorigin="anonymous"></script>
+
     <style>
         .size-checkbox {
             display: none;
@@ -70,6 +70,23 @@
             display: none;
         }
 
+        .image-preview-edit {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 2px solid #ccc;
+            display: unset;
+
+        }
+
+        .image-preview-edit img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         .image-preview img {
             width: 100%;
             height: 100%;
@@ -84,7 +101,14 @@
             border: none;
             cursor: pointer;
         }
-
+        .image-preview-edit button {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: #fff;
+            border: none;
+            cursor: pointer;
+        }
         .image-upload {
             position: absolute;
             top: 0;
