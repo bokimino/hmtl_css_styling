@@ -48,9 +48,8 @@
 
         .color-label {
             display: inline-block;
-            width: 30px;
-            height: 30px;
-
+            width: 25px;
+            height: 25px;
             margin-right: 5px;
             cursor: pointer;
         }

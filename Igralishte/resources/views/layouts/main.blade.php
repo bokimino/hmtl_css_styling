@@ -66,6 +66,26 @@
             border-color: transparent;
             box-shadow: none;
         }
+
+        .logoutIconBorder {
+            border-top: 3px solid #F1F1F1;
+        }
+
+        @media only screen and (min-width: 768px) {
+            .logoutBorder {
+                width: 184.99px;
+                border-top: 3px solid #F1F1F1;
+            }
+            .logoutIconBorder {
+                border-top: none;
+            }
+        }
+
+        @media only screen and (min-width: 1024px) {
+            .logoutBorder {
+                width: 200.9px;
+            }
+        }
     </style>
 </head>
 
@@ -114,11 +134,11 @@
                         </a>
                     </li>
                 </ul>
-                <div class=" fixed-bottom">
-                    <a href="{{ route('logout') }}" class="d-flex align-items-center  p-3 link-dark text-decoration-none " id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false" onclick="event.preventDefault();
+                <div class=" fixed-bottom ">
+                    <a href="{{ route('logout') }}" class="d-flex align-items-center logoutBorder  link-dark text-decoration-none " id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                        <x-logout-button />
-                        <p class="d-none d-md-flex ml-2 mb-0 font-weight-bold text-secondary">Odjavi se</p>
+                        <div class="logoutIconBorder p-2"><x-logout-button /></div>
+                        <p class="d-none d-md-flex ml-2 mb-0 font-weight-bold text-secondary">Одјави се</p>
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf

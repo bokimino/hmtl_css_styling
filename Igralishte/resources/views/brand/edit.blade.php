@@ -59,7 +59,6 @@
                 </div>
             </div>
             @endforeach
-            <!-- Additional empty square boxes for new images -->
             @for($i = $brand->images->count() + 1; $i <= 4; $i++) <div class="col">
                 <div class="square-box">
                     <div class="image-preview-edit" style="display: none;" id="preview{{ $i }}">
@@ -75,7 +74,6 @@
         @endfor
 </div>
 
-<!-- Hidden input fields for image IDs -->
 @foreach($brand->images as $index => $image)
 <input type="hidden" name="image_ids[]" value="{{ $image->id }}">
 @endforeach
