@@ -43,46 +43,62 @@
 
 
         <!-- Brand Category -->
-        <div class="form-group">
-            <label for="brand_category_ids">Categories:</label>
-            <div>
-                <button type="button" id="show-categories-btn" class="form-control text-left">Select Categories</button>
-                <select name="brand_category_ids[]" id="brand_category_ids" class="form-control" multiple required style="display: none;">
-                    @foreach ($categories as $category)
-                    <option value="{{ $category->id }}" {{ in_array($category->id, $brand->categories->pluck('id')->toArray()) ? 'selected' : '' }}>
-                        {{ $category->name }}
-                    </option>
-                    @endforeach
-                </select>
-            </div>
-        </div>
+
         <div class="row">
-            @for($i = 0; $i < 4; $i++) @php $image=isset($images[$i]) ? $images[$i] : null; $imagePath=$image ? asset('storage/' . $image->image_path) : '';
-                @endphp
-                <div class="col">
-                    <div class='square-box'>
-                        <div class="image-preview" id="preview{{ $i + 1 }}">
-                            <img src="{{ $imagePath }}" alt="Preview Image {{ $i + 1 }}">
-                            <button class="remove-image" id="remove{{ $i + 1 }}">X</button>
-                        </div>
-                        <div class='square-content'>
-                            <input type="file" name="images[]" class="image-upload" id="upload{{ $i + 1 }}">
-                            <label for="upload{{ $i + 1 }}" class="upload-label">+</label>
-                        </div>
+            @foreach($brand->images->take(4) as $index => $image)
+            <div class="col">
+                <div class="square-box">
+                    <div class="image-preview-edit" id="preview{{ $index + 1 }}">
+                        <img src="{{ asset('storage/' . $image->image_path) }}" alt="Preview Image {{ $index + 1 }}">
+                        <button type="button" class="remove-image" id="remove{{ $index + 1 }}" data-image-id="{{ $image->id }}">X</button>
+                    </div>
+                    <div class="square-content">
+                        <input type="file" name="images[]" class="image-upload" id="upload{{ $index + 1 }}">
+                        <label for="upload{{ $index + 1 }}" class="upload-label">+</label>
                     </div>
                 </div>
-                @endfor
-                
-        </div>
-        <div class="row">
-            <div class="col-8">
-                <button type="submit" class="btn btn-dark btn-block font-weight-bold">Зачувај</button>
             </div>
-            <div class="col-4 align-self-center">
-                <a href="{{ url()->previous() }}" class=" text-dark">Откажи</a>
-            </div>
+            @endforeach
+            @for($i = $brand->images->count() + 1; $i <= 4; $i++) <div class="col">
+                <div class="square-box">
+                    <div class="image-preview-edit" style="display: none;" id="preview{{ $i }}">
+                        <img src="" alt="Preview Image {{ $i }}">
+                        <button type="button" class="remove-image" id="remove{{ $i }}">X</button>
+                    </div>
+                    <div class="square-content">
+                        <input type="file" name="images[]" class="image-upload" id="upload{{ $i }}">
+                        <label for="upload{{ $i }}" class="upload-label">+</label>
+                    </div>
+                </div>
         </div>
-    </form>
+        @endfor
+</div>
+
+@foreach($brand->images as $index => $image)
+<input type="hidden" name="image_ids[]" value="{{ $image->id }}">
+@endforeach
+<div class="form-group mb-4">
+    <label for="brand_category_ids">Categories:</label>
+    <div>
+        <button type="button" id="show-categories-btn" class="form-control text-left">Select Categories</button>
+        <select name="brand_category_ids[]" id="brand_category_ids" class="form-control" multiple required style="display: none;">
+            @foreach ($categories as $category)
+            <option value="{{ $category->id }}" {{ in_array($category->id, $brand->categories->pluck('id')->toArray()) ? 'selected' : '' }}>
+                {{ $category->name }}
+            </option>
+            @endforeach
+        </select>
+    </div>
+</div>
+<div class="row">
+    <div class="col-8">
+        <button type="submit" class="btn btn-dark btn-block font-weight-bold">Зачувај</button>
+    </div>
+    <div class="col-4 align-self-center">
+        <a href="{{ url()->previous() }}" class=" text-dark">Откажи</a>
+    </div>
+</div>
+</form>
 </div>
 @endsection
 

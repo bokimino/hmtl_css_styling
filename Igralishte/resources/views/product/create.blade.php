@@ -18,31 +18,56 @@
                     <option value="1">Активен</option>
                     <option value="0">Архивирај</option>
                 </select>
+                @error('is_active')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
             </div>
         </div>
 
         <div class="form-group">
             <label>Name:</label>
             <input type="text" name="name" class="form-control roundedInput">
+            @error('name')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
         </div>
 
         <div class="form-group">
             <label>Description:</label>
             <textarea name="description" class="form-control"></textarea>
+            @error('description')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
         </div>
 
         <div class="form-group">
             <label>Price:</label>
             <input type="text" name="price" class="form-control">
+            @error('price')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
         </div>
 
         <div class="form-group">
             <label>Quantity:</label>
             <div class="quantity-input">
-                <button type="button" class="btn btn-sm btn-secondary decrease rounded-circle" style="width: 30px;">-</button>
+                <button type="button" class="btn btn-sm btn-white border decrease rounded-circle" style="width: 30px;">-</button>
                 <input type="text" name="quantity" value="1" class="text-center border-0" style="width: 30px;" readonly>
-                <button type="button" class="btn btn-sm btn-secondary increase rounded-circle" style="width: 30px;">+</button>
+                <button type="button" class="btn btn-sm btn-white border increase rounded-circle" style="width: 30px;">+</button>
             </div>
+            @error('quantity')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
         </div>
 
         <div class="form-group">
@@ -51,16 +76,26 @@
             <input type="checkbox" name="sizes[]" value="{{ $size->id }}" id="size{{ $size->id }}" class="size-checkbox visually-hidden">
             <label for="size{{ $size->id }}" class="size-label rounded text-uppercase font-weight-bold">{{ $size->name }}</label>
             @endforeach
+            @error('sizes')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
         </div>
 
         <div class="form-group">
             <label>Size Description:</label>
             <textarea name="size_description" class="form-control"></textarea>
+            @error('size_description')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
         </div>
         <div class="form-group">
             <label>Colors:</label><br>
             @foreach ($colors as $color)
-            <div class="form-check form-check-inline">
+            <div class="form-check form-check-inline mr-0">
                 <input type="checkbox" name="colors[]" value="{{ $color->id }}" id="color{{ $color->id }}" class="form-check-input size-checkbox visually-hidden">
                 <label class="form-check-label color-label rounded" for="color{{ $color->id }}" @if ($color->hex === '#FFFFFF')
                     style="background-color: {{ $color->hex }}; outline: 1px solid black;"
@@ -69,65 +104,114 @@
                     @endif>
                 </label>
             </div>
+            @error('colors')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
             @endforeach
         </div>
-
-
 
         <div class="form-group">
             <label>Maintenance:</label>
             <input type="text" name="maintenance" class="form-control">
+            @error('maintenance')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
         </div>
-
 
         <div class="form-group">
             <label for="tags">Tags:</label>
             <input type="text" name="tags" id="tags" class="form-control" placeholder="Enter tags separated by commas">
-        </div>
-
-        <label>Category:</label><br>
-        <div class="form-row">
-            <div class="form-group col-4">
-                <select id="brand_id" name="brand_id" class="form-control">
-                    <option value="">Одбери</option>
-                    @foreach ($brands as $brand)
-                    @if ($brand->is_active)
-                    <option value="{{ $brand->id }}">{{ $brand->name }}</option>
-                    @endif
-                    @endforeach
-                </select>
-            </div>
-
-            <div class="form-group col-4 offset-2">
-                <select id="brand_category_id" name="brand_category_id" class="form-control">
-                    <option value="">Одбери</option>
-                </select>
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            <button id="addDiscountButton" class="border-0 bg-white">Add Discount <x-add-button /></button>
-            <div id="discountDropdown" class="mt-2" style="display: none;">
-                <label for="discount_id">Select Discount:</label><br>
-                <select class="form-control" id="discountSelect" name="discount_id">
-                    @foreach($discounts as $discount)
-                    <option value="{{ $discount->id }}">{{ $discount->code }}</option>
-                    @endforeach
-                </select>
-            </div>
+            @error('tags')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
         </div>
 
         <div class="row">
-            <div class="col-8">
-                <button type="submit" class="btn btn-dark btn-block font-weight-bold">Зачувај</button>
-            </div>
-            <div class="col-4 align-self-center">
-                <a href="{{ url()->previous() }}" class="text-dark">Откажи</a>
-            </div>
+            @for($i = 1; $i <= 4; $i++) <div class="col">
+                <div class="square-box">
+                    <div class="image-preview-edit" style="display: none;" id="preview{{ $i }}">
+                        <img src="" alt="Preview Image {{ $i }}">
+                        <button type="button" class="remove-image" id="remove{{ $i }}">X</button>
+                    </div>
+                    <div class="square-content">
+                        <input type="file" name="images[]" class="image-upload" id="upload{{ $i }}">
+                        <label for="upload{{ $i }}" class="upload-label">+</label>
+                    </div>
+                </div>
+                @error('images')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
         </div>
+        @endfor
 
-    </form>
+</div>
+
+<label>Category:</label><br>
+<div class="form-row">
+    <div class="form-group col-4">
+        <select id="brand_id" name="brand_id" class="form-control">
+            <option value="">Одбери</option>
+            @foreach ($brands as $brand)
+            @if ($brand->is_active)
+            <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+            @endif
+            @endforeach
+        </select>
+        @error('brand_id')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+        @enderror
+    </div>
+
+    <div class="form-group col-4 offset-1">
+        <select id="brand_category_id" name="brand_category_id" class="form-control">
+            <option value="">Одбери</option>
+        </select>
+        @error('brand_category_id')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+        @enderror
+    </div>
+</div>
+
+
+<div class="form-group">
+    <button id="addDiscountButton" class="border-0 bg-white">Add Discount <x-add-button /></button>
+    <div id="discountDropdown" class="mt-2" style="display: none;">
+        <label for="discount_id">Select Discount:</label><br>
+        <select class="form-control" id="discountSelect" name="discount_id">
+            @foreach($discounts as $discount)
+            <option value="{{ $discount->id }}">{{ $discount->code }}</option>
+            @endforeach
+        </select>
+        @error('discount_id')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+        @enderror
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-8">
+        <button type="submit" class="btn btn-dark btn-block font-weight-bold">Зачувај</button>
+    </div>
+    <div class="col-4 align-self-center">
+        <a href="{{ url()->previous() }}" class="text-dark">Откажи</a>
+    </div>
+</div>
+
+</form>
 </div>
 
 @endsection

@@ -14,8 +14,24 @@
     <!-- Latest compiled and minified Bootstrap 4.6 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <!-- Latest Font-Awesome CDN -->
-    <script src="https://kit.fontawesome.com/3257d9ad29.js" crossorigin="anonymous"></script>
+
     <style>
+        .size-checkbox {
+            display: none;
+        }
+
+        .size-label {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-color: pink;
+            border: 1px solid pink;
+            margin-right: 10px;
+            text-align: center;
+            line-height: 30px;
+            cursor: pointer;
+        }
+
         .size-checkbox:checked+.size-label {
             background-color: #8A8328;
 
@@ -32,9 +48,8 @@
 
         .color-label {
             display: inline-block;
-            width: 30px;
-            height: 30px;
-
+            width: 25px;
+            height: 25px;
             margin-right: 5px;
             cursor: pointer;
         }
@@ -54,6 +69,23 @@
             display: none;
         }
 
+        .image-preview-edit {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 2px solid #ccc;
+            display: unset;
+
+        }
+
+        .image-preview-edit img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         .image-preview img {
             width: 100%;
             height: 100%;
@@ -68,7 +100,14 @@
             border: none;
             cursor: pointer;
         }
-
+        .image-preview-edit button {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: #fff;
+            border: none;
+            cursor: pointer;
+        }
         .image-upload {
             position: absolute;
             top: 0;

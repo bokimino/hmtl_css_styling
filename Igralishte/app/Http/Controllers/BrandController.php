@@ -63,14 +63,8 @@ class BrandController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'is_active' => 'required|boolean',
-            'brand_category_ids' => 'required|array',
-            'brand_category_ids.*' => 'exists:brand_categories,id',
-            'brand_tag_ids' => 'required|array',
-            'brand_tag_ids.*' => 'exists:brand_tags,id',
-            'images' => 'required|array',
-            'images.*' => 'required|image',
-            'remove_images' => 'nullable|array',
-            'remove_images.*' => 'exists:brand_images,id',
+            'images' => 'required|array|min:1',
+            'images.*' => 'image',
         ]);
 
         $brand = new Brand();
@@ -95,7 +89,7 @@ class BrandController extends Controller
         }
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
-                $imagePath = $image->store('brand_images');
+                $imagePath = $image->store('brand_images', 'public');
                 $brand->images()->create(['image_path' => $imagePath]);
             }
         }
@@ -132,14 +126,8 @@ class BrandController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'is_active' => 'required|boolean',
-            'brand_category_ids' => 'required|array',
-            'brand_category_ids.*' => 'exists:brand_categories,id',
-            'brand_tag_ids' => 'required|array',
-            'brand_tag_ids.*' => 'exists:brand_tags,id',
-            'images' => 'nullable|array',
+            'images' => 'required|array|min:1',
             'images.*' => 'image',
-            'remove_images' => 'nullable|array',
-            'remove_images.*' => 'exists:brand_images,id',
         ]);
 
         $brand->name = $request->input('name');
@@ -160,7 +148,9 @@ class BrandController extends Controller
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $index => $image) {
                 if ($index < 4) {
-                    $imagePath = $image->store('brand_images');
+
+                    $imagePath = $image->store('brand_images', 'public');
+
                     if ($index < count($brand->images)) {
 
                         $brand->images()->where('id', $request->input('image_ids.' . $index))->update(['image_path' => $imagePath]);
