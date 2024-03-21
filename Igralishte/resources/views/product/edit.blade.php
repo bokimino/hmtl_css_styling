@@ -85,55 +85,88 @@
             <input type="text" name="tags" id="tags" class="form-control" placeholder="Enter tags separated by commas" value="{{ $product->tags->implode('name', ', ') }}">
         </div>
 
-        <label>Category:</label><br>
-        <div class="form-row">
-            <div class="form-group col-4">
-                <select id="brand_id" name="brand_id" class="form-control">
-                    <option value="">Одбери</option>
-                    @foreach ($brands as $brand)
-                    <option value="{{ $brand->id }}">
-                        {{ $brand->name }}
-                    </option>
-                    @endforeach
-                </select>
-            </div>
-
-            <div class="form-group col-4 offset-2">
-                <select id="brand_category_id" name="brand_category_id" class="form-control">
-                    <option value="">Одбери</option>
-                    @foreach ($brandCategories as $category)
-                    <option value="{{ $category->id }}" {{ $product->brand_category_id == $category->id ? 'selected' : '' }}>
-                        {{ $category->name }}
-                    </option>
-                    @endforeach
-                </select>
-            </div>
-        </div>
-
-
-
-        <div class="form-group">
-            <button id="addDiscountButton" class="border-0 bg-white">Add Discount <x-add-button /></button>
-            <div id="discountDropdown" class="mt-2" style="display: none;">
-                <label for="discount_id">Select Discount:</label><br>
-                <select class="form-control" id="discountSelect" name="discount_id">
-                    @foreach($discounts as $discount)
-                    <option value="{{ $discount->id }}">{{ $discount->id == $product->discount_id ? 'Одбрано' : '' }}->{{ $discount->code }}</option>
-                    @endforeach
-                </select>
-            </div>
-        </div>
-
         <div class="row">
-            <div class="col-8">
-                <button type="submit" class="btn btn-dark btn-block font-weight-bold">Зачувај</button>
+            @foreach($productImages as $index => $image)
+            <div class="col">
+                <div class="square-box">
+                    <div class="image-preview-edit" id="preview{{ $index + 1 }}">
+                        <img src="{{ asset('storage/' . $image->image) }}" alt="Preview Image {{ $index + 1 }}">
+                        <button type="button" class="remove-image" id="remove{{ $index + 1 }}" data-image-id="{{ $image->id }}">X</button>
+                    </div>
+                    <div class="square-content">
+                        <input type="file" name="images[]" class="image-upload" id="upload{{ $index + 1 }}">
+                        <label for="upload{{ $index + 1 }}" class="upload-label">+</label>
+                    </div>
+                </div>
             </div>
-            <div class="col-4 align-self-center">
-                <a href="{{ url()->previous() }}" class="text-dark">Откажи</a>
-            </div>
+            @endforeach
+            @for($i = $productImages->count() + 1; $i <= 4; $i++) <div class="col">
+                <div class="square-box">
+                    <div class="image-preview-edit" style="display: none;" id="preview{{ $i }}">
+                        <img src="" alt="Preview Image {{ $i }}">
+                        <button type="button" class="remove-image" id="remove{{ $i }}">X</button>
+                    </div>
+                    <div class="square-content">
+                        <input type="file" name="images[]" class="image-upload" id="upload{{ $i }}">
+                        <label for="upload{{ $i }}" class="upload-label">+</label>
+                    </div>
+                </div>
         </div>
+        @endfor
+</div>
 
-    </form>
+@foreach($productImages as $index => $productImage)
+        <input type="hidden" name="existing_image_ids[]" value="{{ $productImage->id }}">
+    @endforeach
+<label>Category:</label><br>
+<div class="form-row">
+    <div class="form-group col-4">
+        <select id="brand_id" name="brand_id" class="form-control">
+            <option value="">Одбери</option>
+            @foreach ($brands as $brand)
+            <option value="{{ $brand->id }}">
+                {{ $brand->name }}
+            </option>
+            @endforeach
+        </select>
+    </div>
+
+    <div class="form-group col-4 offset-2">
+        <select id="brand_category_id" name="brand_category_id" class="form-control">
+            <option value="">Одбери</option>
+            @foreach ($brandCategories as $category)
+            <option value="{{ $category->id }}" {{ $product->brand_category_id == $category->id ? 'selected' : '' }}>
+                {{ $category->name }}
+            </option>
+            @endforeach
+        </select>
+    </div>
+</div>
+
+
+
+<div class="form-group">
+    <button id="addDiscountButton" class="border-0 bg-white">Add Discount <x-add-button /></button>
+    <div id="discountDropdown" class="mt-2" style="display: none;">
+        <label for="discount_id">Select Discount:</label><br>
+        <select class="form-control" id="discountSelect" name="discount_id">
+            @foreach($discounts as $discount)
+            <option value="{{ $discount->id }}">{{ $discount->id == $product->discount_id ? 'Одбрано' : '' }}->{{ $discount->code }}</option>
+            @endforeach
+        </select>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-8">
+        <button type="submit" class="btn btn-dark btn-block font-weight-bold">Зачувај</button>
+    </div>
+    <div class="col-4 align-self-center">
+        <a href="{{ url()->previous() }}" class="text-dark">Откажи</a>
+    </div>
+</div>
+
+</form>
 </div>
 @endsection
 

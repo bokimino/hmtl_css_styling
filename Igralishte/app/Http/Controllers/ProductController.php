@@ -26,7 +26,7 @@ class ProductController extends Controller
                 $query->where('name', 'like', '%' . $searchTerm . '%');
             })
             ->get();
-    
+
         return view('product.index', compact('products'));
     }
 
@@ -57,9 +57,23 @@ class ProductController extends Controller
     {
 
         $request->validate([
-            'sizes' => 'required_without_all:size1,size2,size3,size4,size5',
-
-
+            'is_active' => 'required|boolean',
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'price' => 'required|numeric|min:0',
+            'quantity' => 'required',
+            'sizes' => 'required|array|min:1',
+            'sizes.*' => 'exists:sizes,id',
+            'size_description' => 'required|string',
+            'colors' => 'required|array|min:1',
+            'colors.*' => 'exists:colors,id',
+            'maintenance' => 'required|string',
+            'tags' => 'nullable|string',
+            'images' => 'required|array|min:1|max:4',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
+            'brand_id' => 'required|exists:brands,id',
+            'brand_category_id' => 'required|exists:brand_categories,id',
+            'discount_id' => 'nullable|exists:discounts,id',
         ]);
 
         $product = new Product();
@@ -97,6 +111,14 @@ class ProductController extends Controller
         $selectedColors = $request->input('colors', []);
         $product->colors()->sync($selectedColors);
 
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $index => $image) {
+                if ($index < 4) {
+                    $imagePath = $image->store('product_images', 'public');
+                    $product->images()->create(['image' => $imagePath]);
+                }
+            }
+        }
 
         return redirect()->route('products.index')->with('success', 'Product created successfully.');
     }
@@ -119,8 +141,8 @@ class ProductController extends Controller
         $brandCategories = Brand_category::all();
         $brands = Brand::all();
         $discounts = Discount::where('is_active', true)->get();
-
-        return view('product.edit', compact('product', 'sizes', 'colors', 'brandCategories', 'brands', 'discounts'));
+        $productImages = $product->images;
+        return view('product.edit', compact('product', 'sizes', 'colors', 'brandCategories', 'brands', 'discounts', 'productImages'));
     }
     /**
      * Update the specified resource in storage.
@@ -128,20 +150,25 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $request->validate([
+            'is_active' => 'required|boolean',
             'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'price' => 'required|numeric',
-            'is_active' => 'nullable|boolean',
-            'size_description' => 'nullable|string',
-            'maintenance' => 'nullable|string',
-            'quantity' => 'required|integer|min:1',
-            'brand_id' => 'required|exists:brands,id',
-            'discount_id' => 'nullable|exists:discounts,id',
-            'tags' => 'nullable|string',
-            'sizes' => 'nullable|array',
+            'description' => 'required|string',
+            'price' => 'required|numeric|min:0',
+            'quantity' => 'required',
+            'sizes' => 'required|array|min:1',
             'sizes.*' => 'exists:sizes,id',
-            'colors' => 'nullable|array',
+            'size_description' => 'required|string',
+            'colors' => 'required|array|min:1',
             'colors.*' => 'exists:colors,id',
+            'maintenance' => 'required|string',
+            'tags' => 'nullable|string',
+            'images' => 'nullable|array|max:4',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
+            'existing_image_ids' => 'nullable|array', 
+            'existing_image_ids.*' => 'exists:product_images,id', 
+            'brand_id' => 'required|exists:brands,id',
+            'brand_category_id' => 'required|exists:brand_categories,id',
+            'discount_id' => 'nullable|exists:discounts,id',
         ]);
 
         $product->update([
@@ -175,6 +202,20 @@ class ProductController extends Controller
 
         $selectedColors = $request->input('colors', []);
         $product->colors()->sync($selectedColors);
+
+        if ($request->has('existing_image_ids')) {
+            $existingImageIds = $request->input('existing_image_ids');
+            $product->images()->whereIn('id', $existingImageIds)->delete();
+        }
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $index => $image) {
+                if ($index < 4) {
+                    $imagePath = $image->store('product_images', 'public');
+                    $product->images()->create(['image' => $imagePath]);
+                }
+            }
+        }
 
         return redirect()->route('products.index')->with('success', 'Product updated successfully.');
     }
