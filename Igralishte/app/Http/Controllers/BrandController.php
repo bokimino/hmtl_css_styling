@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Brand_tag;
@@ -16,7 +17,7 @@ class BrandController extends Controller
     public function index(Request $request)
     {
         $searchTerm = $request->input('query');
-
+        $admin = User::where('is_admin', true)->first();
         $activeBrands = Brand::where('is_active', true)
             ->where(function ($query) use ($searchTerm) {
                 $query->where('name', 'like', '%' . $searchTerm . '%')
@@ -37,7 +38,7 @@ class BrandController extends Controller
 
         $tags = Brand_tag::pluck('name')->toArray();
 
-        return view('brand.index', compact('activeBrands', 'archivedBrands', 'tags'));
+        return view('brand.index', compact('activeBrands', 'archivedBrands', 'tags', 'admin'));
     }
 
     /**

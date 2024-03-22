@@ -99,7 +99,7 @@
             <div class="flex-sm-column flex-row flex-nowrap min-vh-100 " style="position: relative;">
                 <div class="d-flex align-items-center ml-md-2 mb-3">
                     <a href="{{ route('products.index') }}" class="d-block p-3 link-dark text-decoration-none" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
-                        <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" style="width: 40px" alt="Avatar" />
+                        <img src="{{ asset('storage/' . $admin->image) }}" class="rounded-circle" style="width: 40px" alt="Avatar" />
                     </a>
                     @if(auth()->check())
                     <div class="d-none d-md-block ml-2 mt-2">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Product;
 use App\Models\Discount;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ class DiscountController extends Controller
     public function index(Request $request)
     {
         $searchTerm = $request->input('query');
-
+        $admin = User::where('is_admin', true)->first();
         $activeDiscounts = Discount::where('is_active', true)
             ->where(function ($query) use ($searchTerm) {
                 $query->where('code', 'like', '%' . $searchTerm . '%')
@@ -32,7 +33,7 @@ class DiscountController extends Controller
 
         $discounts = Discount::all();
 
-        return view('discount.index', compact('discounts', 'activeDiscounts', 'inactiveDiscounts'));
+        return view('discount.index', compact('discounts', 'activeDiscounts', 'inactiveDiscounts', 'admin'));
     }
 
     /**
