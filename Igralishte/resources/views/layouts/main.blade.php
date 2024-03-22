@@ -79,10 +79,17 @@
             .logoutIconBorder {
                 border-top: none;
             }
+            .fixed-bottom {
+                width: 184.99px;
+              
+            }
         }
 
         @media only screen and (min-width: 1024px) {
             .logoutBorder {
+                width: 200.9px;
+            }
+            .fixed-bottom {
                 width: 200.9px;
             }
         }
