@@ -107,6 +107,9 @@
         </div>
         @endforeach
     </div>
+    <div class="container d-flex justify-content-center logoutIconBorder p-3 cormorant-garamond-regular h2">
+        {{ $products->links('vendor.pagination.custom') }}
+    </div>
 </div>
 @endsection
 

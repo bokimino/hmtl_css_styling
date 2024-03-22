@@ -23,11 +23,11 @@ class ProductController extends Controller
         $admin = User::where('is_admin', true)->first();
 
         $products = Product::query()
-            ->where('name', 'like', '%' . $searchTerm . '%')
-            ->orWhereHas('brand', function ($query) use ($searchTerm) {
-                $query->where('name', 'like', '%' . $searchTerm . '%');
-            })
-            ->get();
+        ->where('name', 'like', '%' . $searchTerm . '%')
+        ->orWhereHas('brand', function ($query) use ($searchTerm) {
+            $query->where('name', 'like', '%' . $searchTerm . '%');
+        })
+        ->paginate(2); 
 
         return view('product.index', compact('products', 'admin'));
     }

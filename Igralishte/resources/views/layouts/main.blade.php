@@ -16,8 +16,16 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <!-- Latest compiled and minified Bootstrap 4.6 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap" rel="stylesheet">
     <style>
+        .cormorant-garamond-regular {
+            font-family: "Cormorant Garamond", serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
         .roundedInput {
             border-radius: 10px;
         }
