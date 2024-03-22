@@ -24,7 +24,7 @@
         @if (is_array($element))
         @foreach ($element as $page => $url)
         @if ($page == $paginator->currentPage())
-        <li class="active text-danger" aria-current="page"><span>{{ $page }}</span></li>
+        <li class="active text-danger " aria-current="page"><span>{{ $page }}</span></li>
         @else
         <li><a class="text-decoration-none text-dark " href="{{ $url }}">{{ $page }}</a></li>
         @endif
