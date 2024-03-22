@@ -5,18 +5,17 @@
 <div class="container">
     <h2>Мој профил</h2>
 
-    <a href="#" class="d-block p-3 link-dark text-decoration-none" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
-        <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" style="width: 40px" alt="Avatar" />
-    </a>
-    <form method="POST" action="{{ route('admin.profile.update') }}">
+    <div class="py-3" title="">
+        <img src="{{ asset('storage/' . $admin->image) }}" class="rounded-circle" style="width: 120px; height: 120px;" alt="Avatar" />
+    </div>
+    <form method="POST" action="{{ route('admin.profile.update') }}" enctype="multipart/form-data">
         @csrf
+
         <div class="form-group">
-            <div class="image-preview-container">
-                <img id="image-preview" src="{{ $admin->image }}" alt="Profile Image">
-                <input type="file" class="form-control roundedInput" name="image" id="image" style="display: none;">
-                <button id="change-image-btn" class="fancyOlive bg-white">Промени слика</button>
-            </div>
+            <a class="fancyOlive border-0 bg-white" id="changeImage" type="button">Промени слика</a>
+            <input type="file" class="form-control-file" name="image" id="image" style="display: none;">
         </div>
+
         <div class="form-group">
             <label for="name">Име</label>
             <input type="text" class="form-control roundedInput @error('name') is-invalid @enderror" name="name" id="name" value="{{ $admin->name }}">
@@ -64,7 +63,7 @@
 @section('scripts')
 <script>
     $(document).ready(function() {
-        $('#change-image-btn').click(function() {
+        $('#changeImage').click(function() {
             $('#image').click();
         });
     });

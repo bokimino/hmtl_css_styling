@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Size;
+use App\Models\User;
 use App\Models\Brand;
 use App\Models\Color;
 use App\Models\Product;
 use App\Models\Discount;
-use App\Models\Brand_category;
 use App\Models\Product_tag;
 use Illuminate\Http\Request;
+use App\Models\Brand_category;
 
 class ProductController extends Controller
 {
@@ -19,6 +20,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $searchTerm = $request->input('query');
+        $admin = User::where('is_admin', true)->first();
 
         $products = Product::query()
             ->where('name', 'like', '%' . $searchTerm . '%')
@@ -27,7 +29,7 @@ class ProductController extends Controller
             })
             ->get();
 
-        return view('product.index', compact('products'));
+        return view('product.index', compact('products', 'admin'));
     }
 
     /**

@@ -8,7 +8,8 @@
                 <form action="{{ route('products.index') }}" method="GET" class="d-flex ml-2 justify-content-between">
                     <input type="text" name="query" size="100%" class="form-control roundedInput bg-none border-0 py-2" placeholder="Пребарувај...">
                     <div class="input-group-append border-0 ">
-                        <button id="button-addon3" type="submit" class="btn "><x-search-icon /></button>
+                        <button id="button-addon3" type="submit" class="btn px-1"><x-search-icon /></button>
+                        <button id="" type="button" class="btn px-1 py-0 align-self-baseline "> <x-down-icon /></button>
                     </div>
                 </form>
             </div>

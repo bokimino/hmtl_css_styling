@@ -21,19 +21,29 @@
     <!-- Latest Font-Awesome CDN -->
     <script src="https://kit.fontawesome.com/3257d9ad29.js" crossorigin="anonymous"></script>
 </head>
+<style>
+    .gradient-background {
+        background: linear-gradient(#FFDBDB, white);
+        height: 100vh;
+    }
+</style>
 
 <body>
-    <div class="container my-5">
-        <div class="text-center text-uppercase">
-            <h1>Игралиште </h1>
-            <p>Скопје</p>
+    <div class="gradient-background pt-5">
+        <div class="container py-5">
+            <div class="text-center text-uppercase">
+                <img src="{{ asset('images/Logo.png') }}" alt="Logo">
+            </div>
         </div>
+
+        <main class="py-5">
+            @yield('content')
+        </main>
+        <x-footer />
     </div>
 
-    <main class="py-5">
-        @yield('content')
-    </main>
-    <x-footer />
+
+
     <!-- jQuery library -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="ha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 
