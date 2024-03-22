@@ -48,22 +48,32 @@ class AdminController extends Controller
     public function update(Request $request)
     {
         $admin = User::where('is_admin', true)->firstOrFail();
-
+    
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $admin->id,
-            'phone' => 'required|nullable|string|max:20',
-            'image' => 'required',
-
+            'phone' => 'required|string|max:20',
+            'image' => 'nullable|image', // Add validation for the image
         ]);
-
+    
         $admin->update([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'phone' => $request->input('phone'),
-            'image' => $request->input('image'),
         ]);
-
+    
+        // Check if an image is uploaded
+        if ($request->hasFile('image')) {
+            // Delete previous image if needed
+            // Storage::disk('public')->delete($admin->image);
+    
+            $imagePath = $request->file('image')->store('profile_images', 'public');
+            // Update user's image
+            $admin->image = $imagePath;
+        }
+    
+        $admin->save();
+    
         return redirect()->route('admin.profile.edit')->with('success', 'Admin profile updated successfully.');
     }
     public function updatePassword(Request $request)
@@ -87,24 +97,5 @@ class AdminController extends Controller
     public function editPassword()
     {
         return view('admin.profile.editPassword');
-    }
-    public function uploadImage(Request $request)
-    {
-        $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif',
-        ]);
-
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $filename = time() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('public/images', $filename);
-
-            // UNCOMMENT THE FOLLOWING < UPDATE NOT KNOWN FUNCTIOn
-            // auth()->user()->update(['image' => $filename]);
-
-            return back()->with('success', 'Image uploaded successfully.');
-        }
-
-        return back()->withErrors(['image' => 'Error uploading image.']);
     }
 }
