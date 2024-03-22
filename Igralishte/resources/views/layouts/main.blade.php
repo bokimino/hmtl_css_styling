@@ -76,12 +76,14 @@
                 width: 184.99px;
                 border-top: 3px solid #F1F1F1;
             }
+
             .logoutIconBorder {
                 border-top: none;
             }
+
             .fixed-bottom {
                 width: 184.99px;
-              
+
             }
         }
 
@@ -89,6 +91,7 @@
             .logoutBorder {
                 width: 200.9px;
             }
+
             .fixed-bottom {
                 width: 200.9px;
             }
