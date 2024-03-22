@@ -48,6 +48,10 @@ Route::delete('/brands/{brand}', [BrandController::class, 'destroy'])->name('bra
 
 Route::get('/profile', [AdminController::class, 'index'])->name('profile.index');
 
+//list grid viw listView
+Route::get('/product/list', [ProductController::class, 'listView'])->name('product.listView');
+Route::get('/product/grid', [ProductController::class, 'gridView'])->name('product.gridView');
+
 
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
