@@ -16,87 +16,10 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <!-- Latest compiled and minified Bootstrap 4.6 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-
-    <style>
-        .roundedInput {
-            border-radius: 10px;
-        }
-
-        .fixed-bottom {
-            position: fixed;
-            left: 0;
-            bottom: 0;
-
-            z-index: 1030;
-        }
-
-        .fancyOlive {
-            color: #8A8328;
-        }
-
-        .fancyOlive:hover {
-            color: #8A8328;
-        }
-
-        .color-square {
-            height: 15px;
-            width: 15px;
-            display: inline-block;
-        }
-
-        .image-preview-container {
-            position: relative;
-            display: inline-block;
-        }
-
-        #image-preview {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-        }
-
-        #change-image-btn {
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .custom-input-border-color .form-control:focus {
-            border-color: transparent;
-            box-shadow: none;
-        }
-
-        .logoutIconBorder {
-            border-top: 3px solid #F1F1F1;
-        }
-
-        @media only screen and (min-width: 768px) {
-            .logoutBorder {
-                width: 184.99px;
-                border-top: 3px solid #F1F1F1;
-            }
-
-            .logoutIconBorder {
-                border-top: none;
-            }
-
-            .fixed-bottom {
-                width: 184.99px;
-
-            }
-        }
-
-        @media only screen and (min-width: 1024px) {
-            .logoutBorder {
-                width: 200.9px;
-            }
-
-            .fixed-bottom {
-                width: 200.9px;
-            }
-        }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap" rel="stylesheet">
+    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -108,7 +31,7 @@
 
             <div class="flex-sm-column flex-row flex-nowrap min-vh-100 " style="position: relative;">
                 <div class="d-flex align-items-center ml-md-2 mb-3">
-                    <a href="{{ route('products.index') }}" class="d-block p-3 link-dark text-decoration-none" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
+                    <a href="{{ route('product.listView') }}" class="d-block p-3 link-dark text-decoration-none" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
                         <img src="{{ asset('storage/' . $admin->image) }}" class="rounded-circle" style="width: 40px" alt="Avatar" />
                     </a>
                     @if(auth()->check())
@@ -120,7 +43,7 @@
                 </div>
                 <ul class="nav nav-pills nav-flush flex-column flex-row flex-nowrap mb-auto mx-auto text-center justify-content-between w-100 align-items-center align-items-md-start pl-md-3">
                     <li class="roundedInput col-md-12 px-md-0">
-                        <a href="{{ route('products.index') }}" id="clothesButton" class="nav-link my-2 px-2 d-flex font-weight-bold text-secondary align-items-center" @if($currentRoute=='products.index' ) @style('background-color: #FFDBDB;') @endif>
+                        <a href="{{ route('product.listView') }}" id="clothesButton" class="nav-link my-2 px-2 d-flex font-weight-bold text-secondary align-items-center" @if($currentRoute=='product.listView' || $currentRoute=='product.gridView' ) @style('background-color: #FFDBDB;') @endif>
                             <x-clothes-button />
                             <p class="d-none d-md-block ml-1 mb-0 py-md-2 p-lg-2">Vintage Облека</p>
                         </a>

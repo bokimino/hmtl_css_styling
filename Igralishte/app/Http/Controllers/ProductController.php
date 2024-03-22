@@ -21,15 +21,37 @@ class ProductController extends Controller
     {
         $searchTerm = $request->input('query');
         $admin = User::where('is_admin', true)->first();
-
         $products = Product::query()
             ->where('name', 'like', '%' . $searchTerm . '%')
             ->orWhereHas('brand', function ($query) use ($searchTerm) {
                 $query->where('name', 'like', '%' . $searchTerm . '%');
             })
-            ->get();
-
-        return view('product.index', compact('products', 'admin'));
+            ->paginate(2);
+        return view('product.index', compact('products', 'admin',));
+    }
+    public function listView(Request $request)
+    {
+        $searchTerm = $request->input('query');
+        $admin = User::where('is_admin', true)->first();
+        $products = Product::query()
+            ->where('name', 'like', '%' . $searchTerm . '%')
+            ->orWhereHas('brand', function ($query) use ($searchTerm) {
+                $query->where('name', 'like', '%' . $searchTerm . '%');
+            })
+            ->paginate(2);
+        return view('product.list', compact('products', 'admin',));
+    }
+    public function gridView(Request $request)
+    {
+        $searchTerm = $request->input('query');
+        $admin = User::where('is_admin', true)->first();
+        $products = Product::query()
+            ->where('name', 'like', '%' . $searchTerm . '%')
+            ->orWhereHas('brand', function ($query) use ($searchTerm) {
+                $query->where('name', 'like', '%' . $searchTerm . '%');
+            })
+            ->paginate(2);
+        return view('product.grid', compact('products', 'admin',));
     }
 
     /**
@@ -72,7 +94,7 @@ class ProductController extends Controller
             'maintenance' => 'required|string',
             'tags' => 'nullable|string',
             'images' => 'required|array|min:1|max:4',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'brand_id' => 'required|exists:brands,id',
             'brand_category_id' => 'required|exists:brand_categories,id',
             'discount_id' => 'nullable|exists:discounts,id',
@@ -165,9 +187,9 @@ class ProductController extends Controller
             'maintenance' => 'required|string',
             'tags' => 'nullable|string',
             'images' => 'nullable|array|max:4',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
-            'existing_image_ids' => 'nullable|array', 
-            'existing_image_ids.*' => 'exists:product_images,id', 
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'existing_image_ids' => 'nullable|array',
+            'existing_image_ids.*' => 'exists:product_images,id',
             'brand_id' => 'required|exists:brands,id',
             'brand_category_id' => 'required|exists:brand_categories,id',
             'discount_id' => 'nullable|exists:discounts,id',
