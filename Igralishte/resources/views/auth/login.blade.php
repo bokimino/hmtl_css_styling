@@ -25,7 +25,7 @@
             </div>
             <div class="form-group form-check px-0">
                 @if (Route::has('password.request'))
-                <a class="btn btn-link px-0" href="{{ route('password.request') }}">
+                <a class="btn btn-link fancyOlive px-0" href="{{ route('password.request') }}">
                     Ја заборави лозинката ?
                 </a>
                 @endif
