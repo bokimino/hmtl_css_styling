@@ -144,7 +144,7 @@ class ProductController extends Controller
             }
         }
 
-        return redirect()->route('products.index')->with('success', 'Product created successfully.');
+        return redirect()->route('product.list')->with('success', 'Product created successfully.');
     }
 
     /**
@@ -241,7 +241,7 @@ class ProductController extends Controller
             }
         }
 
-        return redirect()->route('products.index')->with('success', 'Product updated successfully.');
+        return redirect()->route('product.list')->with('success', 'Product updated successfully.');
     }
     /**
      * Remove the specified resource from storage.
@@ -250,7 +250,7 @@ class ProductController extends Controller
     {
         $product->delete();
 
-        return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
+        return redirect()->route('product.list')->with('success', 'Product deleted successfully.');
     }
     public function fetchBrandCategories($brandId)
     {

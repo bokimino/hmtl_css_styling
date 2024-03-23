@@ -5,6 +5,7 @@ namespace App\Http\Controllers\auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -63,5 +64,20 @@ class UserController extends Controller
         ]);
 
         return response()->json(['message' => 'User profile updated successfully'], 200);
+    }
+    public function login(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if (Auth::attempt($request->only('email', 'password'))) {
+            $user = Auth::user();
+            $token = $user->createToken('Igralishte')->accessToken;
+            return response()->json(['token' => $token], 200);
+        } else {
+            return response()->json(['error' => 'Invalid credentials'], 401);
+        }
     }
 }

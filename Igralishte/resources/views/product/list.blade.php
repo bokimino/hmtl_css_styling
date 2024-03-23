@@ -36,8 +36,9 @@
                 </div>
 
                 <div class="">
-                    <a href="{{ route('products.edit', $product->id) }}" class=""> <x-edit-button /></a>
-                    <form action="{{ route('products.destroy', $product->id) }}" method="POST" class="d-inline">
+                    <a href="{{ route('products.edit', $product->id) }}" class="text-decoration-none"> <x-edit-button /></a>
+                    <!-- display None set on DELETE -->
+                    <form action="{{ route('products.destroy', $product->id) }}" method="POST" class="d-none">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="border-0 bg-light p-0" onclick="return confirm('Are you sure you want to delete?')"><x-delete-button /></button>

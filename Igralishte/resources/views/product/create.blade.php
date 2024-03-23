@@ -184,25 +184,7 @@
     </div>
 </div>
 
-
-<div class="form-group">
-    <button id="addDiscountButton" class="border-0 bg-white">Add Discount <x-add-button /></button>
-    <div id="discountDropdown" class="mt-2" style="display: none;">
-        <label for="discount_id">Select Discount:</label><br>
-        <select class="form-control" id="discountSelect" name="discount_id">
-            @foreach($discounts as $discount)
-            <option value="{{ $discount->id }}">{{ $discount->code }}</option>
-            @endforeach
-        </select>
-        @error('discount_id')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
-        @enderror
-    </div>
-</div>
-
-<div class="row">
+<div class="row mt-3">
     <div class="col-8">
         <button type="submit" class="btn btn-dark btn-block font-weight-bold">Зачувај</button>
     </div>
@@ -258,17 +240,6 @@
             }
         });
     });
-    document.getElementById('addDiscountButton').addEventListener('click', function(event) {
-        event.preventDefault();
-        var dropdown = document.getElementById('discountDropdown');
-        var discountBtn = document.getElementById('addDiscountButton');
-        if (dropdown.style.display === 'none') {
-            dropdown.style.display = 'block';
-            discountBtn.style.display = 'none';
-
-        } else {
-            dropdown.style.display = 'none';
-        }
-    });
+   
 </script>
 @endsection
