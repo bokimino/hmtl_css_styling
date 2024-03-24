@@ -11,7 +11,7 @@
                 </div>
             </form>
         </div>
-        <a href="{{ route('brands.create') }}" class="text-secondary font-weight-bold ">Create New Brand <x-add-button /></a>
+        <a href="{{ route('brands.create') }}" class="text-secondary font-weight-bold ">Додај нов бренд <x-add-button /></a>
     </div>
 </div>
 
@@ -42,7 +42,7 @@
 
 
     <!-- Archived Brands -->
-    <h2 class="h6">Архива</h2>
+    <h2 class="h6 text-secondary">Архива</h2>
     @foreach($archivedBrands as $brand)
     <div class="card mb-3 roundedInput bg-light">
         <div class="card-body d-flex justify-content-between ">

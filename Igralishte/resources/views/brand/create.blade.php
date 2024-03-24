@@ -12,7 +12,7 @@
                 <p class="ml-2 mb-0">Бренд</p>
             </div>
             <div class="form-group col col-md-2 col-lg-2 offset-md-4 offset-lg-4">
-                <select name="is_active" id="is_active" class="form-control @error('is_active') is-invalid @enderror">
+                <select name="is_active" id="is_active" class="form-control roundedInput @error('is_active') is-invalid @enderror">
                     <option value="disabled">Статус</option>
                     <option value="1">Активен</option>
                     <option value="0">Архивирај</option>
@@ -26,7 +26,7 @@
         </div>
         <div class="form-group">
             <label for="name">Име на бренд:</label>
-            <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" required>
+            <input type="text" name="name" id="name" class="form-control roundedInput @error('name') is-invalid @enderror" required>
             @error('name')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -36,7 +36,7 @@
 
         <div class="form-group">
             <label for="description">Опис:</label>
-            <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror"></textarea>
+            <textarea name="description" id="description" class="form-control roundedInput @error('description') is-invalid @enderror"></textarea>
             @error('description')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -45,13 +45,14 @@
         </div>
         <div class="form-group">
             <label for="tags">Ознаки:</label>
-            <input type="text" name="tags" id="tags" class="form-control @error('tags') is-invalid @enderror" placeholder="Enter tags separated by commas">
+            <input type="text" name="tags" id="tags" class="form-control roundedInput @error('tags') is-invalid @enderror">
             @error('tags')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
             @enderror
         </div>
+        <label for="">Слики:</label>
         <div class="row">
             <div class="col">
                 <div class='square-box'>
@@ -102,11 +103,11 @@
                 </div>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group mt-2">
             <label for="brand_category_id">Категорија:</label>
             <div>
-                <button type="button" id="show-categories-btn" class="form-control text-left">Select a Category</button>
-                <select name="brand_category_id[]" id="brand_category_id" class="form-control" multiple style="display: none;">
+                <button type="button" id="show-categories-btn" class="form-control roundedInput text-left">Одбери </button>
+                <select name="brand_category_id[]" id="brand_category_id" class="form-control roundedInput" multiple style="display: none;">
                     @foreach($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
@@ -118,7 +119,7 @@
         </div>
         <div class="row mt-5">
             <div class="col-8">
-                <button type="submit" class="btn btn-dark btn-block font-weight-bold">Зачувај</button>
+                <button type="submit" class="btn btn-dark btn-block font-weight-bold roundedInput">Зачувај</button>
             </div>
             <div class="col-4 align-self-center">
                 <a href="{{ url()->previous() }}" class="text-dark">Откажи</a>

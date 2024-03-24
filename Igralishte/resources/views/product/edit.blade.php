@@ -14,56 +14,56 @@
                 <p class="ml-2 mb-0">Продукт</p>
             </div>
             <div class="form-group col col-md-2 col-lg-2 offset-md-4 offset-lg-4">
-                <select name="is_active" id="is_active" class="form-control">
-                    <option value="1" {{ $product->is_active ? 'selected' : '' }}>Active</option>
-                    <option value="0" {{ !$product->is_active ? 'selected' : '' }}>Inactive</option>
+                <select name="is_active" id="is_active" class="form-control roundedInput">
+                    <option value="1" {{ $product->is_active ? 'selected' : '' }}>Активен</option>
+                    <option value="0" {{ !$product->is_active ? 'selected' : '' }}>Архивирај</option>
                 </select>
             </div>
         </div>
         <div class="form-group">
-            <label>Name:</label>
-            <input type="text" name="name" class="form-control" value="{{ $product->name }}">
+            <label>Име на продуктот:</label>
+            <input type="text" name="name" class="form-control roundedInput" value="{{ $product->name }}">
         </div>
 
         <div class="form-group">
-            <label>Description:</label>
-            <textarea name="description" class="form-control">{{ $product->description }}</textarea>
+            <label>Опис:</label>
+            <textarea name="description" class="form-control roundedInput">{{ $product->description }}</textarea>
         </div>
 
         <div class="form-group">
-            <label>Price:</label>
-            <input type="text" name="price" class="form-control" value="{{ $product->price }}">
+            <label>Цена:</label>
+            <input type="text" name="price" class="form-control roundedInput" value="{{ $product->price }}">
         </div>
 
-        <div class="form-group">
-            <label>Quantity:</label>
-            <div class="quantity-input">
-                <button type="button" class="btn btn-sm btn-secondary decrease rounded-circle" style="width: 30px;">-</button>
+        <div class="form-group d-flex">
+            <label class="mb-0">Количина:</label>
+            <div class="quantity-input ml-3">
+                <button type="button" class="btn btn-sm btn-white border decrease rounded-circle" style="width: 30px;"><x-decrease-icon/></button>
                 <input type="text" name="quantity" value="{{ $product->quantity }}" class="text-center border-0" style="width: 30px;" readonly>
-                <button type="button" class="btn btn-sm btn-secondary increase rounded-circle" style="width: 30px;">+</button>
+                <button type="button" class="btn btn-sm btn-white border increase rounded-circle" style="width: 30px;"><x-increase-icon/></button>
             </div>
         </div>
 
-        <div class="form-group">
-            <label>Sizes:</label><br>
+        <div class="form-group d-flex">
+            <label class="mr-3">Величина:</label><br>
             @foreach ($sizes as $size)
             <div class="form-check form-check-inline">
                 <input type="checkbox" name="sizes[]" value="{{ $size->id }}" id="size{{ $size->id }}" class="size-checkbox visually-hidden" {{ in_array($size->id, $product->sizes->pluck('id')->toArray()) ? 'checked' : '' }}>
-                <label class="size-label rounded text-uppercase font-weight-bold" for="size{{ $size->id }}">{{ $size->name }}</label>
+                <label class="size-label rounded mr-0 text-uppercase font-weight-bold" for="size{{ $size->id }}">{{ $size->name }}</label>
             </div>
             @endforeach
         </div>
 
 
         <div class="form-group">
-            <label>Size Description:</label>
-            <textarea name="size_description" class="form-control">{{ $product->size_description }}</textarea>
+            <label>Совет за величина:</label>
+            <textarea name="size_description" class="form-control roundedInput">{{ $product->size_description }}</textarea>
         </div>
 
         <div class="form-group">
-            <label>Colors:</label><br>
+            <label>Боја:</label><br>
             @foreach ($colors as $color)
-            <div class="form-check form-check-inline">
+            <div class="form-check form-check-inline mr-0">
                 <input type="checkbox" name="colors[]" value="{{ $color->id }}" id="color{{ $color->id }}" class="form-check-input size-checkbox visually-hidden" {{ in_array($color->id, $product->colors->pluck('id')->toArray()) ? 'checked' : '' }}>
                 <label class="form-check-label color-label rounded" for="color{{ $color->id }}" @if ($color->hex === '#FFFFFF')
                     style="background-color: {{ $color->hex }}; outline: 1px solid black;"
@@ -76,15 +76,16 @@
         </div>
 
         <div class="form-group">
-            <label>Maintenance:</label>
-            <input type="text" name="maintenance" class="form-control" value="{{ $product->maintenance }}">
+            <label>Насоки за одржување:</label>
+            <input type="text" name="maintenance" class="form-control roundedInput" value="{{ $product->maintenance }}">
         </div>
 
         <div class="form-group">
-            <label for="tags">Tags:</label>
-            <input type="text" name="tags" id="tags" class="form-control" placeholder="Enter tags separated by commas" value="{{ $product->tags->implode('name', ', ') }}">
+            <label for="tags">Ознаки:</label>
+            <input type="text" name="tags" id="tags" class="form-control roundedInput" placeholder="Enter tags separated by commas" value="{{ $product->tags->implode('name', ', ') }}">
         </div>
 
+        <label for="">Слики:</label>
         <div class="row">
             @foreach($productImages as $index => $image)
             <div class="col">
@@ -116,12 +117,12 @@
 </div>
 
 @foreach($productImages as $index => $productImage)
-        <input type="hidden" name="existing_image_ids[]" value="{{ $productImage->id }}">
-    @endforeach
-<label>Category:</label><br>
+<input type="hidden" name="existing_image_ids[]" value="{{ $productImage->id }}">
+@endforeach
+<label>Категорија:</label><br>
 <div class="form-row">
     <div class="form-group col-4">
-        <select id="brand_id" name="brand_id" class="form-control">
+        <select id="brand_id" name="brand_id" class="form-control roundedInput">
             <option value="">Одбери</option>
             @foreach ($brands as $brand)
             <option value="{{ $brand->id }}">
@@ -131,8 +132,8 @@
         </select>
     </div>
 
-    <div class="form-group col-4 offset-2">
-        <select id="brand_category_id" name="brand_category_id" class="form-control">
+    <div class="form-group col-4 offset-1">
+        <select id="brand_category_id" name="brand_category_id" class="form-control roundedInput">
             <option value="">Одбери</option>
             @foreach ($brandCategories as $category)
             <option value="{{ $category->id }}" {{ $product->brand_category_id == $category->id ? 'selected' : '' }}>
@@ -146,7 +147,7 @@
 
 <div class="row mt-3">
     <div class="col-8">
-        <button type="submit" class="btn btn-dark btn-block font-weight-bold">Зачувај</button>
+        <button type="submit" class="btn btn-dark btn-block font-weight-bold roundedInput">Зачувај</button>
     </div>
     <div class="col-4 align-self-center">
         <a href="{{ url()->previous() }}" class="text-dark">Откажи</a>

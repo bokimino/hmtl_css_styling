@@ -5,9 +5,9 @@
     <div class="text-right">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <div class="input-group mr-2 border roundedInput custom-input-border-color ">
-                <form action="{{ route('product.listView') }}" method="GET" class="d-flex ml-2 justify-content-between">
+                <form action="{{ route('product.listView') }}" method="GET" class="d-flex ml-2 justify-content-between w-100">
                     <input type="text" name="query" size="100%" class="form-control roundedInput bg-none border-0 py-2" placeholder="Пребарувај...">
-                    <div class="input-group-append border-0 ">
+                    <div class="input-group-append border-0 pr-1">
                         <button id="button-addon3" type="submit" class="btn px-1"><x-search-icon /></button>
                         <button id="" type="button" class="btn px-1 py-0 align-self-baseline "> <x-down-icon /></button>
                     </div>
