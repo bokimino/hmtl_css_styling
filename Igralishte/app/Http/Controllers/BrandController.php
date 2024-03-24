@@ -141,26 +141,29 @@ class BrandController extends Controller
         $brandCategoryIds = $request->input('brand_category_ids') ?? [];
         $brand->categories()->sync($brandCategoryIds);
 
-        $brandTagIds = $request->input('brand_tag_ids') ?? [];
-        $brand->tags()->sync($brandTagIds);
+        $tagNames = explode(',', $request->input('tags'));
+        $tagIds = [];
+
+        foreach ($tagNames as $tagName) {
+            $tag = Brand_tag::firstOrCreate(['name' => trim($tagName)]);
+            $tagIds[] = $tag->id;
+        }
+        $brand->tags()->sync($tagIds);
 
         $removeImageIds = $request->input('remove_images', []);
         foreach ($removeImageIds as $imageId) {
             $brand->images()->where('id', $imageId)->delete();
         }
 
-        // Handle image uploads
+
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $index => $image) {
-                // Limit to 4 images
                 if ($index < 4) {
                     $imagePath = $image->store('brand_images', 'public');
 
-                    // If there's an existing image at the same index, update it
                     if ($index < count($brand->images)) {
                         $brand->images()->where('id', $request->input('image_ids.' . $index))->update(['image_path' => $imagePath]);
                     } else {
-                        // Otherwise, create a new image
                         $brand->images()->create(['image_path' => $imagePath]);
                     }
                 }
