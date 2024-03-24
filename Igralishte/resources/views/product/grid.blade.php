@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-<div class="cormorant-garamond-regular">
+<div class="">
     <div class="container mb-4">
         <div class="text-right">
             <div class="d-flex justify-content-between align-items-center mb-3">
@@ -19,7 +19,7 @@
                     <a href="{{ route('product.listView') }}" class="roundedInput border p-1  ml-2" id="list-btn" style="background-color: white;"><x-list-button /></a>
                 </div>
             </div>
-            <a href="{{ route('products.create') }}" class="text-secondary ">Додај нов продукт <x-add-button /></a>
+            <a href="{{ route('products.create') }}" class="text-secondary inter-500">Додај нов продукт <x-add-button /></a>
         </div>
     </div>
     @if(session('success'))
@@ -27,18 +27,18 @@
         {{ session('success') }}
     </div>
     @endif
-    <div class="container ">
+    <div class="container cormorant-garamond-regular">
         <div class="row " id="grid">
             @foreach ($products as $product)
             <div class="col-lg-4 col-md-6 mb-3">
                 <div class="card roundedInput bg-light">
                     <div class="card-body p-3">
-                        <div class="d-flex justify-content-between">
-                            <p class="card-text mb-1 text-muted">Само
+                        <div class="d-flex justify-content-between align-items-end">
+                            <p class="card-text mb-1 text-muted  font-18">Само
                                 {{ $product->quantity > 0 ? $product->quantity : '0' }}
                                 парче
                             </p>
-                            @if ($product->quantity < 1) <span class="">Продадено</span>
+                            @if ($product->quantity < 1) <span class=" font-24">Продадено</span>
                                 @endif
                         </div>
                         <div id="carousel{{ $product->id }}" class="carousel slide" data-ride="carousel" data-interval="false">
@@ -64,26 +64,26 @@
                                     <h5 class="card-title mb-0 font-24">{{ $product->name }}</h5>
                                 </div>
                                 <div>
-                                    <span class="fancyOlive font-weight-bold inter-500">{{ $product->id }}</span>
+                                    <span class="fancyOlive font-weight-bold inter-500  font-18">{{ $product->id }}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="card-footer border-0 bg-light pt-0 ">
                         <div class="text-dark d-block">
-                            <small>Боја:</small>
+                            <small class="font-18">Боја:</small>
                             @foreach($product->colors as $color)
                             <div class="color-square rounded" <?php ?> style="background-color: {{ $color->hex }};"></div>
                             @endforeach
                         </div>
-                        <div class="d-flex justify-content-between">
-                            <small class="text-dark">Величина:
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-dark font-18">Величина:
                                 @foreach($product->sizes as $size)
-                                <span class="text-dark text-capitalize"> {{ $size->name }}</span>
+                                <span class="text-dark text-capitalize font-weight-bold"> {{ $size->name }}</span>
                                 @if (!$loop->last),
                                 @endif
                                 @endforeach</small>
-                            <small class="text-dark">Цена: <span class="text-dark font-24">{{ $product->price }} ден.</span></small>
+                            <small class="text-dark font-18">Цена: <span class="text-dark font-24 font-weight-bold">{{ $product->price }} ден.</span></small>
                         </div>
                     </div>
                 </div>
