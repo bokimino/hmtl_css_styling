@@ -5,9 +5,9 @@
     <div class="text-right">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <div class="input-group mr-2 border roundedInput custom-input-border-color ">
-                <form action="{{ route('product.listView') }}" method="GET" class="d-flex ml-2 justify-content-between">
+                <form action="{{ route('product.listView') }}" method="GET" class="d-flex ml-2 justify-content-between w-100">
                     <input type="text" name="query" size="100%" class="form-control roundedInput bg-none border-0 py-2" placeholder="Пребарувај...">
-                    <div class="input-group-append border-0 ">
+                    <div class="input-group-append border-0 pr-1">
                         <button id="button-addon3" type="submit" class="btn px-1"><x-search-icon /></button>
                         <button id="" type="button" class="btn px-1 py-0 align-self-baseline "> <x-down-icon /></button>
                     </div>
@@ -36,8 +36,9 @@
                 </div>
 
                 <div class="">
-                    <a href="{{ route('products.edit', $product->id) }}" class=""> <x-edit-button /></a>
-                    <form action="{{ route('products.destroy', $product->id) }}" method="POST" class="d-inline">
+                    <a href="{{ route('products.edit', $product->id) }}" class="text-decoration-none"> <x-edit-button /></a>
+                    <!-- display None set on DELETE -->
+                    <form action="{{ route('products.destroy', $product->id) }}" method="POST" class="d-none">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="border-0 bg-light p-0" onclick="return confirm('Are you sure you want to delete?')"><x-delete-button /></button>

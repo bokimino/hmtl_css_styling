@@ -16,34 +16,30 @@
                 <p class="ml-2 mb-0">Попуст/промо код</p>
             </div>
             <div class="form-group col col-md-2 col-lg-2 offset-md-4 offset-lg-4">
-                <select name="is_active" id="is_active" class="form-control">
-                    <option value="1" {{ $brand->is_active ? 'selected' : '' }}>Active</option>
-                    <option value="0" {{ !$brand->is_active ? 'selected' : '' }}>Inactive</option>
+                <select name="is_active" id="is_active" class="form-control roundedInput">
+                    <option value="1" {{ $brand->is_active ? 'selected' : '' }}>Активен</option>
+                    <option value="0" {{ !$brand->is_active ? 'selected' : '' }}>Архивирај</option>
                 </select>
             </div>
         </div>
 
-
-        <!-- Brand Name -->
         <div class="form-group">
-            <label for="name">Name:</label>
-            <input type="text" name="name" id="name" value="{{ $brand->name }}" class="form-control" required>
+            <label for="name">Име на бренд:</label>
+            <input type="text" name="name" id="name" value="{{ $brand->name }}" class="form-control roundedInput" required>
         </div>
 
-        <!-- Description -->
         <div class="form-group">
-            <label for="description">Description:</label>
-            <textarea name="description" id="description" class="form-control">{{ $brand->description }}</textarea>
+            <label for="description">Опис:</label>
+            <textarea name="description" id="description" class="form-control roundedInput">{{ $brand->description }}</textarea>
         </div>
-        <!-- Brand Tags -->
+     
         <div class="form-group">
-            <label for="tags">Tags:</label>
-            <input type="text" name="tags" id="tags" class="form-control" placeholder="Enter tags separated by commas" value="{{ implode(', ', $brand->tags->pluck('name')->toArray()) }}">
+            <label for="tags">Ознаки:</label>
+            <input type="text" name="tags" id="tags" class="form-control roundedInput" value="{{ implode(', ', $brand->tags->pluck('name')->toArray()) }}">
         </div>
 
 
-        <!-- Brand Category -->
-
+        <label for="">Слики:</label>
         <div class="row">
             @foreach($brand->images->take(4) as $index => $image)
             <div class="col">
@@ -77,10 +73,10 @@
 @foreach($brand->images as $index => $image)
 <input type="hidden" name="image_ids[]" value="{{ $image->id }}">
 @endforeach
-<div class="form-group mb-4">
-    <label for="brand_category_ids">Categories:</label>
+<div class="form-group mt-2">
+    <label for="brand_category_ids">Категорија:</label>
     <div>
-        <button type="button" id="show-categories-btn" class="form-control text-left">Select Categories</button>
+        <button type="button" id="show-categories-btn" class="form-control text-left roundedInput">Одбери</button>
         <select name="brand_category_ids[]" id="brand_category_ids" class="form-control" multiple required style="display: none;">
             @foreach ($categories as $category)
             <option value="{{ $category->id }}" {{ in_array($category->id, $brand->categories->pluck('id')->toArray()) ? 'selected' : '' }}>
@@ -90,9 +86,9 @@
         </select>
     </div>
 </div>
-<div class="row">
+<div class="row mt-5">
     <div class="col-8">
-        <button type="submit" class="btn btn-dark btn-block font-weight-bold">Зачувај</button>
+        <button type="submit" class="btn btn-dark btn-block font-weight-bold roundedInput">Зачувај</button>
     </div>
     <div class="col-4 align-self-center">
         <a href="{{ url()->previous() }}" class=" text-dark">Откажи</a>
