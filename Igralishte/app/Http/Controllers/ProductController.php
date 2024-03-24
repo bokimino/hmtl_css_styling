@@ -17,18 +17,6 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
-    {
-        $searchTerm = $request->input('query');
-        $admin = User::where('is_admin', true)->first();
-        $products = Product::query()
-            ->where('name', 'like', '%' . $searchTerm . '%')
-            ->orWhereHas('brand', function ($query) use ($searchTerm) {
-                $query->where('name', 'like', '%' . $searchTerm . '%');
-            })
-            ->paginate(2);
-        return view('product.index', compact('products', 'admin',));
-    }
     public function listView(Request $request)
     {
         $searchTerm = $request->input('query');
@@ -233,13 +221,18 @@ class ProductController extends Controller
 
             $product->images()->whereNotIn('id', $existingImageIds)->delete();
         }
-
+    
         if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $index => $image) {
-                if ($index < 4) {
-                    $imagePath = $image->store('product_images', 'public');
-                    $product->images()->create(['image' => $imagePath]);
+            $newImages = $request->file('images');
+    
+            foreach ($newImages as $index => $newImage) {
+                if ($index >= 4) {
+                    break; 
                 }
+    
+                $imagePath = $newImage->store('product_images', 'public');
+
+                $product->images()->create(['image' => $imagePath]);
             }
         }
 

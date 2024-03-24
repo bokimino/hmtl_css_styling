@@ -34,8 +34,9 @@
                 <p class="mb-0">{{ $brand->name }}</p>
             </div>
             <div class="">
-                <a href="{{ route('brands.edit', $brand->id) }}" class=""> <x-edit-button /></a>
-                <form action="{{ route('brands.destroy', $brand->id) }}" method="POST" class="d-inline">
+                <a href="{{ route('brands.edit', $brand->id) }}" class="text-decoration-none"> <x-edit-button /></a>
+                <!-- display None set on DELETE -->
+                <form action="{{ route('brands.destroy', $brand->id) }}" method="POST" class="d-none">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="border-0 bg-light p-0" onclick="return confirm('Are you sure you want to delete?')"><x-delete-button /></button>
@@ -57,8 +58,9 @@
                 <p class="mb-0 text-secondary">{{ $brand->name }}</p>
             </div>
             <div class="">
-                <a href="{{ route('brands.edit', $brand->id) }}" class=""> <x-edit-button /></a>
-                <form action="{{ route('brands.destroy', $brand->id) }}" method="POST" class="d-inline">
+                <a href="{{ route('brands.edit', $brand->id) }}" class="text-decoration-none"> <x-edit-button /></a>
+                <!-- display None set on DELETE -->
+                <form action="{{ route('brands.destroy', $brand->id) }}" method="POST" class="d-none">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="border-0 bg-white p-0" onclick="return confirm('Are you sure you want to delete?')"><x-delete-button /></button>
