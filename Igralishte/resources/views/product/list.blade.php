@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-<div class="container mb-4">
+<div class="container mb-4 inter-500">
     <div class="text-right">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <div class="input-group mr-2 border roundedInput custom-input-border-color ">
@@ -18,15 +18,19 @@
                 <a href="{{ route('product.listView') }}" class="roundedInput border p-1  ml-2" id="list-btn" style="background-color: #FFDBDB;"><x-list-button /></a>
             </div>
         </div>
-        <a href="{{ route('products.create') }}" class="text-secondary font-weight-bold ">Додај нов продукт <x-add-button /></a>
+        <a href="{{ route('products.create') }}" class="text-secondary ">Додај нов продукт <x-add-button /></a>
     </div>
 </div>
 
-
+@if(session('success'))
+<div class="alert alert-success">
+    {{ session('success') }}
+</div>
+@endif
 <div class="container ">
-<div class="div" id="list">
+    <div class="div" id="list">
         @foreach ($products as $product)
-        <div class="card mb-3 roundedInput bg-light">
+        <div class="card mb-3 roundedInput bg-light inter-500">
             <div class="card-body d-flex justify-content-between px-4 py-3">
                 <div class="align-self-center">
                     <p class="m-0">
