@@ -27,7 +27,7 @@
         </div>
 
         <div class="form-group">
-            <label>Name:</label>
+            <label>Име на продукт</label>
             <input type="text" name="name" class="form-control roundedInput">
             @error('name')
             <span class="invalid-feedback" role="alert">
@@ -37,8 +37,8 @@
         </div>
 
         <div class="form-group">
-            <label>Description:</label>
-            <textarea name="description" class="form-control"></textarea>
+            <label>Опис</label>
+            <textarea name="description" class="form-control roundedInput"></textarea>
             @error('description')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -47,8 +47,8 @@
         </div>
 
         <div class="form-group">
-            <label>Price:</label>
-            <input type="text" name="price" class="form-control">
+            <label>Цена</label>
+            <input type="text" name="price" class="form-control roundedInput">
             @error('price')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -56,12 +56,12 @@
             @enderror
         </div>
 
-        <div class="form-group">
-            <label>Quantity:</label>
-            <div class="quantity-input">
-                <button type="button" class="btn btn-sm btn-white border decrease rounded-circle" style="width: 30px;">-</button>
+        <div class="form-group d-flex">
+            <label class="mb-0">Количина:</label>
+            <div class="quantity-input ml-3">
+                <button type="button" class="btn btn-sm btn-white border decrease rounded-circle" style="width: 30px;"><x-decrease-icon/></button>
                 <input type="text" name="quantity" value="1" class="text-center border-0" style="width: 30px;" readonly>
-                <button type="button" class="btn btn-sm btn-white border increase rounded-circle" style="width: 30px;">+</button>
+                <button type="button" class="btn btn-sm btn-white border increase rounded-circle" style="width: 30px;"><x-increase-icon/></button>
             </div>
             @error('quantity')
             <span class="invalid-feedback" role="alert">
@@ -70,11 +70,11 @@
             @enderror
         </div>
 
-        <div class="form-group">
-            <label>Sizes:</label><br>
+        <div class="form-group d-flex">
+            <label class="mr-3">Величина:</label><br>
             @foreach ($sizes as $size)
             <input type="checkbox" name="sizes[]" value="{{ $size->id }}" id="size{{ $size->id }}" class="size-checkbox visually-hidden">
-            <label for="size{{ $size->id }}" class="size-label rounded text-uppercase font-weight-bold">{{ $size->name }}</label>
+            <label for="size{{ $size->id }}" class="size-label rounded text-uppercase font-weight-bold ">{{ $size->name }}</label>
             @endforeach
             @error('sizes')
             <span class="invalid-feedback" role="alert">
@@ -84,8 +84,8 @@
         </div>
 
         <div class="form-group">
-            <label>Size Description:</label>
-            <textarea name="size_description" class="form-control"></textarea>
+            <label>Совет за величина:</label>
+            <textarea name="size_description" class="form-control roundedInput"></textarea>
             @error('size_description')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -93,7 +93,7 @@
             @enderror
         </div>
         <div class="form-group">
-            <label>Colors:</label><br>
+            <label>Боја:</label><br>
             @foreach ($colors as $color)
             <div class="form-check form-check-inline mr-0">
                 <input type="checkbox" name="colors[]" value="{{ $color->id }}" id="color{{ $color->id }}" class="form-check-input size-checkbox visually-hidden">
@@ -113,8 +113,8 @@
         </div>
 
         <div class="form-group">
-            <label>Maintenance:</label>
-            <input type="text" name="maintenance" class="form-control">
+            <label>Насоки за одржување:</label>
+            <input type="text" name="maintenance" class="form-control roundedInput">
             @error('maintenance')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -123,8 +123,8 @@
         </div>
 
         <div class="form-group">
-            <label for="tags">Tags:</label>
-            <input type="text" name="tags" id="tags" class="form-control" placeholder="Enter tags separated by commas">
+            <label for="tags">Ознаки:</label>
+            <input type="text" name="tags" id="tags" class="form-control roundedInput">
             @error('tags')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -132,7 +132,8 @@
             @enderror
         </div>
 
-        <div class="row">
+        <label for="">Слики:</label>
+        <div class="row mb-3">
             @for($i = 1; $i <= 4; $i++) <div class="col">
                 <div class="square-box">
                     <div class="image-preview-edit" style="display: none;" id="preview{{ $i }}">
@@ -154,10 +155,10 @@
 
 </div>
 
-<label>Category:</label><br>
+<label>Категорија:</label><br>
 <div class="form-row">
     <div class="form-group col-4">
-        <select id="brand_id" name="brand_id" class="form-control">
+        <select id="brand_id" name="brand_id" class="form-control roundedInput">
             <option value="">Одбери</option>
             @foreach ($brands as $brand)
             @if ($brand->is_active)
@@ -173,7 +174,7 @@
     </div>
 
     <div class="form-group col-4 offset-1">
-        <select id="brand_category_id" name="brand_category_id" class="form-control">
+        <select id="brand_category_id" name="brand_category_id" class="form-control roundedInput">
             <option value="">Одбери</option>
         </select>
         @error('brand_category_id')
@@ -184,27 +185,9 @@
     </div>
 </div>
 
-
-<div class="form-group">
-    <button id="addDiscountButton" class="border-0 bg-white">Add Discount <x-add-button /></button>
-    <div id="discountDropdown" class="mt-2" style="display: none;">
-        <label for="discount_id">Select Discount:</label><br>
-        <select class="form-control" id="discountSelect" name="discount_id">
-            @foreach($discounts as $discount)
-            <option value="{{ $discount->id }}">{{ $discount->code }}</option>
-            @endforeach
-        </select>
-        @error('discount_id')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
-        @enderror
-    </div>
-</div>
-
-<div class="row">
+<div class="row mt-3">
     <div class="col-8">
-        <button type="submit" class="btn btn-dark btn-block font-weight-bold">Зачувај</button>
+        <button type="submit" class="btn btn-dark btn-block font-weight-bold roundedInput">Зачувај</button>
     </div>
     <div class="col-4 align-self-center">
         <a href="{{ url()->previous() }}" class="text-dark">Откажи</a>
@@ -257,18 +240,6 @@
                 $('#brand_category_id').html('<option value="">Select Brand Category</option>');
             }
         });
-    });
-    document.getElementById('addDiscountButton').addEventListener('click', function(event) {
-        event.preventDefault();
-        var dropdown = document.getElementById('discountDropdown');
-        var discountBtn = document.getElementById('addDiscountButton');
-        if (dropdown.style.display === 'none') {
-            dropdown.style.display = 'block';
-            discountBtn.style.display = 'none';
-
-        } else {
-            dropdown.style.display = 'none';
-        }
     });
 </script>
 @endsection

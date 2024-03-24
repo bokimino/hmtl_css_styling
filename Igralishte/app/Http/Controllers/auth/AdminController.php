@@ -53,7 +53,7 @@ class AdminController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $admin->id,
             'phone' => 'required|string|max:20',
-            'image' => 'nullable|image', // Add validation for the image
+            'image' => 'nullable|image', 
         ]);
     
         $admin->update([
@@ -61,14 +61,9 @@ class AdminController extends Controller
             'email' => $request->input('email'),
             'phone' => $request->input('phone'),
         ]);
-    
-        // Check if an image is uploaded
+
         if ($request->hasFile('image')) {
-            // Delete previous image if needed
-            // Storage::disk('public')->delete($admin->image);
-    
             $imagePath = $request->file('image')->store('profile_images', 'public');
-            // Update user's image
             $admin->image = $imagePath;
         }
     
@@ -95,7 +90,8 @@ class AdminController extends Controller
         return redirect()->route('admin.profile.edit')->with('success', 'Password updated successfully.');
     }
     public function editPassword()
-    {
-        return view('admin.profile.editPassword');
-    }
+{
+    $admin = User::where('is_admin', true)->firstOrFail();
+    return view('admin.profile.editPassword', compact('admin'));
+}
 }
