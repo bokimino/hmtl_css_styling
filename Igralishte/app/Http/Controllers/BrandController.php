@@ -66,6 +66,8 @@ class BrandController extends Controller
             'is_active' => 'required|boolean',
             'images' => 'required|array|min:1',
             'images.*' => 'image',
+            'brand_category_id' => 'required|array|min:1',
+            'tags' => 'required|string',
         ]);
 
         $brand = new Brand();
@@ -127,8 +129,9 @@ class BrandController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'is_active' => 'required|boolean',
-            'images' => 'required|array|min:1',
+            'images' => 'nullable|array',
             'images.*' => 'image',
+            'tags' => 'required|string',
         ]);
 
         $brand->name = $request->input('name');
@@ -146,22 +149,24 @@ class BrandController extends Controller
             $brand->images()->where('id', $imageId)->delete();
         }
 
+        // Handle image uploads
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $index => $image) {
+                // Limit to 4 images
                 if ($index < 4) {
-
                     $imagePath = $image->store('brand_images', 'public');
 
+                    // If there's an existing image at the same index, update it
                     if ($index < count($brand->images)) {
-
                         $brand->images()->where('id', $request->input('image_ids.' . $index))->update(['image_path' => $imagePath]);
                     } else {
-
+                        // Otherwise, create a new image
                         $brand->images()->create(['image_path' => $imagePath]);
                     }
                 }
             }
         }
+
 
         $brand->save();
 

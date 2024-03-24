@@ -38,7 +38,7 @@ class ProductController extends Controller
             ->orWhereHas('brand', function ($query) use ($searchTerm) {
                 $query->where('name', 'like', '%' . $searchTerm . '%');
             })
-            ->paginate(2);
+            ->paginate(6);
         return view('product.list', compact('products', 'admin',));
     }
     public function gridView(Request $request)
@@ -50,7 +50,7 @@ class ProductController extends Controller
             ->orWhereHas('brand', function ($query) use ($searchTerm) {
                 $query->where('name', 'like', '%' . $searchTerm . '%');
             })
-            ->paginate(2);
+            ->paginate(6);
         return view('product.grid', compact('products', 'admin',));
     }
 
@@ -144,7 +144,7 @@ class ProductController extends Controller
             }
         }
 
-        return redirect()->route('product.list')->with('success', 'Product created successfully.');
+        return redirect()->route('product.listView')->with('success', 'Product created successfully.');
     }
 
     /**
@@ -229,7 +229,9 @@ class ProductController extends Controller
 
         if ($request->has('existing_image_ids')) {
             $existingImageIds = $request->input('existing_image_ids');
-            $product->images()->whereIn('id', $existingImageIds)->delete();
+            $existingImages = $product->images()->whereIn('id', $existingImageIds)->get();
+
+            $product->images()->whereNotIn('id', $existingImageIds)->delete();
         }
 
         if ($request->hasFile('images')) {
@@ -241,7 +243,7 @@ class ProductController extends Controller
             }
         }
 
-        return redirect()->route('product.list')->with('success', 'Product updated successfully.');
+        return redirect()->route('product.listView')->with('success', 'Product updated successfully.');
     }
     /**
      * Remove the specified resource from storage.
