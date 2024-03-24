@@ -4,12 +4,26 @@
     height: 100vh;
 }
 
-
+.font-24 {
+    font-size: 24px;
+}
+.font-18 {
+    font-size: 18px;
+}
 /* Main.Blade  */
 .cormorant-garamond-regular {
     font-family: "Cormorant Garamond", serif;
     font-weight: 400;
     font-style: normal;
+}
+
+.inter-500 {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0;
 }
 
 .roundedInput {
@@ -67,7 +81,9 @@
 .paginationBorder {
     border-top: 3px solid #f1f1f1;
 }
-
+.fixed-bottom {
+    width: 72px;
+}
 @media only screen and (min-width: 768px) {
     .logoutBorder {
         width: 184.99px;

@@ -13,7 +13,7 @@
                 </a>
                 <p class="ml-2 mb-0">Продукт</p>
             </div>
-            <div class="form-group col col-md-2 col-lg-2 offset-md-4 offset-lg-4">
+            <div class="form-group col col-md-2 col-lg-2 offset-4">
                 <select name="is_active" id="is_active" class="form-control roundedInput">
                     <option value="1" {{ $product->is_active ? 'selected' : '' }}>Активен</option>
                     <option value="0" {{ !$product->is_active ? 'selected' : '' }}>Архивирај</option>

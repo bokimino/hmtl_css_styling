@@ -20,6 +20,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap" rel="stylesheet">
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -71,7 +74,7 @@
                     <a href="{{ route('logout') }}" class="d-flex align-items-center logoutBorder  link-dark text-decoration-none " id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                         <div class="logoutIconBorder p-2"><x-logout-button /></div>
-                        <p class="d-none d-md-flex ml-2 mb-0 font-weight-bold text-secondary">Одјави се</p>
+                        <p class="d-none d-md-flex ml-2 mb-0 font-weight-bold text-dark">Одјави се</p>
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
