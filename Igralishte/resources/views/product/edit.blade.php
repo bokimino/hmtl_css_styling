@@ -38,9 +38,9 @@
         <div class="form-group d-flex">
             <label class="mb-0">Количина:</label>
             <div class="quantity-input ml-3">
-                <button type="button" class="btn btn-sm btn-white border decrease rounded-circle" style="width: 30px;"><x-decrease-icon/></button>
+                <button type="button" class="btn btn-sm btn-white border decrease rounded-circle" style="width: 30px;"><x-decrease-icon /></button>
                 <input type="text" name="quantity" value="{{ $product->quantity }}" class="text-center border-0" style="width: 30px;" readonly>
-                <button type="button" class="btn btn-sm btn-white border increase rounded-circle" style="width: 30px;"><x-increase-icon/></button>
+                <button type="button" class="btn btn-sm btn-white border increase rounded-circle" style="width: 30px;"><x-increase-icon /></button>
             </div>
         </div>
 
@@ -199,6 +199,18 @@
             } else {
                 $('#brand_category_id').html('<option value="">Select Brand Category</option>');
             }
+        });
+    });
+    $(document).ready(function() {
+        $('.remove-image').on('click', function() {
+            var imageId = $(this).data('image-id');
+            var squareBox = $(this).closest('.square-box');
+
+            squareBox.find('img').attr('src', '');
+
+            $('input[name="existing_image_ids[]"][value="' + imageId + '"]').remove();
+
+            squareBox.find('.image-upload').val('');
         });
     });
 </script>

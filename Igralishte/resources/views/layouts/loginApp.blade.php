@@ -18,11 +18,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <!-- CSS script -->
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
-    <!-- Latest Font-Awesome CDN -->
-    <script src="https://kit.fontawesome.com/3257d9ad29.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
-    <div class="gradient-background pt-5">
+    <div class="gradient-background pt-5 vh-100">
         <div class="container py-5">
             <div class="text-center text-uppercase">
                 <img src="{{ asset('images/Logo.png') }}" alt="Logo">

@@ -2,6 +2,11 @@
 
 @section('content')
 <div class="container my-4">
+    @if (session('status'))
+    <div class="alert alert-success text-center" role="alert">
+        {{ session('status') }}
+    </div>
+    @endif
     <div class="row justify-content-center">
         <form method="POST" action="{{ route('login') }}">
             @csrf
